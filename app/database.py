@@ -12,13 +12,14 @@ class Database_cl(object):
 
         self.data_o = None
         self.maxId_o = dataid.DataId_cl()
-        self.readData_p()
+        self.listForm = "None"
+        self.readData_p(self.listForm)
 
-    def create_px(self, data_opl):
+    def create_px(self, data_opl, listForm):
 
         id_s = self.maxId_o.create_px()
         self.data_o[str(id_s)] = data_opl
-        self.saveData_p()
+        self.saveData_p(listForm)
         return str(id_s)
 
     def read_px(self, id_spl=None):
@@ -31,20 +32,20 @@ class Database_cl(object):
                 data_o = self.data_o[id_spl]
         return data_o
 
-    def update_px(self, id_spl, data_opl):
+    def update_px(self, id_spl, data_opl,listForm):
 
         status_b = False
         if id_spl in self.data_o:
             self.data_o[id_spl] = data_opl
-            self.saveData_p()
+            self.saveData_p(listForm)
             status_b = True
         return status_b
 
-    def delete_px(self, id_spl):
+    def delete_px(self, id_spl,listForm):
 
         status_b = False
         if self.data_o.pop(id_spl, None) != None:
-            self.saveData_p()
+            self.saveData_p(listForm)
             status_b = True
         return status_b
 
@@ -53,19 +54,39 @@ class Database_cl(object):
 
         return ['', '', '', '', '', '', '', '', '']  # step 1,3
 
-    def readData_p(self):
+    def readData_p(self,listForm):
+
 
         try:
-            fp_o = codecs.open(os.path.join('data', 'webteams.json'), 'r', 'utf-8')
+            if listForm == "Mitarbeiter":
+                fp_o = codecs.open(os.path.join('data', 'Mitarbeiter.json'), 'r', 'utf-8')
+            elif listForm == "Weiterbildung":
+                fp_o = codecs.open(os.path.join('data', 'Weiterbildung.json'), 'r', 'utf-8')
+            elif listForm == "Zertifikat":
+                fp_o = codecs.open(os.path.join('data', 'Zertifikat.json'), 'r', 'utf-8')
+            elif listForm == "Qualifikation":
+                fp_o = codecs.open(os.path.join('data', 'Qualifikation.json'), 'r', 'utf-8')
+            else:
+                return
         except:
             self.data_o = {}
-            self.saveData_p()
+            self.saveData_p(listForm)
         else:
             with fp_o:
                 self.data_o = json.load(fp_o)
         return
 
-    def saveData_p(self):
+    def saveData_p(self,listForm):
 
-        with codecs.open(os.path.join('data', 'webteams.json'), 'w', 'utf-8') as fp_o:
-            json.dump(self.data_o, fp_o, indent=3)
+        if listForm == "Mitarbeiter":
+            with codecs.open(os.path.join('data', 'Mitarbeiter.json'), 'w', 'utf-8') as fp_o:
+                json.dump(self.data_o, fp_o, indent=3)
+        elif listForm == "Weiterbildung":
+            with codecs.open(os.path.join('data', 'Weiterbildung.json'), 'w', 'utf-8') as fp_o:
+                json.dump(self.data_o, fp_o, indent=3)
+        elif listForm == "Zertifikat":
+            with codecs.open(os.path.join('data', 'Zertifikat.json'), 'w', 'utf-8') as fp_o:
+                json.dump(self.data_o, fp_o, indent=3)
+        elif listForm == "Qualifikation":
+            with codecs.open(os.path.join('data', 'Qualifikation.json'), 'w', 'utf-8') as fp_o:
+                json.dump(self.data_o, fp_o, indent=3)

@@ -13,7 +13,7 @@ class Application_cl(object):
 
         self.db_o = Database_cl()
         self.view_o = View_cl()
-        self.listForm = "Tabelle"
+        self.listForm = "Startseite"
 
 
     @cherrypy.expose
@@ -31,6 +31,7 @@ class Application_cl(object):
     # step 7
     @cherrypy.expose
     def switch(self, listForm):
+        Database_cl.listForm = listForm
         self.listForm = listForm
         return self.createList_p(self.listForm)
 
@@ -39,30 +40,70 @@ class Application_cl(object):
     # -------------------------------------------------------
     def edit(self, id_spl):
         # -------------------------------------------------------
-        return self.createForm_p(self.listForm,id_spl)
+        return self.createForm_p(self.listForm, id_spl)
 
-    @cherrypy.expose
+
     # -------------------------------------------------------
-    # step 1,3
-    def save(self, id_spa, name1_spa, vorname1_spa, matrnr1_spa, semesteranzahl1_spa, name2_spa, vorname2_spa,
-             matrnr2_spa, semesteranzahl2_spa):
+    @cherrypy.expose
+    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa, listForm = "Mitarbeiter"):
         # -------------------------------------------------------
+        Database_cl.listForm = listForm
         id_s = id_spa
-        data_a = [name1_spa, vorname1_spa, matrnr1_spa, semesteranzahl1_spa, name2_spa, vorname2_spa, matrnr2_spa,
-                  semesteranzahl2_spa]
+        data_a = [name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa]
         if id_s != "None":
-            self.db_o.update_px(id_s, data_a)
+            self.db_o.update_px(id_s, data_a, listForm)
         else:
-            self.db_o.create_px(data_a)
+            self.db_o.create_px(data_a, listForm)
 
         return self.createList_p(self.listForm)
 
-    # step 1,3
-    # step 5
-    @cherrypy.expose
-    def delete(self, id):
+
         # -------------------------------------------------------
-        self.db_o.delete_px(id)
+
+    @cherrypy.expose
+    def save_Weterbildung(self, id_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa, min_teilnehmer_spa, listForm = "Weiterbildung"):
+        # -------------------------------------------------------
+        Database_cl.listForm = listForm
+        id_s = id_spa
+        data_a = [bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa, min_teilnehmer_spa]
+        if id_s != "None":
+            self.db_o.update_px(id_s, data_a, listForm)
+        else:
+            self.db_o.create_px(data_a, listForm)
+
+        return self.createList_p(self.listForm)
+
+    @cherrypy.expose
+    def save_Zertifikat(self, id_spa, bezeichnung_spa, beschreibung_spa, berechtigt_spa, listForm = "Zertifikat"):
+        # -------------------------------------------------------
+        Database_cl.listForm = listForm
+        id_s = id_spa
+        data_a = [bezeichnung_spa, beschreibung_spa, berechtigt_spa]
+        if id_s != "None":
+            self.db_o.update_px(id_s, data_a, listForm)
+        else:
+            self.db_o.create_px(data_a, listForm)
+
+        return self.createList_p(self.listForm)
+
+    @cherrypy.expose
+    def save_Qualifikation(self, id_spa, bezeichnung_spa, beschreibung_spa, listForm = "Qualifikation"):
+        # -------------------------------------------------------
+        Database_cl.listForm = listForm
+        id_s = id_spa
+        data_a = [bezeichnung_spa, beschreibung_spa]
+        if id_s != "None":
+            self.db_o.update_px(id_s, data_a, listForm)
+        else:
+            self.db_o.create_px(data_a, listForm)
+
+        return self.createList_p(self.listForm)
+
+    @cherrypy.expose
+    def delete(self, id, listForm):
+        # -------------------------------------------------------
+        Database_cl.listForm = listForm
+        self.db_o.delete_px(id, listForm)
 
         raise cherrypy.HTTPRedirect('/')
 
@@ -82,13 +123,14 @@ class Application_cl(object):
     # -------------------------------------------------------
     def createList_p(self, listForm):
         # -------------------------------------------------------
-
+        Database_cl.listForm = listForm
         data_o = self.db_o.read_px()
         return self.view_o.createList_px(data_o, listForm)
 
     # -------------------------------------------------------
     def createForm_p(self, listForm, id_spl=None):
         # -------------------------------------------------------
+        Database_cl.listForm = listForm
         if id_spl != None:
             data_o = self.db_o.read_px(id_spl)
         else:
