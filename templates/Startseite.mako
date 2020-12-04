@@ -23,17 +23,19 @@
             </div>
         </div>
         <div class="item2">
-            <a href="/">
+            <a href="/switch?listform=Startseite">
                 <button>
                     Startseite
                 </button>
             </a>
         </div>
         <div class="item3">
-            <a>
+            <a href="/switch?listForm=Pflege_Mit">
                 <button>
                     Pflege Mitarbeiterdaten
                 </button>
+            </a>
+            <a href="/switch?listForm=Pflege_Weiter">
                 <br>
                 <button>
                     Pflege Weiterbildungen
@@ -44,14 +46,14 @@
              Teilnahme
              <ul class="a">
                 <li>
-                    <a>
+                    <a href="/switch?listForm=Sichtweise_Mit">
                         <button>
                             Sichtweise Mitarbeiter
                         </button>
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="/switch?listForm=Sichtweise_Weiter">
                         <button>
                             Sichtweise Weiterbildungen
                         </button>
@@ -64,21 +66,21 @@
             Auswertungen
                 <ul>
                     <li>
-                        <a>
+                        <a href="/switch?listForm=Mitarbeiter">
                             <button>
                                 Mitarbeiter
                             </button>
                         </a>
                     </li>
                     <li>
-                        <a>
+                        <a href="/switch?listForm=Weiterbildungen">
                             <button>
                                 Weiterbildungen
                             </button>
                         </a>
                     </li>
                     <li>
-                        <a>
+                        <a href="/switch?listForm=Zertifikate">
                             <button>
                                 Zertifikate
                             </button>
