@@ -23,30 +23,39 @@
             </div>
         </div>
         <div class="item2">
-            <button>
-                Startseite
-            </button>
+            <a href="/">
+                <button>
+                    Startseite
+                </button>
+            </a>
         </div>
         <div class="item3">
-            <button>
-                Pflege Mitarbeiterdaten
-            </button><br>
-            <button>
-                Pflege Weiterbildungen
-            </button>
+            <a>
+                <button>
+                    Pflege Mitarbeiterdaten
+                </button>
+                <br>
+                <button>
+                    Pflege Weiterbildungen
+                </button>
+            </a>
         </div>
         <div class="item4">
              Teilnahme
              <ul class="a">
                 <li>
-                    <button>
-                        Sichtweise Mitarbeiter
-                    </button>
+                    <a>
+                        <button>
+                            Sichtweise Mitarbeiter
+                        </button>
+                    </a>
                 </li>
                 <li>
-                    <button>
-                        Sichtweise Weiterbildungen
-                    </button>
+                    <a>
+                        <button>
+                            Sichtweise Weiterbildungen
+                        </button>
+                    </a>
                 </li>
              </ul>
         </div>
@@ -55,19 +64,25 @@
             Auswertungen
                 <ul>
                     <li>
-                        <button>
-                            Mitarbeiter
-                        </button>
+                        <a>
+                            <button>
+                                Mitarbeiter
+                            </button>
+                        </a>
                     </li>
                     <li>
-                        <button>
-                            Weiterbildungen
-                        </button>
+                        <a>
+                            <button>
+                                Weiterbildungen
+                            </button>
+                        </a>
                     </li>
                     <li>
-                        <button>
-                            Zertifikate
-                        </button>
+                        <a>
+                            <button>
+                                Zertifikate
+                            </button>
+                        </a>
                     </li>
                 </ul>
             </div>
