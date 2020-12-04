@@ -20,11 +20,13 @@ class View_cl(object):
         # -------------------------------------------------------
 
         if listForm == "Startseite":
+
             template_o = self.lookup_o.get_template('Startseite.mako')
 
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
             return markup_s
         elif listForm == "Pflege_Mit":
+
             template_o = self.lookup_o.get_template('Pflege_Mit.mako')
 
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
@@ -60,14 +62,17 @@ class View_cl(object):
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
             return markup_s
 
-
-
     # -------------------------------------------------------
     def createForm_px(self, id_spl, data_opl, listForm):
         # -------------------------------------------------------
-        template_o = self.lookup_o.get_template('form.mako')
-        markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
-        return markup_s
+        if listForm == "Pflege_Mit":
+            template_o = self.lookup_o.get_template('Mitarbeiter_form.mako')
+            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
+            return markup_s
+        elif listForm == "Pflege_Weiter":
+            template_o = self.lookup_o.get_template('Weiterbildung_form.mako')
+            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
+            return markup_s
 
     # -------------------------------------------------------
     def readFile_p(self, fileName_spl):

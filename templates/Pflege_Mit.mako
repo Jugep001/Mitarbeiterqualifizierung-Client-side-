@@ -93,7 +93,31 @@
             Leer?
         </div>
         <div class="item7">
-            Main
+
+    <ul>
+        % for key_s in data_o:
+
+
+        <li>:
+            <a href="/edit/${key_s}">bearbeiten</a>
+            <a href="/delete/${key_s}" class='clDelete'> löschen</a>
+
+                    <ul class="">
+
+                            <li>Name:${data_o[key_s]["name"]}</li>
+                            <li>Vorname:${data_o[key_s]["vorname"]}</li>
+                            <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
+                            <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
+
+                    </ul>
+
+
+        </li>
+        % endfor
+    </ul>
+            <div>
+                <a href="/add"><button class="">erfassen</button></a>
+            </div>
         </div>
     </div>
 </body>
