@@ -1,4 +1,4 @@
-.item1 { grid-area: header; }
+.item1 { grid-area: head; }
 .item2 { grid-area: sidebar1; }
 .item3 { grid-area: sidebar2; }
 .item4 { grid-area: sidebar3; }
@@ -9,21 +9,47 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
+    'head head head head head head'
     'sidebar1 main main main main main'
     'sidebar2 main main main main main'
     'sidebar3 main main main main main'
     'sidebar4 main main main main main'
-    'sidebar5 main main main main main'
-    'menu6 main main main main main';
+    'sidebar5 main main main main main';
   grid-gap: 10px;
-  background-color: #2196F3;
+  background-color: #403075;
   padding: 10px;
 }
-
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
+  text-align: left;
+  padding: 5px;
+}
+.flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.box-01 {
+  flex-basis: auto;
+  flex-grow: 1;
+  text-align: left;
+}
+.box-02 {
+  flex-basis: auto;
+  flex-grow: 4;
+  text-align: right;
+}
+button{
+  transition-duration: 0.2s;
+  background-color: #625295;
+  padding: 5px;
+  border: none;
+  text-align: left;
+}
+button:hover {
+  background-color: mediumpurple;
+  color: black;
+}
+ul{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
