@@ -18,7 +18,7 @@ class View_cl(object):
     # -------------------------------------------------------
     def createList_px(self, data_opl, listForm):
         # -------------------------------------------------------
-
+        print(listForm)
         if listForm == "Startseite":
 
             template_o = self.lookup_o.get_template('Startseite.mako')
@@ -61,13 +61,25 @@ class View_cl(object):
 
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
             return markup_s
+        elif listForm == "Pflege_Mit_Detail":
+            template_o = self.lookup_o.get_template('Pflege_Mit_Detail.mako')
+
+            markup_s = template_o.render(data_o=data_opl, listform0=listForm)
+            return markup_s
+        elif listForm == "Pflege_Weiter_Detail":
+            template_o = self.lookup_o.get_template('Pflege_Weiter_Detail.mako')
+
+            markup_s = template_o.render(data_o=data_opl, listform0=listForm)
+            return markup_s
 
     # -------------------------------------------------------
-    def createForm_px(self, id_spl, data_opl, listForm):
+    def createForm_px(self, id_spl, data_opl, listForm, data_weiter_opl=None):
         # -------------------------------------------------------
         if listForm == "Pflege_Mit":
             template_o = self.lookup_o.get_template('Mitarbeiter_form.mako')
-            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
+
+
+            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, key_weiter_s=id_spl, bezeichnung={}, listForm=listForm, data_weiter=data_weiter_opl)
             return markup_s
         elif listForm == "Pflege_Weiter":
             template_o = self.lookup_o.get_template('Weiterbildung_form.mako')

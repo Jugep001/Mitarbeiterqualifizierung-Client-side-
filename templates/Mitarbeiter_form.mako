@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <title>Web-Teams</title>
+    <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
+    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
     <link href="Mitarbeiterqualifizierung.css" rel="stylesheet" type="text/css"/>
-    <!--<style>
-    @import "/webteams.css";
-    </style>-->
+
 </head>
+
+
 <body>
+
+
     <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
             <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
     <div class="">

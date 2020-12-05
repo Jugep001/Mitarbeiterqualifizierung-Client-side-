@@ -95,10 +95,8 @@
         <div class="item7">
             <ul>
         % for key_s in data_o:
-
-
         <li>:
-            <a href="/edit/${key_s}">bearbeiten</a>
+            <a href="/edit/${key_s}">bearbeiten</a> <!-- to do -->
             <a href="/delete/${key_s}" class='clDelete'> löschen</a>
 
                     <ul class="">
@@ -118,6 +116,7 @@
     </ul>
             <div>
                 <a href="/add"><button class="">erfassen</button></a>
+                <a href="/switch?listForm=Pflege_Weiter_Detail"><button>anzeigen</button></a>
             </div>
         </div>
     </div>

@@ -117,7 +117,7 @@
     </ul>
             <div>
                 <a href="/add"><button class="">erfassen</button></a>
-                <a href="/switch?listForm=Pflege_Mit_Detail"><button>anzeigen</button></a>
+                <a href="/switch?listForm=Pflege_Mit"><button>anzeigen</button></a>
             </div>
         </div>
     </div>

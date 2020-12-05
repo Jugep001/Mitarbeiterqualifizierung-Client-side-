@@ -53,7 +53,8 @@ class Application_cl(object):
             "name": name_spa,
             "vorname": vorname_spa,
             "akademischer_grad": ak_grad_spa,
-            "taetigkeit": taetigkeit_spa
+            "taetigkeit": taetigkeit_spa,
+
 
         }
         if id_s != "None":
@@ -67,7 +68,8 @@ class Application_cl(object):
 
     @cherrypy.expose
     def save_Weiterbildung(self, id_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
-                           min_teilnehmer_spa, listForm="Pflege_Weiter"):
+                           min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
+                           bezeichnung_quali_spa,beschreibung_quali_spa, listForm="Pflege_Weiter"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
         id_s = id_spa
@@ -78,7 +80,12 @@ class Application_cl(object):
             "bis": bis_spa,
             "beschreibung": beschreibung_spa,
             "max_teilnehmer": max_teilnehmer_spa,
-            "min_teilnehmer": min_teilnehmer_spa
+            "min_teilnehmer": min_teilnehmer_spa,
+            "bezeichnung_zerti": bezeichnung_zerti_spa,
+            "beschreibung_zerti": beschreibung_zerti_spa,
+            "berechtigt_zu": berechtigt_zu_spa,
+            "bezeichnung_quali": bezeichnung_quali_spa,
+            "beschreibung_quali": beschreibung_quali_spa,
 
         }
 
@@ -122,7 +129,7 @@ class Application_cl(object):
         if id_s != "None":
             self.db_o.update_px(id_s, data_a, listForm)
         else:
-            self.db_o.create_px(data_a)
+            self.db_o.create_px(data_a, self.listForm)
 
         return self.createList_p()
 
@@ -163,6 +170,6 @@ class Application_cl(object):
         if id_spl != None:
             data_o = self.db_o.read_px(self.listForm, id_spl)
         else:
-            data_o = self.db_o.getDefault_px(self.listForm)
 
+            data_o = self.db_o.getDefault_px(self.listForm)
         return self.view_o.createForm_px(id_spl, data_o, self.listForm)

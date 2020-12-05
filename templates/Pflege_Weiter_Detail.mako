@@ -93,8 +93,7 @@
             Leer?
         </div>
         <div class="item7">
-
-    <ul>
+            <ul>
         % for key_s in data_o:
 
 
@@ -104,10 +103,17 @@
 
                     <ul class="">
 
-                            <li>Name:${data_o[key_s]["name"]}</li>
-                            <li>Vorname:${data_o[key_s]["vorname"]}</li>
-                            <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
-                            <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
+                            <li>bezeichnung:${data_o[key_s]["bezeichnung"]}</li>
+                            <li>von:${data_o[key_s]["von"]}</li>
+                            <li>bis:${data_o[key_s]["bis"]}</li>
+                            <li>beschreibung:${data_o[key_s]["beschreibung"]}</li>
+                            <li>max_teilnehmer:${data_o[key_s]["max_teilnehmer"]}</li>
+                            <li>min_teilnehmer:${data_o[key_s]["min_teilnehmer"]}</li>
+                            <li>bezeichnung:${data_o[key_s]["bezeichnung_zerti"]}</li>
+                            <li>beschreibung:${data_o[key_s]["beschreibung_zerti"]}</li>
+                            <li>berechtigt zu:${data_o[key_s]["berechtigt_zu"]}</li>
+                            <li>bezeichnung:${data_o[key_s]["bezeichnung_quali"]}</li>
+                            <li>beschreibung:${data_o[key_s]["beschreibung_quali"]}</li>
 
                     </ul>
 
@@ -117,7 +123,7 @@
     </ul>
             <div>
                 <a href="/add"><button class="">erfassen</button></a>
-                <a href="/switch?listForm=Pflege_Mit_Detail"><button>anzeigen</button></a>
+                <a href="/switch?listForm=Pflege_Weiter"><button>zurück</button></a>
             </div>
         </div>
     </div>

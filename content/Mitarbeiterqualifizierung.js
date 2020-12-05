@@ -15,6 +15,23 @@
             }
 
 
+            function select_Weiter(data) {
+
+
+
+                select = document.getElementById('selectElementId');
+
+                for (var prop in data) {
+                    var opt = document.createElement('option');
+
+                    opt.value = JSON.stringify(data[prop]);
+                    opt.innerHTML = JSON.stringify(data[prop]);
+                    select.appendChild(opt);
+
+     }
+ }
+
+
      function sortTable() {
 
 
@@ -72,4 +89,7 @@
      }
 
    }
+
  }
+
+

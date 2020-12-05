@@ -33,8 +33,8 @@ class Database_cl(object):
         return str(id_s)
 
     def read_px(self, listForm, id_spl=None):
-        print("listForm:"+listForm)
-        if listForm == "Pflege_Mit":
+
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
             data_o_Mit = None
             if id_spl == None:
                 data_o_Mit = self.data_o_Mit
@@ -43,7 +43,7 @@ class Database_cl(object):
                     data_o_Mit = self.data_o_Mit[id_spl]
 
             return data_o_Mit
-        elif listForm == "Pflege_Weiter":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
             data_o_Weiter = None
             if id_spl == None:
                 data_o_Weiter = self.data_o_Weiter
@@ -71,6 +71,8 @@ class Database_cl(object):
                     data_o_Quali = self.data_o_Quali[id_spl]
 
             return data_o_Quali
+
+
 
     def update_px(self, id_spl, data_opl, listForm):
 
@@ -134,6 +136,11 @@ class Database_cl(object):
                 "beschreibung": "",
                 "max_teilnehmer": "",
                 "min_teilnehmer": "",
+                "bezeichnung_zerti": "",
+                "beschreibung_zerti": "",
+                "berechtigt_zu": "",
+                "bezeichnung_quali": "",
+                "beschreibung_quali": "",
             }
 
         elif listForm == "Zertifikat":
@@ -183,6 +190,7 @@ class Database_cl(object):
 
         with codecs.open(os.path.join('data', 'Weiterbildung.json'), 'w', 'utf-8') as fp_o:
             json.dump(self.data_o_Weiter, fp_o, indent=3)
+
 
         with codecs.open(os.path.join('data', 'Zertifikat.json'), 'w', 'utf-8') as fp_o:
             json.dump(self.data_o_Zerti, fp_o, indent=3)
