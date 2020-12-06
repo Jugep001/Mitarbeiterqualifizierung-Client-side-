@@ -22,19 +22,20 @@ class Database_cl(object):
 
         id_s = self.maxId_o.create_px()
         if listForm == "Pflege_Mit":
-          self.data_o_Mit[str(id_s)] = data_opl
+            self.data_o_Mit[str(id_s)] = data_opl
         elif listForm == "Pflege_Weiter":
-          self.data_o_Weiter[str(id_s)] = data_opl
+            self.data_o_Weiter[str(id_s)] = data_opl
         elif listForm == "Zertifikat":
-          self.data_o_Zerti[str(id_s)] = data_opl
+            self.data_o_Zerti[str(id_s)] = data_opl
         elif listForm == "Qualifikation":
-          self.data_o_Quali[str(id_s)] = data_opl
+            self.data_o_Quali[str(id_s)] = data_opl
         self.saveData_p()
         return str(id_s)
 
     def read_px(self, listForm, id_spl=None):
 
-        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Sichtweise_Mit" \
+                or listForm == "Sichtweise_Mit_Form":
             data_o_Mit = None
             if id_spl == None:
                 data_o_Mit = self.data_o_Mit
@@ -64,15 +65,13 @@ class Database_cl(object):
         elif listForm == "Qualifikation":
             data_o_Quali = None
             if id_spl == None:
-                print(self.data_o_Quali)
+
                 data_o_Quali = self.data_o_Quali
             else:
                 if id_spl in self.data_o_Quali:
                     data_o_Quali = self.data_o_Quali[id_spl]
 
             return data_o_Quali
-
-
 
     def update_px(self, id_spl, data_opl, listForm):
 
@@ -190,7 +189,6 @@ class Database_cl(object):
 
         with codecs.open(os.path.join('data', 'Weiterbildung.json'), 'w', 'utf-8') as fp_o:
             json.dump(self.data_o_Weiter, fp_o, indent=3)
-
 
         with codecs.open(os.path.join('data', 'Zertifikat.json'), 'w', 'utf-8') as fp_o:
             json.dump(self.data_o_Zerti, fp_o, indent=3)

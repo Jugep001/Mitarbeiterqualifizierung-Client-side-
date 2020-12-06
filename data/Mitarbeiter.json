@@ -1,8 +1,14 @@
 {
    "25": {
-      "name": "dasdas",
-      "vorname": "dsa",
-      "akademischer_grad": "dsads",
-      "taetigkeit": "dsadas"
+      "name": "Geppert",
+      "vorname": "Julian",
+      "akademischer_grad": "Student",
+      "taetigkeit": "Student"
+   },
+   "26": {
+      "name": "Freukes",
+      "vorname": "Benjamin",
+      "akademischer_grad": "Student",
+      "taetigkeit": "Student"
    }
 }

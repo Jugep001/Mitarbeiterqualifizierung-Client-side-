@@ -1,5 +1,6 @@
 # coding: utf-8
 import cherrypy
+import json
 from .database import Database_cl
 from .view import View_cl
 
@@ -14,7 +15,7 @@ class Application_cl(object):
         self.db_o = Database_cl()
         self.view_o = View_cl()
         self.listForm = "Startseite"
-
+        self.data = None
 
     @cherrypy.expose
     # -------------------------------------------------------
@@ -30,10 +31,10 @@ class Application_cl(object):
 
     # step 7
     @cherrypy.expose
-    def switch(self, listForm):
+    def switch(self, listForm, data=None):
         Database_cl.listForm = listForm
         self.listForm = listForm
-        return self.createList_p()
+        return self.createList_p(data)
 
     # step 7
     @cherrypy.expose
@@ -55,7 +56,6 @@ class Application_cl(object):
             "akademischer_grad": ak_grad_spa,
             "taetigkeit": taetigkeit_spa,
 
-
         }
         if id_s != "None":
             self.db_o.update_px(id_s, data_a, listForm)
@@ -69,7 +69,7 @@ class Application_cl(object):
     @cherrypy.expose
     def save_Weiterbildung(self, id_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
                            min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
-                           bezeichnung_quali_spa,beschreibung_quali_spa, listForm="Pflege_Weiter"):
+                           bezeichnung_quali_spa, beschreibung_quali_spa, listForm="Pflege_Weiter"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
         id_s = id_spa
@@ -155,13 +155,12 @@ class Application_cl(object):
     default.exposed = True
 
     # -------------------------------------------------------
-    def createList_p(self):
+    def createList_p(self, data=None):
         # -------------------------------------------------------
         Database_cl.listForm = self.listForm
 
         data_o = self.db_o.read_px(self.listForm)
-        print(data_o)
-        return self.view_o.createList_px(data_o, self.listForm)
+        return self.view_o.createList_px(data_o, self.listForm, data)
 
     # -------------------------------------------------------
     def createForm_p(self, id_spl=None):

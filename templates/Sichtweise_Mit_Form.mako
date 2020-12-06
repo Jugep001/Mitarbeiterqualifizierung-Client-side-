@@ -93,16 +93,17 @@
             Leer?
         </div>
         <div class="item7">
-            
-            % for key_s in data_o:
-                <ul class="">
-                    <li>
-                        <a href="/switch?listForm=Sichtweise_Mit_Form&data=${key_s}">${data_o[key_s]["vorname"]}</a>
-                     </li>
+
+            <ul class="">
+
+                        <li>Name:${data_o[data_key]["name"]}</li>
+                        <li>Vorname:${data_o[data_key]["vorname"]}</li>
+                        <li>Akademischer Grad:${data_o[data_key]["akademischer_grad"]}</li>
+                        <li>Tätigkeit:${data_o[data_key]["taetigkeit"]}</li>
+
+
                 </ul>
 
-
-            % endfor
         </div>
     </div>
 </body>
