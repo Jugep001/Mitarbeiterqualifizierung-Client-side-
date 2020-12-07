@@ -92,7 +92,7 @@ class View_cl(object):
             template_o = self.lookup_o.get_template('Sichtweise_Mit_Form.mako')
 
             markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_key=data, key_weiter_s=data,
-                                         data_weiter=data_weiter_opl, bezeichnung={}, value_weiter={})
+                                         data_weiter=data_weiter_opl, bezeichnung={}, value_weiter={}, i=0)
             return markup_s
 
     # -------------------------------------------------------

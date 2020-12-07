@@ -117,6 +117,15 @@ class Database_cl(object):
                 self.saveData_p()
                 status_b = True
             return status_b
+    def storno_px(self, id_spl, i):
+
+        status_b = False
+
+        if self.data_o_Mit != None:
+            del self.data_o_Mit[id_spl]["Weiterbildung"][int(i)]
+            self.saveData_p()
+            status_b = True
+        return status_b
 
     def getDefault_px(self, listForm):
 

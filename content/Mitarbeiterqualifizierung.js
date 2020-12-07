@@ -18,14 +18,14 @@
             function select_Weiter(data) {
 
 
-                var p = document.getElementById('create_check')
-
+                var p = document.getElementById('create_check');
+                var i = 0;
 
                 for (var prop in data) {
                     var checkbox = document.createElement('input');
 
                         checkbox.type = "checkbox";
-                        checkbox.id = "Weiterbildung_spa";
+                        checkbox.id = "Weiterbildung_spa_" + i;
                         checkbox.name = "Weiterbildung_spa";
                         checkbox.value = JSON.stringify(data[prop]);
                         var label = document.createElement('label');
@@ -34,8 +34,9 @@
                         label.appendChild(tn);
                         p.appendChild(label);
                         p.appendChild(checkbox);
-                        console.log(checkbox.value)
+                        console.log(checkbox.id)
 
+                        i++;
 
 
      }

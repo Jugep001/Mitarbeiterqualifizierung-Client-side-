@@ -4,6 +4,9 @@
       "vorname": "Julian",
       "akademischer_grad": "Student",
       "taetigkeit": "Student",
-      "Weiterbildung": null
+      "Weiterbildung": [
+         "\"Java\"",
+         "\"C++\""
+      ]
    }
 }

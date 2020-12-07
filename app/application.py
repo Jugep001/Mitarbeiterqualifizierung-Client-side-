@@ -61,6 +61,7 @@ class Application_cl(object):
             "Weiterbildung": Weiterbildung_spa,
 
         }
+        print(type(Weiterbildung_spa))
 
         if id_s != "None":
             self.db_o.update_px(id_s, data_a, listForm)
@@ -146,7 +147,13 @@ class Application_cl(object):
 
         raise cherrypy.HTTPRedirect('/')
 
-    # step 5
+    @cherrypy.expose
+    def stornieren(self, id, i):
+
+        self.db_o.storno_px(id, i)##To-DO
+
+        raise cherrypy.HTTPRedirect('/')
+
     @cherrypy.expose
     # -------------------------------------------------------
     def default(self, *arguments, **kwargs):

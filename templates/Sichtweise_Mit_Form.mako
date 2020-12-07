@@ -119,9 +119,17 @@
                         <li>Vorname:${data_o[data_key]["vorname"]}</li>
                         <li>Akademischer Grad:${data_o[data_key]["akademischer_grad"]}</li>
                         <li>Tätigkeit:${data_o[data_key]["taetigkeit"]}</li>
-                        <li>Weiterbildung(am teilnehmen):${data_o[data_key]["Weiterbildung"]}</li>
 
 
+                    % if data_o[data_key]["Weiterbildung"]:
+                        % for i in range(len(data_o[data_key]["Weiterbildung"])):
+
+
+                            <li>Weiterbildung(am teilnehmen):${data_o[data_key]["Weiterbildung"][i]}</li>
+                                <a href="/stornieren/${data_key}/${i}" class='clDelete'> stornieren</a>
+
+                        % endfor
+                    % endif
                 </ul>
         <div>
             <div class="">
@@ -149,11 +157,7 @@
                 name="taetigkeit_spa" required />
         </div>
         <div id="create_check">
-            <label for="Weiterbildung_spa">Stornieren</label>
-            <input type="submit"
-                value=""
-                id="Weiterbildung_spa"
-                name="Weiterbildung_spa" required />
+
         </div>
 
             <input type="submit" value="Speichern" class=""/>
