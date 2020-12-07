@@ -9,7 +9,26 @@
     @import "Mitarbeiterqualifizierung.css";
     </style>
 </head>
-<body>
+
+  <%
+    i = 0
+%>
+
+
+
+    % for key_weiter_s in data_weiter:
+
+        <%
+
+            bezeichnung[i] = str(data_weiter[key_weiter_s]["bezeichnung"])
+            i += 1
+        %>
+
+    % endfor
+<body onload="select_Weiter(${bezeichnung})">
+
+<form id="idWTForm" action="/save_Mitarbeiter" method="POST">
+            <input type="hidden" value="${data_key}" id="id_spa" name="id_spa" />
     <div class="grid-container">
         <div class="item1">
             <div class="flexbox">
@@ -100,11 +119,48 @@
                         <li>Vorname:${data_o[data_key]["vorname"]}</li>
                         <li>Akademischer Grad:${data_o[data_key]["akademischer_grad"]}</li>
                         <li>Tätigkeit:${data_o[data_key]["taetigkeit"]}</li>
+                        <li>Weiterbildung(am teilnehmen):${data_o[data_key]["Weiterbildung"]}</li>
 
 
                 </ul>
-
+        <div>
+            <div class="">
+            <input type="hidden"
+                value="${data_o[data_key]["name"]}"
+                id="name_spa"
+                name="name_spa" required />
         </div>
+        <div class="">
+            <input type="hidden"
+                value="${data_o[data_key]["vorname"]}"
+                id="vorname_spa"
+                name="vorname_spa" required />
+        </div>
+        <div class="">
+            <input type="hidden"
+                value="${data_o[data_key]["akademischer_grad"]}"
+                id="ak_grad_spa"
+                name="ak_grad_spa" required />
+        </div>
+        <div class="">
+            <input type="hidden"
+                value="${data_o[data_key]["taetigkeit"]}"
+                id="taetigkeit_spa"
+                name="taetigkeit_spa" required />
+        </div>
+        <div id="create_check">
+            <label for="Weiterbildung_spa">Stornieren</label>
+            <input type="submit"
+                value=""
+                id="Weiterbildung_spa"
+                name="Weiterbildung_spa" required />
+        </div>
+
+            <input type="submit" value="Speichern" class=""/>
+        </div>
+        </div>
+
     </div>
+</form>
 </body>
  </html>

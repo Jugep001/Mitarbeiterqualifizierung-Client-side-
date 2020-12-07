@@ -16,7 +16,7 @@ class View_cl(object):
         self.lookup_o = TemplateLookup('./templates')
 
     # -------------------------------------------------------
-    def createList_px(self, data_opl, listForm, data=None):
+    def createList_px(self, data_opl, listForm):
         # -------------------------------------------------------
         print(listForm)
         if listForm == "Startseite":
@@ -41,11 +41,7 @@ class View_cl(object):
 
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
             return markup_s
-        elif listForm == "Sichtweise_Mit_Form":
-            template_o = self.lookup_o.get_template('Sichtweise_Mit_Form.mako')
 
-            markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_key=data)
-            return markup_s
         elif listForm == "Sichtweise_Weiter":
             template_o = self.lookup_o.get_template('Sichtweise_Weiter.mako')
 
@@ -78,17 +74,25 @@ class View_cl(object):
             return markup_s
 
     # -------------------------------------------------------
-    def createForm_px(self, id_spl, data_opl, listForm, data_weiter_opl=None):
+    def createForm_px(self, id_spl, data_opl, listForm, data_weiter_opl=None, data=None):
         # -------------------------------------------------------
         if listForm == "Pflege_Mit":
             template_o = self.lookup_o.get_template('Mitarbeiter_form.mako')
 
-
-            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, key_weiter_s=id_spl, bezeichnung={}, listForm=listForm, data_weiter=data_weiter_opl)
+            markup_s = template_o.render(data_o=data_opl, key_s=id_spl, bezeichnung={}, listForm=listForm,
+                                         data_weiter=data_weiter_opl)
             return markup_s
+
         elif listForm == "Pflege_Weiter":
             template_o = self.lookup_o.get_template('Weiterbildung_form.mako')
             markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
+            return markup_s
+
+        elif listForm == "Sichtweise_Mit_Form":
+            template_o = self.lookup_o.get_template('Sichtweise_Mit_Form.mako')
+
+            markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_key=data, key_weiter_s=data,
+                                         data_weiter=data_weiter_opl, bezeichnung={}, value_weiter={})
             return markup_s
 
     # -------------------------------------------------------

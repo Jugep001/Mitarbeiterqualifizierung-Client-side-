@@ -18,15 +18,25 @@
             function select_Weiter(data) {
 
 
+                var p = document.getElementById('create_check')
 
-                select = document.getElementById('selectElementId');
 
                 for (var prop in data) {
-                    var opt = document.createElement('option');
+                    var checkbox = document.createElement('input');
 
-                    opt.value = JSON.stringify(data[prop]);
-                    opt.innerHTML = JSON.stringify(data[prop]);
-                    select.appendChild(opt);
+                        checkbox.type = "checkbox";
+                        checkbox.id = "Weiterbildung_spa";
+                        checkbox.name = "Weiterbildung_spa";
+                        checkbox.value = JSON.stringify(data[prop]);
+                        var label = document.createElement('label');
+                        var tn = document.createTextNode(JSON.stringify(data[prop]));
+                        label.htmlFor="cbid";
+                        label.appendChild(tn);
+                        p.appendChild(label);
+                        p.appendChild(checkbox);
+                        console.log(checkbox.value)
+
+
 
      }
  }

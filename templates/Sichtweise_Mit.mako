@@ -97,7 +97,7 @@
             % for key_s in data_o:
                 <ul class="">
                     <li>
-                        <a href="/switch?listForm=Sichtweise_Mit_Form&data=${key_s}">${data_o[key_s]["vorname"]}</a>
+                        <a href="/add?data=${key_s}&listForm=Sichtweise_Mit_Form"><button class="">${data_o[key_s]["vorname"]}</button></a>
                      </li>
                 </ul>
 

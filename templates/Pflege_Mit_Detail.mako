@@ -108,7 +108,7 @@
                             <li>Vorname:${data_o[key_s]["vorname"]}</li>
                             <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
                             <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
-
+                            <li>Weiterbildung:${data_o[key_s]["Weiterbildung"]}</li>
                     </ul>
 
 

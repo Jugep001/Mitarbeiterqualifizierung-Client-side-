@@ -25,16 +25,18 @@ class Application_cl(object):
 
     @cherrypy.expose
     # -------------------------------------------------------
-    def add(self):
+    def add(self, data=None,listForm=None):
         # -------------------------------------------------------
-        return self.createForm_p()
+        if listForm is not None:
+            self.listForm = listForm
+        return self.createForm_p(None, data)
 
     # step 7
     @cherrypy.expose
-    def switch(self, listForm, data=None):
+    def switch(self, listForm):
         Database_cl.listForm = listForm
         self.listForm = listForm
-        return self.createList_p(data)
+        return self.createList_p()
 
     # step 7
     @cherrypy.expose
@@ -45,7 +47,8 @@ class Application_cl(object):
 
     # -------------------------------------------------------
     @cherrypy.expose
-    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa, listForm="Pflege_Mit"):
+    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
+                         Weiterbildung_spa=None, listForm="Pflege_Mit"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
         id_s = id_spa
@@ -55,8 +58,10 @@ class Application_cl(object):
             "vorname": vorname_spa,
             "akademischer_grad": ak_grad_spa,
             "taetigkeit": taetigkeit_spa,
+            "Weiterbildung": Weiterbildung_spa,
 
         }
+
         if id_s != "None":
             self.db_o.update_px(id_s, data_a, listForm)
         else:
@@ -155,20 +160,33 @@ class Application_cl(object):
     default.exposed = True
 
     # -------------------------------------------------------
-    def createList_p(self, data=None):
+    def createList_p(self):
         # -------------------------------------------------------
         Database_cl.listForm = self.listForm
-
+        if self.listForm == "Sichtweise_Mit_Form":
+            self.listForm = "Sichtweise_Mit"
+            data_o = self.db_o.read_px(self.listForm)
+            return self.view_o.createList_px(data_o, self.listForm)
         data_o = self.db_o.read_px(self.listForm)
-        return self.view_o.createList_px(data_o, self.listForm, data)
+        return self.view_o.createList_px(data_o, self.listForm)
 
     # -------------------------------------------------------
-    def createForm_p(self, id_spl=None):
+    def createForm_p(self, id_spl=None, data=None):
         # -------------------------------------------------------
         Database_cl.listForm = self.listForm
+        data_weiter = None
         if id_spl != None:
             data_o = self.db_o.read_px(self.listForm, id_spl)
+            data_weiter = self.db_o.read_px("Pflege_Weiter")
         else:
 
             data_o = self.db_o.getDefault_px(self.listForm)
-        return self.view_o.createForm_px(id_spl, data_o, self.listForm)
+            if self.listForm == "Sichtweise_Mit_Form":
+                data_o = self.db_o.read_px(self.listForm)
+                data_weiter = self.db_o.data_o_Weiter
+                if data_weiter is None:
+                    data_weiter = self.db_o.getDefault_px("Pflege_Weiter")
+                    return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
+            return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
+
+        return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
