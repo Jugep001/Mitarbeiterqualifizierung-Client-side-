@@ -136,6 +136,8 @@ class Database_cl(object):
                 "akademischer_grad": "",
                 "taetigkeit": "",
                 "Weiterbildung": "",
+                "Qualifikation": "",
+                "Zertifikat": "",
             }
         elif listForm == "Pflege_Weiter":
             return {

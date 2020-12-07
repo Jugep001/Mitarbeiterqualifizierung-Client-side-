@@ -47,8 +47,7 @@ class Application_cl(object):
 
     # -------------------------------------------------------
     @cherrypy.expose
-    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
-                         Weiterbildung_spa=None, listForm="Pflege_Mit"):
+    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,                         Weiterbildung_spa=None, Qualifikation_spa=None, Zertifikat_spa=None, listForm="Pflege_Mit"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
         id_s = id_spa
@@ -59,6 +58,8 @@ class Application_cl(object):
             "akademischer_grad": ak_grad_spa,
             "taetigkeit": taetigkeit_spa,
             "Weiterbildung": Weiterbildung_spa,
+            "Qualifikation": Qualifikation_spa,
+            "Zertifikat": Zertifikat_spa,
 
         }
         print(type(Weiterbildung_spa))

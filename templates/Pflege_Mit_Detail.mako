@@ -109,6 +109,9 @@
                             <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
                             <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
                             <li>Weiterbildung:${data_o[key_s]["Weiterbildung"]}</li>
+                            <li>Qualifikation:${data_o[key_s]["Qualifikation"]}</li>
+                            <li>Zertifikat:${data_o[key_s]["Zertifikat"]}</li>
+
                     </ul>
 
 
