@@ -47,10 +47,28 @@ class Application_cl(object):
 
     # -------------------------------------------------------
     @cherrypy.expose
-    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,                         Weiterbildung_spa=None, Qualifikation_spa=None, Zertifikat_spa=None, listForm="Pflege_Mit"):
+    def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
+                         Weiterbildung_spa=None, Qualifikation_spa=None, Zertifikat_spa=None, listForm="Pflege_Mit"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
+
+
+
+        if Weiterbildung_spa is not None:
+
+            if type(Weiterbildung_spa) is list:
+
+                for i in range(len(Weiterbildung_spa)):
+
+                    Weiterbildung_spa[i] = json.loads(Weiterbildung_spa[i])
+                    if i == len(Weiterbildung_spa)-1:
+                        Weiterbildung_spa = json.dumps(Weiterbildung_spa)
+
+            Weiterbildung_spa = json.loads(Weiterbildung_spa)
+
+
         id_s = id_spa
+
         data_a = {
 
             "name": name_spa,
@@ -62,7 +80,6 @@ class Application_cl(object):
             "Zertifikat": Zertifikat_spa,
 
         }
-        print(type(Weiterbildung_spa))
 
         if id_s != "None":
             self.db_o.update_px(id_s, data_a, listForm)
@@ -143,6 +160,7 @@ class Application_cl(object):
     @cherrypy.expose
     def delete(self, id):
         # -------------------------------------------------------
+        print("id:"+id)
         Database_cl.listForm = self.listForm
         self.db_o.delete_px(id, self.listForm)
 
@@ -151,7 +169,7 @@ class Application_cl(object):
     @cherrypy.expose
     def stornieren(self, id, i):
 
-        self.db_o.storno_px(id, i)##To-DO
+        self.db_o.storno_px(id, i)
 
         raise cherrypy.HTTPRedirect('/')
 

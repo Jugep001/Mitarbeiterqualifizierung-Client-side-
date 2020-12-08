@@ -108,7 +108,19 @@
                             <li>Vorname:${data_o[key_s]["vorname"]}</li>
                             <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
                             <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
-                            <li>Weiterbildung:${data_o[key_s]["Weiterbildung"]}</li>
+                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+
+                                <li>Weiterbildung:${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</li>
+
+                         % endif
+                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
+
+
+                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
+                                <li>Weiterbildung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</li>
+                            % endfor
+
+                         % endif
                             <li>Qualifikation:${data_o[key_s]["Qualifikation"]}</li>
                             <li>Zertifikat:${data_o[key_s]["Zertifikat"]}</li>
 

@@ -97,7 +97,7 @@ class Database_cl(object):
     def delete_px(self, id_spl, listForm):
 
         status_b = False
-        if listForm == "Pflege_Mit":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
             if self.data_o_Mit.pop(id_spl, None) != None:
                 self.saveData_p()
                 status_b = True
@@ -118,11 +118,23 @@ class Database_cl(object):
                 status_b = True
             return status_b
     def storno_px(self, id_spl, i):
-
+        Weiterbildung = ["bezeichnung", "von", "bis", "beschreibung", "max_teilnehmer", "min_teilnehmer",
+                         "bezeichnung_zerti", "beschreibung_zerti", "berechtigt_zu", "bezeichnung_quali",
+                         "beschreibung_quali"]
         status_b = False
 
         if self.data_o_Mit != None:
-            del self.data_o_Mit[id_spl]["Weiterbildung"][int(i)]
+
+            if type(self.data_o_Mit[id_spl]["Weiterbildung"]) is list:
+
+                del self.data_o_Mit[id_spl]["Weiterbildung"][int(i)]
+
+            else:
+
+                for j in range(11):
+
+                    del self.data_o_Mit[id_spl]["Weiterbildung"][Weiterbildung[j]]
+
             self.saveData_p()
             status_b = True
         return status_b
