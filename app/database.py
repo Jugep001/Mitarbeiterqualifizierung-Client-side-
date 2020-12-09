@@ -21,7 +21,7 @@ class Database_cl(object):
     def create_px(self, data_opl, listForm):
 
         id_s = self.maxId_o.create_px()
-        if listForm == "Pflege_Mit":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
             self.data_o_Mit[str(id_s)] = data_opl
         elif listForm == "Pflege_Weiter":
             self.data_o_Weiter[str(id_s)] = data_opl
@@ -141,7 +141,7 @@ class Database_cl(object):
 
     def getDefault_px(self, listForm):
 
-        if listForm == "Pflege_Mit":
+        if listForm == "Pflege_Mit" or "Pflege_Mit_Detail":
             return {
                 "name": "",
                 "vorname": "",

@@ -76,7 +76,7 @@ class View_cl(object):
     # -------------------------------------------------------
     def createForm_px(self, id_spl, data_opl, listForm, data_weiter_opl=None, data=None):
         # -------------------------------------------------------
-        if listForm == "Pflege_Mit":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
             template_o = self.lookup_o.get_template('Mitarbeiter_form.mako')
 
             markup_s = template_o.render(data_o=data_opl, key_s=id_spl, bezeichnung={}, listForm=listForm,
