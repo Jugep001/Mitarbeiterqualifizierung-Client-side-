@@ -25,7 +25,7 @@ class Application_cl(object):
 
     @cherrypy.expose
     # -------------------------------------------------------
-    def add(self, data=None,listForm=None):
+    def add(self, data=None, listForm=None):
         # -------------------------------------------------------
         if listForm is not None:
             self.listForm = listForm
@@ -52,8 +52,6 @@ class Application_cl(object):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
 
-
-
         if Weiterbildung_spa is not None:
 
             if type(Weiterbildung_spa) is list:
@@ -61,11 +59,10 @@ class Application_cl(object):
                 for i in range(len(Weiterbildung_spa)):
 
                     Weiterbildung_spa[i] = json.loads(Weiterbildung_spa[i])
-                    if i == len(Weiterbildung_spa)-1:
+                    if i == len(Weiterbildung_spa) - 1:
                         Weiterbildung_spa = json.dumps(Weiterbildung_spa)
 
             Weiterbildung_spa = json.loads(Weiterbildung_spa)
-
 
         id_s = id_spa
 
@@ -91,7 +88,8 @@ class Application_cl(object):
         # -------------------------------------------------------
 
     @cherrypy.expose
-    def save_Weiterbildung(self, id_spa, status_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
+    def save_Weiterbildung(self, id_spa, status_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa,
+                           max_teilnehmer_spa,
                            min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
                            bezeichnung_quali_spa, beschreibung_quali_spa, listForm="Pflege_Weiter"):
         # -------------------------------------------------------
@@ -161,7 +159,7 @@ class Application_cl(object):
     @cherrypy.expose
     def delete(self, id):
         # -------------------------------------------------------
-        print("id:"+id)
+        print("id:" + id)
         Database_cl.listForm = self.listForm
         self.db_o.delete_px(id, self.listForm)
 
@@ -208,12 +206,12 @@ class Application_cl(object):
         else:
 
             data_o = self.db_o.getDefault_px(self.listForm)
+
             if self.listForm == "Sichtweise_Mit_Form":
                 data_o = self.db_o.read_px(self.listForm)
                 data_weiter = self.db_o.data_o_Weiter
                 if data_weiter is None:
                     data_weiter = self.db_o.getDefault_px("Pflege_Weiter")
                     return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
-            return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
-
+                return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
         return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)

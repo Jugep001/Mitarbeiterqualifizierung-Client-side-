@@ -141,7 +141,7 @@ class Database_cl(object):
 
     def getDefault_px(self, listForm):
 
-        if listForm == "Pflege_Mit" or "Pflege_Mit_Detail":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
             return {
                 "name": "",
                 "vorname": "",
@@ -151,7 +151,7 @@ class Database_cl(object):
                 "Qualifikation": "",
                 "Zertifikat": "",
             }
-        elif listForm == "Pflege_Weiter":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
             return {
                 "status": "",
                 "bezeichnung": "",

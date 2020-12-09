@@ -83,7 +83,7 @@ class View_cl(object):
                                          data_weiter=data_weiter_opl)
             return markup_s
 
-        elif listForm == "Pflege_Weiter":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
             template_o = self.lookup_o.get_template('Weiterbildung_form.mako')
             markup_s = template_o.render(data_o=data_opl, key_s=id_spl, listForm=listForm)
             return markup_s
@@ -91,7 +91,7 @@ class View_cl(object):
         elif listForm == "Sichtweise_Mit_Form":
             template_o = self.lookup_o.get_template('Sichtweise_Mit_Form.mako')
 
-            markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_key=data, key_weiter_s=data,
+            markup_s = template_o.render(data_o=data_opl, listform=listForm, data_key=data, key_weiter_s=data,
                                          data_weiter=data_weiter_opl, bezeichnung={}, value_weiter={}, i=0)
             return markup_s
 
