@@ -91,7 +91,7 @@ class Application_cl(object):
         # -------------------------------------------------------
 
     @cherrypy.expose
-    def save_Weiterbildung(self, id_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
+    def save_Weiterbildung(self, id_spa, status_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
                            min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
                            bezeichnung_quali_spa, beschreibung_quali_spa, listForm="Pflege_Weiter"):
         # -------------------------------------------------------
@@ -99,6 +99,7 @@ class Application_cl(object):
         id_s = id_spa
         data_a = {
 
+            "status": status_spa,
             "bezeichnung": bezeichnung_spa,
             "von": von_spa,
             "bis": bis_spa,

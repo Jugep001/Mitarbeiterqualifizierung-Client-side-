@@ -23,7 +23,12 @@
 
                 for (var prop in data) {
                     var checkbox = document.createElement('input');
+                        if (data[prop].status === "None"){
+                            data[prop].status = "angemeldet"
+                        }
+
                         var checkbox_str = JSON.stringify(data[prop]);
+
 
 
                         checkbox.type = "checkbox";
@@ -37,7 +42,7 @@
                         label.appendChild(tn);
                         p.appendChild(label);
                         p.appendChild(checkbox);
-                        console.log(checkbox.id)
+
 
                         i++;
 

@@ -118,7 +118,7 @@ class Database_cl(object):
                 status_b = True
             return status_b
     def storno_px(self, id_spl, i):
-        Weiterbildung = ["bezeichnung", "von", "bis", "beschreibung", "max_teilnehmer", "min_teilnehmer",
+        Weiterbildung = ["status", "bezeichnung", "von", "bis", "beschreibung", "max_teilnehmer", "min_teilnehmer",
                          "bezeichnung_zerti", "beschreibung_zerti", "berechtigt_zu", "bezeichnung_quali",
                          "beschreibung_quali"]
         status_b = False
@@ -131,7 +131,7 @@ class Database_cl(object):
 
             else:
 
-                for j in range(11):
+                for j in range(12):
 
                     del self.data_o_Mit[id_spl]["Weiterbildung"][Weiterbildung[j]]
 
@@ -153,6 +153,7 @@ class Database_cl(object):
             }
         elif listForm == "Pflege_Weiter":
             return {
+                "status": "",
                 "bezeichnung": "",
                 "von": "",
                 "bis": "",

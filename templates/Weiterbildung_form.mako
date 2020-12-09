@@ -15,6 +15,13 @@
     <div class="">
         <h1>Weiterbildung</h1>
         <div class="">
+            <label for="status_spa">Weiterbildung(status)</label>
+            <input type="hidden"
+                value="None"
+                id="status_spa"
+                name="status_spa" required />
+        </div>
+        <div class="">
             <label for="bezeichnung_spa">Name</label>
             <input type="text"
                 value="${data_o["bezeichnung"]}"

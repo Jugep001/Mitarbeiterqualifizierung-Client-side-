@@ -102,7 +102,7 @@
             <a href="/delete/${key_s}" class='clDelete'> löschen</a>
 
                     <ul class="">
-
+                            
                             <li>bezeichnung:${data_o[key_s]["bezeichnung"]}</li>
                             <li>von:${data_o[key_s]["von"]}</li>
                             <li>bis:${data_o[key_s]["bis"]}</li>

@@ -1,22 +1,39 @@
 {
-   "45": {
+   "46": {
       "name": "Geppert",
       "vorname": "Julian",
       "akademischer_grad": "Student",
       "taetigkeit": "Student",
-      "Weiterbildung": {
-         "bezeichnung": "C++",
-         "von": "2020-12-09",
-         "bis": "2020-12-17",
-         "beschreibung": "C++",
-         "max_teilnehmer": "10",
-         "min_teilnehmer": "5",
-         "bezeichnung_zerti": "C++",
-         "beschreibung_zerti": "C++",
-         "berechtigt_zu": "C++",
-         "bezeichnung_quali": "C++",
-         "beschreibung_quali": "C++"
-      },
+      "Weiterbildung": [
+         {
+            "status": "angemeldet",
+            "bezeichnung": "Java",
+            "von": "2020-12-10",
+            "bis": "2020-12-16",
+            "beschreibung": "Java",
+            "max_teilnehmer": "10",
+            "min_teilnehmer": "2",
+            "bezeichnung_zerti": "Java",
+            "beschreibung_zerti": "Java",
+            "berechtigt_zu": "Java",
+            "bezeichnung_quali": "Java",
+            "beschreibung_quali": "Java"
+         },
+         {
+            "status": "angemeldet",
+            "bezeichnung": "C",
+            "von": "2020-12-10",
+            "bis": "2020-12-23",
+            "beschreibung": "C",
+            "max_teilnehmer": "10",
+            "min_teilnehmer": "2",
+            "bezeichnung_zerti": "C",
+            "beschreibung_zerti": "C",
+            "berechtigt_zu": "C",
+            "bezeichnung_quali": "C",
+            "beschreibung_quali": "C"
+         }
+      ],
       "Qualifikation": null,
       "Zertifikat": null
    }

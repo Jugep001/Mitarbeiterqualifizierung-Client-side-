@@ -16,15 +16,7 @@
 
 
 
-    % for key_weiter_s in data_weiter:
 
-        <%
-
-            bezeichnung[i] = str(data_weiter[key_weiter_s]["bezeichnung"])
-            i += 1
-        %>
-
-    % endfor
 <body onload="select_Weiter(${data_weiter})">
 
 <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
@@ -120,8 +112,8 @@
                         <li>Akademischer Grad:${data_o[data_key]["akademischer_grad"]}</li>
                         <li>Tätigkeit:${data_o[data_key]["taetigkeit"]}</li>
                     % if data_o[data_key]["Weiterbildung"] and type(data_o[data_key]["Weiterbildung"]) is dict:
-
-                                <li>Weiterbildung(am teilnehmen):${data_o[data_key]["Weiterbildung"]["bezeichnung"]}</li>
+                                <li>Weiterbildung:${data_o[data_key]["Weiterbildung"]["bezeichnung"]}</li>
+                                <li>Weiterbildung(status):${data_o[data_key]["Weiterbildung"]["status"]}</li>
                                 <a href="/stornieren/${data_key}/${i}" class='clDelete'> stornieren</a>
 
                     % endif
@@ -131,6 +123,7 @@
 
                             % for i in range(len(data_o[data_key]["Weiterbildung"])):
                                 <li>Weiterbildung:${data_o[data_key]["Weiterbildung"][i]["bezeichnung"]}</li>
+                                <li>Weiterbildung:${data_o[data_key]["Weiterbildung"][i]["status"]}</li>
                                 <a href="/stornieren/${data_key}/${i}" class='clDelete'> stornieren</a>
                             % endfor
 
