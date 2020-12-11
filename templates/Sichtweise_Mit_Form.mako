@@ -111,14 +111,14 @@
                         <li>Vorname:${data_o[data_key]["vorname"]}</li>
                         <li>Akademischer Grad:${data_o[data_key]["akademischer_grad"]}</li>
                         <li>Tätigkeit:${data_o[data_key]["taetigkeit"]}</li>
-                    % if data_o[data_key]["Weiterbildung"] and type(data_o[data_key]["Weiterbildung"]) is dict:
+                    % if data_o[data_key]["Weiterbildung"] and type(data_o[data_key]["Weiterbildung"]) is dict and data_o[data_key]["Weiterbildung"]["status"] == "angemeldet":
                                 <li>Weiterbildung:${data_o[data_key]["Weiterbildung"]["bezeichnung"]}</li>
                                 <li>Weiterbildung(status):${data_o[data_key]["Weiterbildung"]["status"]}</li>
                                 <a href="/stornieren/${data_key}/${i}" class='clDelete'> stornieren</a>
 
                     % endif
 
-                    % if data_o[data_key]["Weiterbildung"] and type(data_o[data_key]["Weiterbildung"]) is list :
+                    % if data_o[data_key]["Weiterbildung"] and type(data_o[data_key]["Weiterbildung"]) is list and data_o[data_key]["Weiterbildung"][i]["status"] == "angemeldet" :
 
 
                             % for i in range(len(data_o[data_key]["Weiterbildung"])):
