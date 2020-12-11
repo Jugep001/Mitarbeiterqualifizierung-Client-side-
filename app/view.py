@@ -18,7 +18,7 @@ class View_cl(object):
     # -------------------------------------------------------
     def createList_px(self, data_opl, listForm):
         # -------------------------------------------------------
-        print(listForm)
+
         if listForm == "Startseite":
 
             template_o = self.lookup_o.get_template('Startseite.mako')
@@ -44,7 +44,6 @@ class View_cl(object):
 
         elif listForm == "Sichtweise_Weiter":
             template_o = self.lookup_o.get_template('Sichtweise_Weiter.mako')
-
             markup_s = template_o.render(data_o=data_opl, listform0=listForm)
             return markup_s
         elif listForm == "Mitarbeiter":
@@ -90,9 +89,14 @@ class View_cl(object):
 
         elif listForm == "Sichtweise_Mit_Form":
             template_o = self.lookup_o.get_template('Sichtweise_Mit_Form.mako')
-
             markup_s = template_o.render(data_o=data_opl, listform=listForm, data_key=data, key_weiter_s=data,
                                          data_weiter=data_weiter_opl, bezeichnung={}, value_weiter={}, i=0)
+            return markup_s
+        elif listForm == "Sichtweise_Weiter_form":
+            template_o = self.lookup_o.get_template('Sichtweise_Weiter_form.mako')
+
+            markup_s = template_o.render(data_o=data_opl,  listForm=listForm, data_weiter=data_weiter_opl,
+                                         key_weiter_s=data )
             return markup_s
 
     # -------------------------------------------------------

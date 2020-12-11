@@ -93,7 +93,15 @@
             Leer?
         </div>
         <div class="item7">
-            Main
+            % for key_s in data_o:
+                <ul class="">
+                    <li>
+                        <a href="/add?data=${key_s}&listForm=Sichtweise_Weiter_form"><button class="">Weiterbildung(Name):${data_o[key_s]["bezeichnung"]}</button></a>
+                     </li>
+                </ul>
+
+
+            % endfor
         </div>
     </div>
 </body>

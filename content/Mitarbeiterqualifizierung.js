@@ -23,25 +23,26 @@
 
                 for (var prop in data) {
                     var checkbox = document.createElement('input');
+
                         if (data[prop].status === "None"){
                             data[prop].status = "angemeldet"
                         }
 
-                        var checkbox_str = JSON.stringify(data[prop]);
+
+                            var checkbox_str = JSON.stringify(data[prop]);
 
 
+                            checkbox.type = "checkbox";
+                            checkbox.id = "Weiterbildung_spa_" + i;
+                            checkbox.name = "Weiterbildung_spa";
+                            checkbox.value = checkbox_str;
 
-                        checkbox.type = "checkbox";
-                        checkbox.id = "Weiterbildung_spa_" + i;
-                        checkbox.name = "Weiterbildung_spa";
-                        checkbox.value = checkbox_str;
-
-                        var label = document.createElement('label');
-                        var tn = document.createTextNode(JSON.stringify(data[prop]["bezeichnung"]));
-                        label.htmlFor="cbid";
-                        label.appendChild(tn);
-                        p.appendChild(label);
-                        p.appendChild(checkbox);
+                            var label = document.createElement('label');
+                            var tn = document.createTextNode(JSON.stringify(data[prop]["bezeichnung"]));
+                            label.htmlFor = "cbid";
+                            label.appendChild(tn);
+                            p.appendChild(label);
+                            p.appendChild(checkbox);
 
 
                         i++;

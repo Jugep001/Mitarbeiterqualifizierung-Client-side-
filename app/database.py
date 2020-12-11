@@ -35,7 +35,7 @@ class Database_cl(object):
     def read_px(self, listForm, id_spl=None):
 
         if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Sichtweise_Mit" \
-                or listForm == "Sichtweise_Mit_Form":
+                or listForm == "Sichtweise_Mit_Form" or listForm == "Sichtweise_Weiter_form":
             data_o_Mit = None
             if id_spl == None:
                 data_o_Mit = self.data_o_Mit
@@ -44,7 +44,7 @@ class Database_cl(object):
                     data_o_Mit = self.data_o_Mit[id_spl]
 
             return data_o_Mit
-        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail" or listForm == "Sichtweise_Weiter":
             data_o_Weiter = None
             if id_spl == None:
                 data_o_Weiter = self.data_o_Weiter

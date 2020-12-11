@@ -1,6 +1,9 @@
 # coding: utf-8
+import os
+
 import cherrypy
 import json
+import codecs
 from .database import Database_cl
 from .view import View_cl
 
@@ -48,7 +51,7 @@ class Application_cl(object):
     # -------------------------------------------------------
     @cherrypy.expose
     def save_Mitarbeiter(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
-                         Weiterbildung_spa=None, Qualifikation_spa=None, Zertifikat_spa=None, listForm="Pflege_Mit"):
+                         Weiterbildung_spa=None, status_spa=None, Qualifikation_spa=None, Zertifikat_spa=None, listForm="Pflege_Mit"):
         # -------------------------------------------------------
         Database_cl.listForm = listForm
 
@@ -59,12 +62,45 @@ class Application_cl(object):
                 for i in range(len(Weiterbildung_spa)):
 
                     Weiterbildung_spa[i] = json.loads(Weiterbildung_spa[i])
+                    if status_spa is not None:
+                        Weiterbildung_spa[i]["status"] = str(status_spa)
                     if i == len(Weiterbildung_spa) - 1:
                         Weiterbildung_spa = json.dumps(Weiterbildung_spa)
 
-            Weiterbildung_spa = json.loads(Weiterbildung_spa)
+            else:
+                if status_spa is not None:
+
+                    fp_o_mit = codecs.open(os.path.join('data', 'Mitarbeiter.json'), 'r', 'utf-8')
+                    data_o_Mit = json.load(fp_o_mit)
+                    data_o_Mit[id_spa]["Weiterbildung"]["status"] = status_spa
+                    Weiterbildung_spa = data_o_Mit[id_spa]["Weiterbildung"]
+                    id_s = id_spa
+
+                    data_a = {
+
+                        "name": name_spa,
+                        "vorname": vorname_spa,
+                        "akademischer_grad": ak_grad_spa,
+                        "taetigkeit": taetigkeit_spa,
+                        "Weiterbildung": Weiterbildung_spa,
+                        "Qualifikation": Qualifikation_spa,
+                        "Zertifikat": Zertifikat_spa,
+
+                    }
+
+                    if id_s != "None":
+                        self.db_o.update_px(id_s, data_a, listForm)
+                    else:
+                        self.db_o.create_px(data_a, self.listForm)
+
+                    return self.createList_p()
+                else:
+                    Weiterbildung_spa = json.loads(Weiterbildung_spa)
+
 
         id_s = id_spa
+
+
 
         data_a = {
 
@@ -159,7 +195,6 @@ class Application_cl(object):
     @cherrypy.expose
     def delete(self, id):
         # -------------------------------------------------------
-        print("id:" + id)
         Database_cl.listForm = self.listForm
         self.db_o.delete_px(id, self.listForm)
 
@@ -192,6 +227,10 @@ class Application_cl(object):
             self.listForm = "Sichtweise_Mit"
             data_o = self.db_o.read_px(self.listForm)
             return self.view_o.createList_px(data_o, self.listForm)
+        elif self.listForm == "Sichtweise_Weiter_form":
+            self.listForm = "Sichtweise_Weiter"
+            data_o = self.db_o.read_px(self.listForm)
+            return self.view_o.createList_px(data_o, self.listForm)
         data_o = self.db_o.read_px(self.listForm)
         return self.view_o.createList_px(data_o, self.listForm)
 
@@ -203,6 +242,7 @@ class Application_cl(object):
         if id_spl != None:
             data_o = self.db_o.read_px(self.listForm, id_spl)
             data_weiter = self.db_o.read_px("Pflege_Weiter")
+
         else:
 
             data_o = self.db_o.getDefault_px(self.listForm)
@@ -214,4 +254,12 @@ class Application_cl(object):
                     data_weiter = self.db_o.getDefault_px("Pflege_Weiter")
                     return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
                 return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
+            elif self.listForm == "Sichtweise_Weiter_form":
+                data_o = self.db_o.read_px(self.listForm)
+                data_weiter = self.db_o.data_o_Weiter
+
+                if data_weiter is None:
+                    data_weiter = self.db_o.getDefault_px("Pflege_Weiter")
+                    return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)
+
         return self.view_o.createForm_px(id_spl, data_o, self.listForm, data_weiter, data)

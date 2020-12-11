@@ -5,7 +5,7 @@
       "akademischer_grad": "Student",
       "taetigkeit": "Student",
       "Weiterbildung": {
-         "status": "angemeldet",
+         "status": "nicht erfolgreich beendet",
          "bezeichnung": "Java",
          "von": "2020-12-10",
          "bis": "2020-12-16",
@@ -18,8 +18,8 @@
          "bezeichnung_quali": "Java",
          "beschreibung_quali": "Java"
       },
-      "Qualifikation": null,
-      "Zertifikat": null
+      "Qualifikation": "None",
+      "Zertifikat": "None"
    },
    "52": {
       "name": "Freukes",

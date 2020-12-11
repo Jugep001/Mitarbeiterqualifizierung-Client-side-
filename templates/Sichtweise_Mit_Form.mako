@@ -19,8 +19,7 @@
 
 <body onload="select_Weiter(${data_weiter})">
 
-<form id="idWTForm" action="/save_Mitarbeiter" method="POST">
-            <input type="hidden" value="${data_key}" id="id_spa" name="id_spa" />
+
     <div class="grid-container">
         <div class="item1">
             <div class="flexbox">
@@ -104,7 +103,8 @@
             Leer?
         </div>
         <div class="item7">
-
+        <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
+            <input type="hidden" value="${data_key}" id="id_spa" name="id_spa" />
             <ul class="">
 
                         <li>Name:${data_o[data_key]["name"]}</li>
@@ -162,12 +162,12 @@
 
 
         </div>
-
+        </form>
         </div>
 
         </div>
 
-</form>
+
             
 </body>
  </html>
