@@ -108,13 +108,14 @@
                     <li>beschreibung:${data_weiter[key_weiter_s]["beschreibung_quali"]}</li>
                     Teilnehmer:
                 % for key_s in data_o:
-                    % if data_o[key_s]["Weiterbildung"] is not None:
+                    % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
                         % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter[key_weiter_s]["bezeichnung"] and data_o[key_s]["Weiterbildung"]["status"] == "angemeldet" or data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
 
                             <li>Name:${data_o[key_s]["name"]}</li>
                             <li>Status:${data_o[key_s]["Weiterbildung"]["status"]}</li>
                             <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
                                 <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
+                                <input type="hidden" value="dict" id="typeForm" name="typeForm" />
                                 <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa" required />
                                 <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa" required />
                                 <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa" required />
@@ -142,14 +143,48 @@
                         % endif
                     % endif
 
-                    <ul class="">
+                % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list:
 
 
 
+                    % for i in range(len(data_o[key_s]["Weiterbildung"])):
+                         % if data_o[key_s]["Weiterbildung"][i]["bezeichnung"] == data_weiter[key_weiter_s]["bezeichnung"]:
+                            % if data_o[key_s]["Weiterbildung"][i]["status"] == "angemeldet" or data_o[key_s]["Weiterbildung"][i]["status"] == "nimmt teil":
+                            <li>Name:${data_o[key_s]["name"]}</li>
+                            <li>Weiterbildung:${data_o[key_s]["Weiterbildung"][i]["status"]}</li>
+                             <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
+                                <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
+                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}" id="bezeichnung_spa" name="bezeichnung_spa" />
+                                <input type="hidden" value="list" id="typeForm" name="typeForm" />
+                                <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["taetigkeit"]}" id="taetigkeit_spa" name="taetigkeit_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"][i]}" id="Weiterbildung_spa" name="Weiterbildung_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["Qualifikation"]}" id="Qualifikation_spa" name="Qualifikation_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["Zertifikat"]}" id="Zertifikat_spa" name="Zertifikat_spa" required />
+                                    <label for="status_spa">Wähle Status:</label>
 
+                                    <select name="status_spa" id="status_spa">
+                                        <option value="nimmt teil">nimmt teil</option>
+                                        % if data_o[key_s]["Weiterbildung"][i]["status"] == "nimmt teil":
 
+                                            <option value="abgebrochen">abgebrochen</option>
+                                            <option value="nicht erfolgreich beendet">nicht erfolgreich beendet</option>
+                                            <option value="erfolgreich beendet">erfolgreich beendet</option>
+                                        % endif
+                                    </select>
+                            <div>
 
-                    </ul>
+                                <input type="submit" value="Speichern" class=""/>
+
+                            </div>
+                            </form>
+                            % endif
+                         % endif
+                    % endfor
+
+                % endif
 
                 % endfor
                 </ul>
