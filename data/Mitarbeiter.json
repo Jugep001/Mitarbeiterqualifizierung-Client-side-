@@ -6,7 +6,7 @@
       "taetigkeit": "Student",
       "Weiterbildung": [
          {
-            "status": "erfolgreich beendet",
+            "status": "angemeldet",
             "bezeichnung": "Java",
             "von": "2020-12-10",
             "bis": "2020-12-16",
@@ -20,7 +20,7 @@
             "beschreibung_quali": "Java"
          },
          {
-            "status": "nimmt teil",
+            "status": "angemeldet",
             "bezeichnung": "C",
             "von": "2020-12-10",
             "bis": "2020-12-23",
@@ -34,15 +34,6 @@
             "beschreibung_quali": "C"
          }
       ],
-      "Qualifikation": "None",
-      "Zertifikat": "None"
-   },
-   "52": {
-      "name": "Freukes",
-      "vorname": "Benjamin",
-      "akademischer_grad": "Student",
-      "taetigkeit": "Student",
-      "Weiterbildung": null,
       "Qualifikation": null,
       "Zertifikat": null
    }

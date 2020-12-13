@@ -4,9 +4,9 @@
 <head>
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
-    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
-    <link href="Mitarbeiterqualifizierung.css" rel="stylesheet" type="text/css"/>
-
+    <style>
+        @import "edit/Mitarbeiterqualifizierung.css";
+    </style>
 
 </head>
 <body>
