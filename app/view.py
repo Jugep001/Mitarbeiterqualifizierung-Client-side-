@@ -16,7 +16,7 @@ class View_cl(object):
         self.lookup_o = TemplateLookup('./templates')
 
     # -------------------------------------------------------
-    def createList_px(self, data_opl, listForm):
+    def createList_px(self, data_opl, listForm, data_weiter_opl=None):
         # -------------------------------------------------------
 
         if listForm == "Startseite":
@@ -54,7 +54,7 @@ class View_cl(object):
         elif listForm == "Weiterbildungen":
             template_o = self.lookup_o.get_template('Weiterbildungen.mako')
 
-            markup_s = template_o.render(data_o=data_opl, listform0=listForm)
+            markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_weiter_o=data_weiter_opl)
             return markup_s
         elif listForm == "Zertifikate":
             template_o = self.lookup_o.get_template('Zertifikate.mako')

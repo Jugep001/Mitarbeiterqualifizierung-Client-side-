@@ -9,11 +9,6 @@
                 }
                 }
             }
-            window.onload = function () {
-                    let body_o = document.getElementsByTagName('body')[0];
-                    body_o.addEventListener('click', confirmDelete_p, false);
-            }
-
 
             function select_Weiter(data) {
 
@@ -52,34 +47,47 @@
  }
 
 
-     function sortTable() {
+            window.onload = function () {
+                    let body_o = document.getElementsByTagName('body')[0];
+                    body_o.addEventListener('click', confirmDelete_p, false);
+                    body_o.addEventListener('load', sortTable(), false);
+            }
 
 
-        var table, switching, i, x, y;
-        table = document.getElementById("Mitarbeitertabelle");//access table
-        switching = true;
-
-            while (switching) {
-
-                switching = false;
 
 
-            for (i = 1; i < (table.rows.length - 1); i++) {
 
-                x = table.rows[i].getElementsByTagName("TD")[0];
-                y = table.rows[i + 1].getElementsByTagName("TD")[0];
+    function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("Mitarbeitertabelle");
+  switching = true;
+  sortTable2();
 
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+  while (switching) {
 
-                table.rows[i].parentNode.insertBefore(table.rows[i + 1], table.rows[i]);
-                switching = true;
-                break;
+    switching = false;
+    rows = table.rows;
 
-       }
-     }
+    for (i = 1; i < (rows.length - 1); i++) {
 
-   }
- }
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
 
  function sortTable2() {
 
