@@ -4,7 +4,7 @@
 <head>
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
-    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
+    <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
         @import "Mitarbeiterqualifizierung.css";
     </style>
@@ -23,39 +23,38 @@
             </div>
         </div>
         <div class="item2">
-            <a href="/switch?listForm=Startseite">
-                <button>
-                    Startseite
-                </button>
+            <a href="/switch?listForm=Startseite" role="button">
+                Startseite
             </a>
         </div>
         <div class="item3">
-            <a href="/switch?listForm=Pflege_Mit">
-                <button>
+            <a href="/switch?listForm=Pflege_Mit" role="button">
+
                     Pflege Mitarbeiterdaten
-                </button>
+
             </a>
-            <a href="/switch?listForm=Pflege_Weiter">
-                <button>
+            <a href="/switch?listForm=Pflege_Weiter" role="button">
+                <br>
+
                     Pflege Weiterbildungen
-                </button>
+
             </a>
         </div>
         <div class="item4">
              Teilnahme
              <ul class="a">
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Mit">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Mit" role="button">
+
                             Sichtweise Mitarbeiter
-                        </button>
+
                     </a>
                 </li>
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Weiter">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Weiter" role="button">
+
                             Sichtweise Weiterbildungen
-                        </button>
+
                     </a>
                 </li>
              </ul>
@@ -65,24 +64,24 @@
             Auswertungen
                 <ul>
                     <li>
-                        <a href="/switch?listForm=Mitarbeiter">
-                            <button>
+                        <a href="/switch?listForm=Mitarbeiter" role="button">
+
                                 Mitarbeiter
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Weiterbildungen">
-                            <button>
+                        <a href="/switch?listForm=Weiterbildungen" role="button">
+
                                 Weiterbildungen
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Zertifikate">
-                            <button>
+                        <a href="/switch?listForm=Zertifikate" role="button">
+
                                 Zertifikate
-                            </button>
+
                         </a>
                     </li>
                 </ul>
@@ -97,8 +96,8 @@
 
 
         <li>:
-            <a href="/edit/${key_s}">bearbeiten</a>
-            <a href="/delete/${key_s}" class='clDelete'> löschen</a>
+            <a href="/edit/${key_s}" role="button">bearbeiten</a>
+            <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
 
                     <ul class="">
                             
@@ -121,8 +120,8 @@
         % endfor
     </ul>
             <div>
-                <a href="/add"><button class="">erfassen</button></a>
-                <a href="/switch?listForm=Pflege_Weiter"><button>zurück</button></a>
+                <a href="/add" role="button">erfassen</a>
+                <a href="/switch?listForm=Pflege_Weiter" role="button">zurück</a>
             </div>
         </div>
     </div>

@@ -7,6 +7,20 @@
       "Weiterbildung": [
          {
             "status": "angemeldet",
+            "bezeichnung": "Java",
+            "von": "2020-12-08",
+            "bis": "2020-12-16",
+            "beschreibung": "Java",
+            "max_teilnehmer": "10",
+            "min_teilnehmer": "2",
+            "bezeichnung_zerti": "Java",
+            "beschreibung_zerti": "Java",
+            "berechtigt_zu": "Java",
+            "bezeichnung_quali": "Java",
+            "beschreibung_quali": "Java"
+         },
+         {
+            "status": "angemeldet",
             "bezeichnung": "C",
             "von": "2020-12-10",
             "bis": "2020-12-23",

@@ -4,7 +4,7 @@
 <head>
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
-    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
+    <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
         @import "Mitarbeiterqualifizierung.css";
     </style>
@@ -23,40 +23,38 @@
             </div>
         </div>
         <div class="item2">
-            <a href="/switch?listForm=Startseite">
-                <button>
-                    Startseite
-                </button>
+            <a href="/switch?listForm=Startseite" role="button">
+                Startseite
             </a>
         </div>
         <div class="item3">
-            <a href="/switch?listForm=Pflege_Mit">
-                <button>
+            <a href="/switch?listForm=Pflege_Mit" role="button">
+
                     Pflege Mitarbeiterdaten
-                </button>
+
             </a>
-            <a href="/switch?listForm=Pflege_Weiter">
+            <a href="/switch?listForm=Pflege_Weiter" role="button">
                 <br>
-                <button>
+
                     Pflege Weiterbildungen
-                </button>
+
             </a>
         </div>
         <div class="item4">
              Teilnahme
              <ul class="a">
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Mit">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Mit" role="button">
+
                             Sichtweise Mitarbeiter
-                        </button>
+
                     </a>
                 </li>
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Weiter">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Weiter" role="button">
+
                             Sichtweise Weiterbildungen
-                        </button>
+
                     </a>
                 </li>
              </ul>
@@ -66,24 +64,24 @@
             Auswertungen
                 <ul>
                     <li>
-                        <a href="/switch?listForm=Mitarbeiter">
-                            <button>
+                        <a href="/switch?listForm=Mitarbeiter" role="button">
+
                                 Mitarbeiter
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Weiterbildungen">
-                            <button>
+                        <a href="/switch?listForm=Weiterbildungen" role="button">
+
                                 Weiterbildungen
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Zertifikate">
-                            <button>
+                        <a href="/switch?listForm=Zertifikate" role="button">
+
                                 Zertifikate
-                            </button>
+
                         </a>
                     </li>
                 </ul>
@@ -96,7 +94,7 @@
             % for key_s in data_o:
                 <ul class="">
                     <li>
-                        <a href="/add?data=${key_s}&listForm=Sichtweise_Weiter_form"><button class="">Weiterbildung(Name):${data_o[key_s]["bezeichnung"]}</button></a>
+                        <a href="/add?data=${key_s}&listForm=Sichtweise_Weiter_form" role="button">Weiterbildung(Name):${data_o[key_s]["bezeichnung"]}</a>
                      </li>
                 </ul>
 

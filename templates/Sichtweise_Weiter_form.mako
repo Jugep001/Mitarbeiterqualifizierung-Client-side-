@@ -4,7 +4,7 @@
 <head>
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
-    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
+    <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
     @import "Mitarbeiterqualifizierung.css";
     </style>
@@ -23,40 +23,38 @@
             </div>
         </div>
         <div class="item2">
-            <a href="/switch?listForm=Startseite">
-                <button>
-                    Startseite
-                </button>
+            <a href="/switch?listForm=Startseite" role="button">
+                Startseite
             </a>
         </div>
         <div class="item3">
-            <a href="/switch?listForm=Pflege_Mit">
-                <button>
+            <a href="/switch?listForm=Pflege_Mit" role="button">
+
                     Pflege Mitarbeiterdaten
-                </button>
+
             </a>
-            <a href="/switch?listForm=Pflege_Weiter">
+            <a href="/switch?listForm=Pflege_Weiter" role="button">
                 <br>
-                <button>
+
                     Pflege Weiterbildungen
-                </button>
+
             </a>
         </div>
         <div class="item4">
              Teilnahme
              <ul class="a">
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Mit">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Mit" role="button">
+
                             Sichtweise Mitarbeiter
-                        </button>
+
                     </a>
                 </li>
                 <li>
-                    <a href="/switch?listForm=Sichtweise_Weiter">
-                        <button>
+                    <a href="/switch?listForm=Sichtweise_Weiter" role="button">
+
                             Sichtweise Weiterbildungen
-                        </button>
+
                     </a>
                 </li>
              </ul>
@@ -66,24 +64,24 @@
             Auswertungen
                 <ul>
                     <li>
-                        <a href="/switch?listForm=Mitarbeiter">
-                            <button>
+                        <a href="/switch?listForm=Mitarbeiter" role="button">
+
                                 Mitarbeiter
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Weiterbildungen">
-                            <button>
+                        <a href="/switch?listForm=Weiterbildungen" role="button">
+
                                 Weiterbildungen
-                            </button>
+
                         </a>
                     </li>
                     <li>
-                        <a href="/switch?listForm=Zertifikate">
-                            <button>
+                        <a href="/switch?listForm=Zertifikate" role="button">
+
                                 Zertifikate
-                            </button>
+
                         </a>
                     </li>
                 </ul>
@@ -95,18 +93,18 @@
         <div class="item7">
 
                 <ul class="">
-                    <li> ${data_weiter[key_weiter_s]["bezeichnung"]} </li>
-                    <li>von:${data_weiter[key_weiter_s]["von"]}</li>
-                    <li>bis:${data_weiter[key_weiter_s]["bis"]}</li>
-                    <li>beschreibung:${data_weiter[key_weiter_s]["beschreibung"]}</li>
-                    <li>max_teilnehmer:${data_weiter[key_weiter_s]["max_teilnehmer"]}</li>
-                    <li>min_teilnehmer:${data_weiter[key_weiter_s]["min_teilnehmer"]}</li>
-                    <li>bezeichnung:${data_weiter[key_weiter_s]["bezeichnung_zerti"]}</li>
-                    <li>beschreibung:${data_weiter[key_weiter_s]["beschreibung_zerti"]}</li>
-                    <li>berechtigt zu:${data_weiter[key_weiter_s]["berechtigt_zu"]}</li>
-                    <li>bezeichnung:${data_weiter[key_weiter_s]["bezeichnung_quali"]}</li>
-                    <li>beschreibung:${data_weiter[key_weiter_s]["beschreibung_quali"]}</li>
-                    Teilnehmer:
+                    <li>Weiterbildung: ${data_weiter[key_weiter_s]["bezeichnung"]} </li>
+                    <li>von: ${data_weiter[key_weiter_s]["von"]}</li>
+                    <li>bis: ${data_weiter[key_weiter_s]["bis"]}</li>
+                    <li>beschreibung: ${data_weiter[key_weiter_s]["beschreibung"]}</li>
+                    <li>max_teilnehmer: ${data_weiter[key_weiter_s]["max_teilnehmer"]}</li>
+                    <li>min_teilnehmer: ${data_weiter[key_weiter_s]["min_teilnehmer"]}</li>
+                    <li>bezeichnung: ${data_weiter[key_weiter_s]["bezeichnung_zerti"]}</li>
+                    <li>beschreibung: ${data_weiter[key_weiter_s]["beschreibung_zerti"]}</li>
+                    <li>berechtigt zu: ${data_weiter[key_weiter_s]["berechtigt_zu"]}</li>
+                    <li>bezeichnung: ${data_weiter[key_weiter_s]["bezeichnung_quali"]}</li>
+                    <li>beschreibung: ${data_weiter[key_weiter_s]["beschreibung_quali"]}</li>
+                    <li><b>Teilnehmer:</b></li>
                 % for key_s in data_o:
                     % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
                         % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter[key_weiter_s]["bezeichnung"] and data_o[key_s]["Weiterbildung"]["status"] == "angemeldet" or data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
@@ -116,13 +114,13 @@
                             <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
                                 <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
                                 <input type="hidden" value="dict" id="typeForm" name="typeForm" />
-                                <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["taetigkeit"]}" id="taetigkeit_spa" name="taetigkeit_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"]}" id="Weiterbildung_spa" name="Weiterbildung_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Qualifikation"]}" id="Qualifikation_spa" name="Qualifikation_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Zertifikat"]}" id="Zertifikat_spa" name="Zertifikat_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["taetigkeit"]}" id="taetigkeit_spa" name="taetigkeit_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"]}" id="Weiterbildung_spa" name="Weiterbildung_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Qualifikation"]}" id="Qualifikation_spa" name="Qualifikation_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Zertifikat"]}" id="Zertifikat_spa" name="Zertifikat_spa"/>
                                     <label for="status_spa">Wähle Status:</label>
 
                                     <select name="status_spa" id="status_spa">
@@ -156,13 +154,13 @@
                                 <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
                                 <input type="hidden" value="${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}" id="bezeichnung_spa" name="bezeichnung_spa" />
                                 <input type="hidden" value="list" id="typeForm" name="typeForm" />
-                                <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["taetigkeit"]}" id="taetigkeit_spa" name="taetigkeit_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"][i]}" id="Weiterbildung_spa" name="Weiterbildung_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Qualifikation"]}" id="Qualifikation_spa" name="Qualifikation_spa" required />
-                                <input type="hidden" value="${data_o[key_s]["Zertifikat"]}" id="Zertifikat_spa" name="Zertifikat_spa" required />
+                                <input type="hidden" value="${data_o[key_s]["name"]}" id="name_spa" name="name_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["vorname"]}" id="vorname_spa" name="vorname_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["akademischer_grad"]}" id="ak_grad_spa" name="ak_grad_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["taetigkeit"]}" id="taetigkeit_spa" name="taetigkeit_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Weiterbildung"][i]}" id="Weiterbildung_spa" name="Weiterbildung_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Qualifikation"]}" id="Qualifikation_spa" name="Qualifikation_spa"/>
+                                <input type="hidden" value="${data_o[key_s]["Zertifikat"]}" id="Zertifikat_spa" name="Zertifikat_spa"/>
                                     <label for="status_spa">Wähle Status:</label>
 
                                     <select name="status_spa" id="status_spa">

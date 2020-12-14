@@ -15,11 +15,11 @@
     <div class="">
         <h1>Weiterbildung</h1>
         <div class="">
-            <label for="status_spa">Weiterbildung(status)</label>
+
             <input type="hidden"
                 value="None"
                 id="status_spa"
-                name="status_spa" required />
+                name="status_spa"/>
         </div>
         <div class="">
             <label for="bezeichnung_spa">Name</label>
@@ -109,7 +109,7 @@
     </form>
         <div>
 
-            <a href="/switch?listForm=${listForm}"> <button class="">Abbrechen</button></a>
+            <a href="/switch?listForm=${listForm}" role="button">Abbrechen</a>
 
         </div>
  </body>

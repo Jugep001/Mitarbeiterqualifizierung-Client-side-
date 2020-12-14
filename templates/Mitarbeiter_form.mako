@@ -54,7 +54,7 @@
     </form>
         <div>
 
-            <a href="/switch?listForm=${listForm}"> <button class="">Abbrechen</button></a>
+            <a href="/switch?listForm=${listForm}" role="button">Abbrechen</a>
 
         </div>
  </body>
