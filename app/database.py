@@ -21,7 +21,7 @@ class Database_cl(object):
     def create_px(self, data_opl, listForm):
 
         id_s = self.maxId_o.create_px()
-        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Mitarbeiter":
             self.data_o_Mit[str(id_s)] = data_opl
         elif listForm == "Pflege_Weiter":
             self.data_o_Weiter[str(id_s)] = data_opl
@@ -35,7 +35,9 @@ class Database_cl(object):
     def read_px(self, listForm, id_spl=None):
 
         if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Sichtweise_Mit" \
-                or listForm == "Sichtweise_Mit_Form" or listForm == "Sichtweise_Weiter_form":
+                or listForm == "Sichtweise_Mit_Form" or listForm == "Sichtweise_Weiter_form" \
+                or listForm == "Mitarbeiter" or listForm == "Pflege_Weiter_Detail" or listForm == "Weiterbildungen"\
+                or listForm == "Zertifikate":
             data_o_Mit = None
             if id_spl == None:
                 data_o_Mit = self.data_o_Mit
@@ -141,7 +143,8 @@ class Database_cl(object):
 
     def getDefault_px(self, listForm):
 
-        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail":
+        if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Mitarbeiter" \
+                or listForm == "Zertifikate":
             return {
                 "name": "",
                 "vorname": "",
@@ -151,7 +154,7 @@ class Database_cl(object):
                 "Qualifikation": "",
                 "Zertifikat": "",
             }
-        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail" or listForm == "Weiterbildung":
             return {
                 "status": "",
                 "bezeichnung": "",

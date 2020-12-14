@@ -93,7 +93,53 @@
             Leer?
         </div>
         <div class="item7">
-            Main
+            <table id="Mitarbeitertabelle">
+                <tr>
+                    <th>Name des Mitarbeiters</th>
+                    <th>Bezeichnung</th>
+                </tr>
+             % for key_s in data_o:
+
+
+
+
+
+
+
+
+                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+
+
+                                % if data_o[key_s]["Weiterbildung"]["status"] == "erfolgreich beendet":
+                                    <tr>
+                                        <td>${data_o[key_s]["name"]}</td>
+                                        <td>${data_o[key_s]["Weiterbildung"]["bezeichnung_zerti"]}</td>
+                                    </tr>
+                                % endif
+
+                         % endif
+                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
+
+
+                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
+
+                                    % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
+                                        <tr>
+                                            <td>${data_o[key_s]["name"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</td>
+                                        </tr>
+                                % endif
+                            % endfor
+
+                         % endif
+
+
+
+
+
+
+        % endfor
+            </table>
         </div>
     </div>
 </body>

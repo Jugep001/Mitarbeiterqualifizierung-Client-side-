@@ -93,7 +93,59 @@
             Leer?
         </div>
         <div class="item7">
-            Main
+        <table id="Mitarbeitertabelle">
+            <tr>
+                            <th><b>Name</b></th>
+                            <th>Vorname</th>
+                            <th>Akademischer Grad</th>
+                            <th>Tätigkeit</th>
+                            <th>Weiterbildung(bezeichnung)</th>
+                            <th>von</th>
+                            <th>bis</th>
+                            <th>Weiterbildung(status)</th>
+            </tr>
+        % for key_s in data_o:
+
+
+                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+
+                                <p></p>
+                                <tr>
+                                <td>${data_o[key_s]["name"]}</td>
+                                <td>${data_o[key_s]["vorname"]}</td>
+                                <td>${data_o[key_s]["akademischer_grad"]}</td>
+                                <td>${data_o[key_s]["taetigkeit"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"]["von"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"]["bis"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"]["status"]}</td>
+                                </tr>
+
+                         % endif
+                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
+
+
+                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
+                                <tr>
+                                <p></p>
+                                <td>${data_o[key_s]["name"]}</td>
+                                <td>${data_o[key_s]["vorname"]}</td>
+                                <td>${data_o[key_s]["akademischer_grad"]}</td>
+                                <td>${data_o[key_s]["taetigkeit"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"][i]["von"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"][i]["bis"]}</td>
+                                <td>${data_o[key_s]["Weiterbildung"][i]["status"]}</td>
+                                </tr>
+                            % endfor
+
+                         % endif
+
+
+        % endfor
+
+        </table>
+
         </div>
     </div>
 </body>

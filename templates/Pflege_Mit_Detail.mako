@@ -126,11 +126,11 @@
                             % for i in range(len(data_o[key_s]["Weiterbildung"])):
                                 <li>Weiterbildung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</li>
                                 <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"][i]["status"]}</li>
-                                % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
-                                    <li>Zertifikat:</li>
-                                        <ul>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</ul>
-                                    <li>Qualifikation:</li>
-                                        <ul>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_quali"]}</ul>
+                                    % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
+                                        <li>Zertifikat:</li>
+                                            <ul>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</ul>
+                                        <li>Qualifikation:</li>
+                                            <ul>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_quali"]}</ul>
                                 % endif
                             % endfor
 
