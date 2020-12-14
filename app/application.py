@@ -237,10 +237,6 @@ class Application_cl(object):
 
         raise cherrypy.HTTPRedirect('/')
 
-    @cherrypy.expose
-    def storno_status(self):
-
-        raise cherrypy.HTTPRedirect('/')
 
     @cherrypy.expose
     # -------------------------------------------------------
