@@ -1,11 +1,11 @@
-Team: Julian Geppert, Benjamin Freukes (Matrikelnummer: 1287970)
-Gültigkeitsdatum: 14.12.2020
+Team: Julian Geppert (Matrikelnummer: 1195206), Benjamin Freukes (Matrikelnummer: 1287970)
+Gültigkeitsdatum: 17.12.2020
 
 ## Allgemeine Beschreinung der Lösung
 Mit dieser Webseite erstellen wir eine Anwendung, welche es ermöglicht
 ein Datenmanagement zu betreiben. Man kann Daten erfassen, bearbeiten, löschen und speichern.
 Wenn Daten gelöscht werden wird dies durch ein Pop-up Fenster  abgefragt.
-Die Eingabe der "Kunden" Daten erfolgt durch eine Formularseite in der man den Namen, Vorname und spezifisch andere Daten 
+Die Eingabe der "Mitarbeiter" Daten erfolgt durch eine Formularseite in der man den Namen, Vorname und spezifisch andere Daten 
 eingeben kann. Außerdem gibt es auch einen zurück Button welcher es ermöglicht von Bearbeiten zurück
 zu gehen.
 

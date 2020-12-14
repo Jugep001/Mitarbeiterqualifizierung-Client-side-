@@ -4,6 +4,7 @@
 <head>
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
+    <script type='text/javascript' src='Mitarbeiterqualifizierung.js'></script>
     <style>
         @import "edit/Mitarbeiterqualifizierung.css";
     </style>

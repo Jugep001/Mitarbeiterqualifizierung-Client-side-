@@ -10,7 +10,17 @@
                 }
             }
 
-            function select_Weiter(data) {
+
+
+
+            window.onload = function () {
+                    let body_o = document.getElementsByTagName('body')[0];
+                    body_o.addEventListener('click', confirmDelete_p, false);
+                    body_o.addEventListener('load', sortTable(), false);
+            }
+
+
+function select_Weiter(data) {
 
 
                 var p = document.getElementById('create_check');
@@ -45,16 +55,6 @@
 
      }
  }
-
-
-            window.onload = function () {
-                    let body_o = document.getElementsByTagName('body')[0];
-                    body_o.addEventListener('click', confirmDelete_p, false);
-                    body_o.addEventListener('load', sortTable(), false);
-            }
-
-
-
 
 
     function sortTable() {
