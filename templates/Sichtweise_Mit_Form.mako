@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="item2">
-            <a href="/">
+            <a href="/switch?listForm=Startseite">
                 <button>
                     Startseite
                 </button>
