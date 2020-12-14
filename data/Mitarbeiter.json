@@ -44,7 +44,7 @@
       "taetigkeit": "Student",
       "Weiterbildung": [
          {
-            "status": "angemeldet",
+            "status": "erfolgreich beendet",
             "bezeichnung": "Java",
             "von": "2020-12-08",
             "bis": "2020-12-16",

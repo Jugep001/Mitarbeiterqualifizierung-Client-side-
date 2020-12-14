@@ -37,7 +37,7 @@ class Database_cl(object):
         if listForm == "Pflege_Mit" or listForm == "Pflege_Mit_Detail" or listForm == "Sichtweise_Mit" \
                 or listForm == "Sichtweise_Mit_Form" or listForm == "Sichtweise_Weiter_form" \
                 or listForm == "Mitarbeiter" or listForm == "Pflege_Weiter_Detail" or listForm == "Weiterbildungen"\
-                or listForm == "Zertifikate":
+                or listForm == "Zertifikate" or listForm == "Startseite":
             data_o_Mit = None
             if id_spl == None:
                 data_o_Mit = self.data_o_Mit

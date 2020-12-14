@@ -261,7 +261,7 @@ class Application_cl(object):
             self.listForm = "Sichtweise_Weiter"
             data_o = self.db_o.read_px(self.listForm)
             return self.view_o.createList_px(data_o, self.listForm)
-        elif self.listForm == "Weiterbildungen":
+        elif self.listForm == "Weiterbildungen" or self.listForm == "Startseite":
             data_o = self.db_o.read_px(self.listForm)
             data_weiter_o = self.db_o.read_px("Pflege_Weiter")
             return self.view_o.createList_px(data_o, self.listForm, data_weiter_o)

@@ -93,7 +93,32 @@
             Leer?
         </div>
         <div class="item7">
-            Main
+                <% k = 0 %>
+                % for i in range(len(data_o)):
+                    <% i = i + 1%>
+
+                % endfor
+                % for j in range(len(data_weiter_o)):
+                    <% j = j + 1%>
+                % endfor
+                % for key_s in data_o:
+                    % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                        % if data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
+
+                                <% k = k + 1%>
+                         % endif
+                    % endif
+                    % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list:
+                        % for counter in range(len(data_o[key_s]["Weiterbildung"])):
+                            % if data_o[key_s]["Weiterbildung"][counter]["status"] == "nimmt teil":
+                                <% k = k + 1%>
+                            % endif
+                        % endfor
+                    % endif
+                % endfor
+                    <p>Anzahl Mitarbeiter: ${i}</p>
+                    <p>Anzahl Weiterbildungen: ${j}</p>
+                    <p>Anzahl Teilnahmen: ${k}</p>
         </div>
     </div>
 </body>
