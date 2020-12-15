@@ -177,3 +177,7 @@ wechseln lässt
 ###Datenablage
 - Die Daten werden in unterschiedlichen JSON Dateien gespeichert(Mitarbeiter, Qualifikation, Weiterbildungen, Zertifikate) 
 
+---
+![cssValidator1](./css1.PNG)
+
+![cssValidator2](./css2.PNG)

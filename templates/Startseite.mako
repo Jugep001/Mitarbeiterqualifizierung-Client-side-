@@ -118,6 +118,7 @@
                     <p>Anzahl Weiterbildungen: ${j}</p>
                     <p>Anzahl Teilnahmen: ${k}</p>
         </div>
+
     </div>
 </body>
  </html>
