@@ -88,22 +88,15 @@
             </div>
         </div>
         <div class="item6">
-            Leer?
+
         </div>
         <div class="item7">
             <table id="Mitarbeitertabelle">
                 <tr>
                     <th>Name des Mitarbeiters</th>
-                    <th>Bezeichnung</th>
+                    <th>Bezeichnung des Zertifikats</th>
                 </tr>
              % for key_s in data_o:
-
-
-
-
-
-
-
 
                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
 
@@ -130,11 +123,6 @@
                             % endfor
 
                          % endif
-
-
-
-
-
 
         % endfor
             </table>

@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="item6">
-            Leer?
+
         </div>
         <div class="item7">
             

@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="item6">
-            Leer?
+
         </div>
         <div class="item7">
         <table id="Mitarbeitertabelle">
@@ -104,30 +104,44 @@
             </tr>
         % for key_s in data_o:
 
+                        % if not data_o[key_s]["Weiterbildung"]:
+
                         <tr>
+
                         <td>${data_o[key_s]["name"]}</td>
                         <td>${data_o[key_s]["vorname"]}</td>
                         <td>${data_o[key_s]["akademischer_grad"]}</td>
                         <td>${data_o[key_s]["taetigkeit"]}</td>
 
-                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                        </tr>
+                        % endif
 
+                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                              <tr>
+                                <td>${data_o[key_s]["name"]}</td>
+                                <td>${data_o[key_s]["vorname"]}</td>
+                                <td>${data_o[key_s]["akademischer_grad"]}</td>
+                                <td>${data_o[key_s]["taetigkeit"]}</td>
                                 <td>${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</td>
                                 <td>${data_o[key_s]["Weiterbildung"]["von"]}</td>
                                 <td>${data_o[key_s]["Weiterbildung"]["bis"]}</td>
                                 <td>${data_o[key_s]["Weiterbildung"]["status"]}</td>
-
+                              </tr>
                          % endif
                          % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
 
 
                             % for i in range(len(data_o[key_s]["Weiterbildung"])):
-
-                                <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"][i]["von"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"][i]["bis"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"][i]["status"]}</td>
-
+                                <tr>
+                                    <td>${data_o[key_s]["name"]}</td>
+                                    <td>${data_o[key_s]["vorname"]}</td>
+                                    <td>${data_o[key_s]["akademischer_grad"]}</td>
+                                    <td>${data_o[key_s]["taetigkeit"]}</td>
+                                    <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</td>
+                                    <td>${data_o[key_s]["Weiterbildung"][i]["von"]}</td>
+                                    <td>${data_o[key_s]["Weiterbildung"][i]["bis"]}</td>
+                                    <td>${data_o[key_s]["Weiterbildung"][i]["status"]}</td>
+                                </tr>
                             % endfor
 
                          % endif
@@ -135,7 +149,7 @@
 
 
         % endfor
-                        </tr>
+
         </table>
 
         </div>

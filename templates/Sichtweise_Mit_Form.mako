@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="item6">
-            Leer?
+
         </div>
         <div class="item7">
         <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
