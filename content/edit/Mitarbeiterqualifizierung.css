@@ -1,90 +1,20 @@
-input{
-  transition-duration: 0.2s;
-  background-color: grey;
-  padding: 5px;
-  border: none;
-  text-align: left;
-}
-button{
-  transition-duration: 0.2s;
-  background-color: #625295;
-  padding: 5px;
-  border: none;
-  text-align: left;
-}
-label{
-  background-color: #625295;
-  text-align: left;
-  padding: 5px;
-}
-
-.box-01 {
-  flex-basis: auto;
-  flex-grow: 1;
-  text-align: left;
-}
-.box-02 {
-  flex-basis: auto;
-  flex-grow: 4;
-  text-align: right;
-}
-a:hover{
-  background-color: mediumpurple;
-  color: black;
-}
-button:hover {
-  background-color: mediumpurple;
-  color: black;
-}
-
-
-.item1 { grid-area: head; }
-.item2 { grid-area: sidebar1; }
-.item3 { grid-area: sidebar2; }
-.item4 { grid-area: sidebar3; }
-.item5 { grid-area: sidebar4; }
-.item6 { grid-area: sidebar5; }
-.item7 { grid-area: main; }
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'head head head head head head'
-    'sidebar1 main main main main main'
-    'sidebar2 main main main main main'
-    'sidebar3 main main main main main'
-    'sidebar4 main main main main main'
-    'sidebar5 main main main main main';
-  grid-gap: 10px;
+.selektor {
   background-color: #403075;
-  padding: 10px;
-}
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: left;
+  margin: 5px;
   padding: 5px;
-  margin-bottom: 5px;
 }
-.flexbox {
-  display: flex;
-  flex-wrap: nowrap;
-}
-.box-01 {
-  flex-basis: auto;
-  flex-grow: 1;
-  text-align: left;
-}
-.box-02 {
-  flex-basis: auto;
-  flex-grow: 4;
-  text-align: right;
-}
-button{
+.button{
   transition-duration: 0.2s;
   background-color: #625295;
   padding: 5px;
   border: none;
   text-align: left;
+}
+input{
+  padding:5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color:black;
 }
 a{
   transition-duration: 0.2s;
@@ -95,20 +25,28 @@ a{
   text-align: left;
   text-decoration: none;
   margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
 }
 a:hover{
   background-color: mediumpurple;
   color: black;
 }
-button:hover {
-  background-color: mediumpurple;
-  color: black;
-}
-ul{
-  line-height: 2em;
-}
 label{
+  color: white;
+}
+#speichern {
+  transition-duration: 0.2s;
   background-color: #625295;
-  text-align: left;
+  color: black;
   padding: 5px;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.abbrechenDiv{
+  margin-bottom: 5px;
 }

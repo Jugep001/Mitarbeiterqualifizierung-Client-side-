@@ -6,13 +6,13 @@
     <meta charset="UTF-8" />
     <style>
         @import "Mitarbeiterqualifizierung.css";
+        @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
 
 
 <body>
-
-
+    <div class="selektor">
     <form id="idWTForm" action="/save_Mitarbeiter" method="POST">
             <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
     <div class="">
@@ -47,15 +47,16 @@
 
         <div>
 
-            <input type="submit" value="Speichern" class=""/>
+            <input type="submit" value="Speichern" role="button" id="speichern"/>
         </div>
     </div>
 
     </form>
-        <div>
+        <div class="abbrechenDiv">
 
             <a href="/switch?listForm=${listForm}" role="button">Abbrechen</a>
 
         </div>
+    </div>
  </body>
  </html>

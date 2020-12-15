@@ -6,10 +6,12 @@
     <meta charset="UTF-8" />
     <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
-    @import "edit/Mitarbeiterqualifizierung.css";
+        @import "Mitarbeiterqualifizierung.css";
+        @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
 <body>
+<div class="selektor">
     <div class="grid-container">
         <div class="item1">
             <div class="flexbox">
@@ -191,5 +193,6 @@
 
         </div>
     </div>
+</div>
 </body>
  </html>

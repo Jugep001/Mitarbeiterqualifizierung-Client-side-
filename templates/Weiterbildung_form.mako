@@ -5,6 +5,7 @@
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
     <style>
+        @import "Mitarbeiterqualifizierung.css";
         @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 

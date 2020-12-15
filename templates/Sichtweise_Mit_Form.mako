@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
+        @import "Mitarbeiterqualifizierung.css";
         @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
@@ -43,8 +44,9 @@
                     Pflege Mitarbeiterdaten
 
             </a>
+            <br>
+            <br>
             <a href="/switch?listForm=Pflege_Weiter" role="button">
-                <br>
 
                     Pflege Weiterbildungen
 
