@@ -92,6 +92,8 @@
         </div>
         <div class="item7">
                 <% k = 0 %>
+                <% i = 0 %>
+                <% j = 0 %>
                 % for i in range(len(data_o)):
                     <% i = i + 1%>
 
