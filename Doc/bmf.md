@@ -1,7 +1,7 @@
 Team: Julian Geppert (Matrikelnummer: 1195206), Benjamin Freukes (Matrikelnummer: 1287970)
 Gültigkeitsdatum: 17.12.2020
 
-## Allgemeine Beschreibung der Lösung
+# Allgemeine Beschreibung der Lösung
 Mit dieser Webseite erstellen wir eine Anwendung, welche es ermöglicht
 ein Datenmanagement zu betreiben. Man kann Daten erfassen, bearbeiten, löschen und speichern.
 Wenn Daten gelöscht werden wird dies durch ein Pop-up Fenster abgefragt.
@@ -9,8 +9,10 @@ Die Eingabe der "Mitarbeiter" Daten erfolgt durch eine Formularseite in der man 
 eingeben kann. Außerdem gibt es auch einen zurück Button welcher es ermöglicht von Bearbeiten zurück
 zu gehen.
 
-###Beschreibungen der Komponenten des Servers
-####application.py:
+# Beschreibungen der Komponenten des Servers
+
+## application.py:
+
 - Zweck dieser Komponente ist es Daten an die view.py weiter zu geben und die JSON Files zu schreiben/überschreiben/löschen
 - switch Funktion welche den Parameter listForm an create_List_p übergibt und die aktuelle Form in 
 self.listForm speichert
@@ -26,7 +28,9 @@ Javascript erzeugt un einen Pfad zurück geht
 - stornieren entfernt einen Mitarbeiter von einer Weiterbildung
 - createList_p wählt je nach Listenform die richtigen Daten raus und überträgt sie zur View.py
 - createForm_p wählt je nach Listenform die richtigen Daten raus und überträgt sie zur View.py mit dem Zusatz das der Key noch mitgeliefert wird
-####database.py:
+
+## database.py:
+
 - Zweck dieser Komponente ist es in die JSON Files zu schreiben und unsere ein gegebenen Daten abzuspeichern/löschen/überschreiben
 - init Werte werden initialisiert (data_o_Weiter,data_o_Zerti,data_o_Quali)
 - create_px prüft welche listForm die Aktuelle ist und erstellt dann 
@@ -37,12 +41,15 @@ Javascript erzeugt un einen Pfad zurück geht
 - getDefault_px setzt Default Werte ein für die Formulare
 - readData_p öffnet die JSON Dateien und speichert die Einträge in jeweilige Objekte
 - saveData_p speichert jeweils die Daten in den Jeweiligen JSON Dateien ab
-####view.py
+
+## view.py
+
 - Zweck dieser Komponente ist es immer das richtige template anzeigen zu lassen
 - createList_px prüft welche listForm die Aktuelle ist und lädt jenachdem die html template Dateien.
 - createForm_px prüft welche listForm die Aktuelle ist und lädt jenachdem das richtige Formular template.
 
-####Pflege_Mit.tpl
+## Pflege_Mit.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Grundlegende Attribute(Name, Vorname, usw.) von Mitarbeitern werden angezeigt
@@ -52,7 +59,8 @@ Javascript erzeugt un einen Pfad zurück geht
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
 
-####Pflege_Mit_Detail.tpl
+## Pflege_Mit_Detail.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Detailliertere Ansicht von dem Mitarbeitern, wo auch die Weiterbildung und die Zertifikate sowie Qualifikationen angezeigt werden
@@ -61,7 +69,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Pflege_Weiter.tpl
+
+## Pflege_Weiter.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Grundlegende Attribute(Bezeichnung, Beschreibung, usw.) von einer Weiterbildung werden angezeigt
@@ -70,7 +80,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Pflege_Weiter_Detail.tpl
+
+## Pflege_Weiter_Detail.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Detailliertere Ansicht von einer Weiterbildung, wobei man diesmal auch das Zertifikat und die Qualifikation konfigurieren kann
@@ -79,7 +91,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Sichtweise_Mit.tpl
+
+## Sichtweise_Mit.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Anzeige von einem Namen eines Mitarbeiters und Weiterleitung zu einer Formularsicht
@@ -87,7 +101,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Sichtweise_Weiter.tpl
+
+## Sichtweise_Weiter.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Anzeige von einem Namen einer Weiterbildung und Weiterleitung zu einer Formularsicht
@@ -95,7 +111,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Startseite.tpl
+
+## Startseite.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Anzeige von drei verschiedenen Anzahlen(Mitarbeiter, Weiterbildungen, Teilnahmen)
@@ -103,14 +121,18 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Mitarbeiter.tpl
+
+## Mitarbeiter.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt und nach Nachnamen sortiert
 - JavaScript wurde eingebunden
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Weiterbildungen.tpl
+
+## Weiterbildungen.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Anzeige einer Sortierten Tabelle von Weiterbildungen und dessen Teilnehmern
@@ -119,7 +141,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Zertifikate.tpl
+
+## Zertifikate.tpl
+
 - Tabellen design wurde erstellt mit Gridbox
 - Tabelle wurde mit Werten gefüllt
 - Anzeige einer Sortierten Tabelle von Zertifikaten
@@ -128,7 +152,9 @@ wechseln lässt
 - Css wurde eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Mitarbeiter_Form.tpl
+
+## Mitarbeiter_Form.tpl
+
 - Mit Inputs werden Daten geholt
 - Tabelle wird mit dort angegebenen Werten gefüllt
 - Formular zur Erfassung von Mitarbeiterdaten
@@ -136,7 +162,9 @@ wechseln lässt
 - Css wird eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Sichtweise_Mit_Form.tpl
+
+## Sichtweise_Mit_Form.tpl
+
 - Mit Inputs werden Daten geholt
 - Tabelle wird mit dort angegebenen Werten gefüllt
 - Möglichkeit zur Anmeldung von Weiterbildungen
@@ -146,7 +174,9 @@ wechseln lässt
 - Css wird eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Sichtweise_Weiter_Form.tpl
+
+## Sichtweise_Weiter_Form.tpl
+
 - Mit Inputs werden Daten geholt
 - Tabelle wird mit dort angegebenen Werten gefüllt
 - Anzeige von Weiterbildungen bis ins Detail
@@ -155,7 +185,9 @@ wechseln lässt
 - Css wird eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Weiterbildungen_Form.tpl
+
+## Weiterbildungen_Form.tpl
+
 - Mit Inputs werden Daten geholt
 - Tabelle wird mit dort angegebenen Werten gefüllt
 - Möglichkeit Weiterbildungen und deren Qualifikationen sowie Zertifikate zu erfassen
@@ -163,21 +195,94 @@ wechseln lässt
 - Css wird eingebunden
 - Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung 
 wechseln lässt
-####Mitarbeiterqualifizierung.css
+
+## Mitarbeiterqualifizierung.css
+
 - Farbe geändert
 - Schriftgröße geändert
 - Breite und Höhe angepasst(margin, padding, lineheight,...)
 - Buttons haben transition bekommen beim Klicken so dass sich die Farbe ändert
 - Flexbox wurde für die oberste Zeile hinzugefügt
 - Unsortierte Liste wurde gestylt
-####Mitarbeiterqualifizierung.js
+
+## Mitarbeiterqualifizierung.js
+
 - confirmDelete_p wird verwendet um das Pop up aufzurufen wenn man Sachen löschen möchte(Bestätigung)
 - select_Weiter wird dazu verwendet eine Liste von Weiterbildungen bereitzustellen, für die man sich anmelden kann, dazu wird das Checkboxformat verwendet
 - sortTable/2 benutzen wir um die Tabellen welche Sortiert sein sollen zu sortieren
-###Datenablage
-- Die Daten werden in unterschiedlichen JSON Dateien gespeichert(Mitarbeiter, Qualifikation, Weiterbildungen, Zertifikate) 
+
+# Konfiguration
+
+- Konfiguration ist identisch mit dem des ersten Praktikum siehe static_config in der Server.py
+
+# Datenablage
+
+- Die Daten(Mitarbeiter, Qualifikation, Weiterbildungen, Zertifikate)  werden in unterschiedlichen JSON Dateien gespeichert(Mitarbeiter.json und Weiterbildung.json)
 
 ---
-![cssValidator1](./css1.PNG)
 
-![cssValidator2](./css2.PNG)
+| ![cssValidator1](./css1.PNG) |
+|:--:| 
+| *css1* |
+
+| ![cssValidator2](./css2.PNG) |
+|:--:| 
+| *css2* |
+
+| ![cssValidator2](./Mitarbeiter_form.JPG) |
+|:--:| 
+| *Mitarbeiter Formular* |
+
+| ![cssValidator2](./Pflege_Mit.JPG) |
+|:--:| 
+| *Pflege Mitarbeiter* |
+
+| ![cssValidator2](./Pflege_Mit_Detail.JPG) |
+|:--:| 
+| *Pflege Mitarbeiter Detail* |
+
+| ![cssValidator2](./Pflege_Weiter.JPG) |
+|:--:| 
+| *Pflege Weiterbildung* |
+
+| ![cssValidator2](./Pflege_Weiter_Detail.JPG) |
+|:--:| 
+| *Pflege Weiterbildung Detail* |
+
+| ![cssValidator2](./sichtweise_mit.JPG) |
+|:--:| 
+| *Sichtweise Mitarbeiter* |
+
+| ![cssValidator2](./Sichtweise_Mit_Form.JPG) |
+|:--:| 
+| *Sichtweise Mitarbeiter Formular* |
+
+| ![cssValidator2](./Sichtweise_Weiter.JPG) |
+|:--:| 
+| *Sichtweise Weiterbildung* |
+
+| ![cssValidator2](./Sichtweise_Weiter_Form.JPG) |
+|:--:| 
+| *Sichtweise Weiterbildung Formular* |
+
+| ![cssValidator2](./Startseite.JPG) |
+|:--:| 
+| *Startseite* |
+
+| ![cssValidator2](./Weiterbildung_Form.JPG) |
+|:--:| 
+| *Weiterbildung Formular* |
+
+| ![cssValidator2](./Mitarbeiter.JPG) |
+|:--:| 
+| *Mitarbeiter* |
+
+| ![cssValidator2](./Weiterbildungen.JPG) |
+|:--:| 
+| *Weiterbildungen* |
+
+| ![cssValidator2](./Zertifikate.JPG) |
+|:--:| 
+| *Zertifikate* |
+
+
