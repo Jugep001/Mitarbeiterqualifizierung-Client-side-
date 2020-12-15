@@ -108,7 +108,7 @@
                             <li>Vorname:${data_o[key_s]["vorname"]}</li>
                             <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
                             <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
-                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict and data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
 
                                 <li><b>Weiterbildung</b>:${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</li>
                                 <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"]["status"]}</li>
@@ -124,6 +124,7 @@
 
 
                             % for i in range(len(data_o[key_s]["Weiterbildung"])):
+                                % if data_o[key_s]["Weiterbildung"][i]["status"] == "nimmt teil" or data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
                                 <li><b>Weiterbildung</b>:${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</li>
                                 <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"][i]["status"]}</li>
                                     % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
@@ -131,6 +132,7 @@
                                             <li>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</li>
                                         <li><b>Qualifikation:</b></li>
                                             <li>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_quali"]}</li>
+                                    % endif
                                 % endif
                             % endfor
 

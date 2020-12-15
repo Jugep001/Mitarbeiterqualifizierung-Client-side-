@@ -17,7 +17,18 @@
                     let body_o = document.getElementsByTagName('body')[0];
                     body_o.addEventListener('click', confirmDelete_p, false);
                     body_o.addEventListener('load', sortTable(), false);
+
             }
+
+function addInput(){
+
+        var div = document.getElementById('inputs_div');
+        var clone = div.cloneNode(true);
+
+        document.getElementById('inputs_container').appendChild(clone);
+
+
+}
 
 
 function select_Weiter(data) {
