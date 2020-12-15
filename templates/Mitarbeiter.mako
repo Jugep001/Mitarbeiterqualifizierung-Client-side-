@@ -29,15 +29,12 @@
         </div>
         <div class="item3">
             <a href="/switch?listForm=Pflege_Mit" role="button">
-
                     Pflege Mitarbeiterdaten
-
             </a>
+            <br>
+            <br>
             <a href="/switch?listForm=Pflege_Weiter" role="button">
-                <br>
-
                     Pflege Weiterbildungen
-
             </a>
         </div>
         <div class="item4">

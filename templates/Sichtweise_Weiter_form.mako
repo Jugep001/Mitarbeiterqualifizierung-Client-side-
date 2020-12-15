@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
-    @import "Mitarbeiterqualifizierung.css";
+    @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
 <body>
