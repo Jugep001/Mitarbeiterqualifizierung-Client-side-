@@ -60,6 +60,9 @@ function select_Weiter(data) {
     function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("Mitarbeitertabelle");
+  if (table == null){
+      return;
+  }
   switching = true;
   sortTable2();
 
