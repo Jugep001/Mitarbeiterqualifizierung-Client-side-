@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    <div class="selektor">
     <form id="idWTForm" action="/save_Weiterbildung" method="POST">
             <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
     <div class="">
@@ -113,5 +114,6 @@
             <a href="/switch?listForm=${listForm}" role="button">Abbrechen</a>
 
         </div>
+    </div>
  </body>
  </html>
