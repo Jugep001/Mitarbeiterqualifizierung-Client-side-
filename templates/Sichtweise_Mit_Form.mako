@@ -25,10 +25,10 @@
             <div class="flexbox">
                 <div class="box-01">
                     Mitarbeiterqualifizierung<br>
-                    Version XX.XXXX
+                    Version 1.0
                 </div>
                 <div class="box-02">
-                    Gruppe / Team angeben
+                    Julian Geppert/Benjamin Freukes
                 </div>
             </div>
         </div>
