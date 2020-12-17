@@ -115,6 +115,9 @@
                         % endif
 
                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                            % for key_weiter_s in data_weiter_o:
+                              % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
+
                               <tr>
                                 <td>${data_o[key_s]["name"]}</td>
                                 <td>${data_o[key_s]["vorname"]}</td>
@@ -125,11 +128,15 @@
                                 <td>${data_o[key_s]["Weiterbildung"]["bis"]}</td>
                                 <td>${data_o[key_s]["Weiterbildung"]["status"]}</td>
                               </tr>
+                              % endif
+                            % endfor
                          % endif
                          % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
 
 
                             % for i in range(len(data_o[key_s]["Weiterbildung"])):
+                                % for key_weiter_s in data_weiter_o:
+                                  % if data_o[key_s]["Weiterbildung"][i]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
                                 <tr>
                                     <td>${data_o[key_s]["name"]}</td>
                                     <td>${data_o[key_s]["vorname"]}</td>
@@ -140,6 +147,8 @@
                                     <td>${data_o[key_s]["Weiterbildung"][i]["bis"]}</td>
                                     <td>${data_o[key_s]["Weiterbildung"][i]["status"]}</td>
                                 </tr>
+                                  % endif
+                                % endfor
                             % endfor
 
                          % endif

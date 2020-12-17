@@ -50,7 +50,7 @@ class View_cl(object):
         elif listForm == "Mitarbeiter":
             template_o = self.lookup_o.get_template('Mitarbeiter.mako')
 
-            markup_s = template_o.render(data_o=data_opl, listform0=listForm)
+            markup_s = template_o.render(data_o=data_opl, listform0=listForm, data_weiter_o=data_weiter_opl)
             return markup_s
         elif listForm == "Weiterbildungen":
             template_o = self.lookup_o.get_template('Weiterbildungen.mako')
