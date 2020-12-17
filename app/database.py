@@ -104,7 +104,7 @@ class Database_cl(object):
                 self.saveData_p()
                 status_b = True
             return status_b
-        elif listForm == "Pflege_Weiter":
+        elif listForm == "Pflege_Weiter" or listForm == "Pflege_Weiter_Detail":
             if self.data_o_Weiter.pop(id_spl, None) != None:
                 self.saveData_p()
                 status_b = True
