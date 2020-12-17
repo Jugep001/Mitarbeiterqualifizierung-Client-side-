@@ -20,7 +20,7 @@
             "beschreibung_quali": "Java"
          },
          {
-            "status": "angemeldet",
+            "status": "nimmt teil",
             "bezeichnung": "C",
             "von": "2020-12-10",
             "bis": "2020-12-23",
@@ -34,6 +34,28 @@
             "beschreibung_quali": "C"
          }
       ],
+      "Qualifikation": "None",
+      "Zertifikat": "None"
+   },
+   "60": {
+      "name": "Freukes",
+      "vorname": "Benjamin",
+      "akademischer_grad": "Student",
+      "taetigkeit": "Student",
+      "Weiterbildung": {
+         "status": "nimmt teil",
+         "bezeichnung": "C",
+         "von": "2020-12-18",
+         "bis": "2020-12-23",
+         "beschreibung": "C",
+         "max_teilnehmer": "10",
+         "min_teilnehmer": "2",
+         "bezeichnung_zerti": "C",
+         "beschreibung_zerti": "C",
+         "berechtigt_zu": "C",
+         "bezeichnung_quali": "C",
+         "beschreibung_quali": "C"
+      },
       "Qualifikation": "None",
       "Zertifikat": "None"
    }

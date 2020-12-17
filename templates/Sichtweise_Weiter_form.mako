@@ -109,7 +109,10 @@
                     <li><b>Teilnehmer:</b></li>
                 % for key_s in data_o:
                     % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
-                        % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter[key_weiter_s]["bezeichnung"] and data_o[key_s]["Weiterbildung"]["status"] == "angemeldet" or data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
+
+                        % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter[key_weiter_s]["bezeichnung"]:
+                            % if data_o[key_s]["Weiterbildung"]["status"] == "angemeldet" or data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
+
 
                             <li>Name:${data_o[key_s]["name"]}</li>
                             <li>Status:${data_o[key_s]["Weiterbildung"]["status"]}</li>
@@ -140,8 +143,11 @@
 
                             </div>
                             </form>
+                           % endif
                         % endif
                     % endif
+                % endfor
+                % for key_s in data_o:
 
                 % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list:
 

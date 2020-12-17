@@ -266,6 +266,10 @@ class Application_cl(object):
             data_o = self.db_o.read_px(self.listForm)
             data_weiter_o = self.db_o.read_px("Pflege_Weiter")
             return self.view_o.createList_px(data_o, self.listForm, data_weiter_o)
+        elif self.listForm == "Pflege_Weiter_Detail":
+            data_o = self.db_o.read_px(self.listForm)
+            data_mit_o = self.db_o.read_px("Sichtweise_Mit")
+            return self.view_o.createList_px(data_o, self.listForm, None, data_mit_o)
         data_o = self.db_o.read_px(self.listForm)
         return self.view_o.createList_px(data_o, self.listForm)
 
