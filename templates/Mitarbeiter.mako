@@ -114,42 +114,23 @@
                         </tr>
                         % endif
 
-                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
-                            % for key_weiter_s in data_weiter_o:
-                              % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
+                         % if data_o[key_s]["Weiterbildung"]:
 
-                              <tr>
-                                <td>${data_o[key_s]["name"]}</td>
-                                <td>${data_o[key_s]["vorname"]}</td>
-                                <td>${data_o[key_s]["akademischer_grad"]}</td>
-                                <td>${data_o[key_s]["taetigkeit"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"]["von"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"]["bis"]}</td>
-                                <td>${data_o[key_s]["Weiterbildung"]["status"]}</td>
-                              </tr>
-                              % endif
-                            % endfor
-                         % endif
-                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
-
-
-                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
-                                % for key_weiter_s in data_weiter_o:
-                                  % if data_o[key_s]["Weiterbildung"][i]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
-                                <tr>
-                                    <td>${data_o[key_s]["name"]}</td>
-                                    <td>${data_o[key_s]["vorname"]}</td>
-                                    <td>${data_o[key_s]["akademischer_grad"]}</td>
-                                    <td>${data_o[key_s]["taetigkeit"]}</td>
-                                    <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</td>
-                                    <td>${data_o[key_s]["Weiterbildung"][i]["von"]}</td>
-                                    <td>${data_o[key_s]["Weiterbildung"][i]["bis"]}</td>
-                                    <td>${data_o[key_s]["Weiterbildung"][i]["status"]}</td>
-                                </tr>
+                                % for key_weiter_s in data_o[key_s]["Weiterbildung"]:
+                                  % if data_o[key_s]["Weiterbildung"][key_weiter_s]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
+                                        <tr>
+                                            <td>${data_o[key_s]["name"]}</td>
+                                            <td>${data_o[key_s]["vorname"]}</td>
+                                            <td>${data_o[key_s]["akademischer_grad"]}</td>
+                                            <td>${data_o[key_s]["taetigkeit"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][key_weiter_s]["bezeichnung"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][key_weiter_s]["von"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][key_weiter_s]["bis"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][key_weiter_s]["status"]}</td>
+                                        </tr>
                                   % endif
+
                                 % endfor
-                            % endfor
 
                          % endif
 

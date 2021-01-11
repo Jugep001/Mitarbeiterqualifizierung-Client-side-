@@ -98,8 +98,8 @@
 
 
 
-        <li>:
-            <a href="/edit/${key_s}" role="button">bearbeiten</a>
+        <div>
+            <a href="/edit?id_spl=${key_s}" role="button">bearbeiten</a>
             <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
 
                     <ul class="">
@@ -110,48 +110,52 @@
                             <li>beschreibung:${data_o[key_s]["beschreibung"]}</li>
                             <li>max_teilnehmer:${data_o[key_s]["max_teilnehmer"]}</li>
                             <li>min_teilnehmer:${data_o[key_s]["min_teilnehmer"]}</li>
-                        % for key_mit_s in data_mit_o:
-                         % if data_mit_o[key_mit_s]["Weiterbildung"] and type(data_mit_o[key_mit_s]["Weiterbildung"]) is dict:
+                            <li>Teilnehmer:</li>
+                                % for key_mit_s in data_mit_o:
+                                    % if data_mit_o[key_mit_s]["Weiterbildung"]:
+                                        % for key_weiter in data_mit_o[key_mit_s]["Weiterbildung"]:
+                                            % if data_mit_o[key_mit_s]["Weiterbildung"][key_weiter]["bezeichnung"] == data_o[key_s]["bezeichnung"]:
+                                                % if data_mit_o[key_mit_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil":
 
-                             % if data_mit_o[key_mit_s]["Weiterbildung"]["status"] == "nimmt teil":
-                                 <li>Teilnehmer:</li>
-                                    <ul>Name:${data_mit_o[key_mit_s]["name"]}</ul>
-                                 <li>Zertifikat:</li>
-                                    <ul>bezeichnung:${data_o[key_s]["bezeichnung_zerti"]}</ul>
-                                    <ul>beschreibung:${data_o[key_s]["beschreibung_zerti"]}</ul>
-                                    <ul>berechtigt zu:${data_o[key_s]["berechtigt_zu"]}</ul>
-                                 <li>Qualifikation:</li>
-                                    <ul>bezeichnung:${data_o[key_s]["bezeichnung_quali"]}</ul>
-                                    <ul>beschreibung:${data_o[key_s]["beschreibung_quali"]}</ul>
-                        % endif
-                            % endif
-                         % if data_mit_o[key_mit_s]["Weiterbildung"] and type(data_mit_o[key_mit_s]["Weiterbildung"]) is list :
+                                                    <ul>Name:${data_mit_o[key_mit_s]["name"]}</ul>
 
 
-                            % for i in range(len(data_mit_o[key_mit_s]["Weiterbildung"])):
+                                                % endif
+                                            % endif
+                                        % endfor
 
-                                % if data_mit_o[key_mit_s]["Weiterbildung"][i]["status"] == "nimmt teil":
+                                    % endif
+                                % endfor
 
-                                        <li>Teilnehmer:</li>
-                                            <ul>Name:${data_mit_o[key_mit_s]["name"]}</ul>
-                                        <li>Zertifikat:</li>
-                                            <ul>bezeichnung:${data_o[key_s]["bezeichnung_zerti"]}</ul>
-                                            <ul>beschreibung:${data_o[key_s]["beschreibung_zerti"]}</ul>
-                                            <ul>berechtigt zu:${data_o[key_s]["berechtigt_zu"]}</ul>
-                                        <li>Qualifikation:</li>
-                                            <ul>bezeichnung:${data_o[key_s]["bezeichnung_quali"]}</ul>
-                                            <ul>beschreibung:${data_o[key_s]["beschreibung_quali"]}</ul>
+                            <li>Zertifikat:</li>
 
 
-                                % endif
-                            % endfor
-                         % endif
-                        % endfor
+
+                                                                <ul>bezeichnung:${data_o[key_weiter]["bezeichnung_zerti"]}</ul>
+                                                                <ul>beschreibung:${data_o[key_weiter]["beschreibung_zerti"]}</ul>
+                                                                <ul>berechtigt zu:${data_o[key_weiter]["berechtigt_zu"]}</ul>
+
+
+
+                            <li>Qualifikation:</li>
+
+
+
+                                                                % for Quali_elem in data_o[key_weiter]["Qualifikation"]:
+                                                                    <ul>Bezeichnung:${data_o[key_weiter]["Qualifikation"][Quali_elem]["bezeichnung"]}</ul>
+                                                                    <ul>Beschreibung:${data_o[key_weiter]["Qualifikation"][Quali_elem]["beschreibung"]}</ul>
+                                                                % endfor
+
+
+
+
+
+
 
                     </ul>
 
 
-        </li>
+        </div>
 
         % endfor
     </ul>

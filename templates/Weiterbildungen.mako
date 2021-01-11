@@ -115,64 +115,36 @@
                                     <td>${data_weiter_o[key_weiter_s]["bezeichnung_zerti"]}</td>
                                     <td>${data_weiter_o[key_weiter_s]["beschreibung_zerti"]}</td>
                                     <td>${data_weiter_o[key_weiter_s]["berechtigt_zu"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung_quali"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung_quali"]}</td>
+                                    <td>
+                                                % for Quali_elem in data_weiter_o[key_weiter_s]["Qualifikation"]:
+                                                    [${data_weiter_o[key_weiter_s]["Qualifikation"][Quali_elem]["bezeichnung"]}]
+                                                % endfor
+                                    </td>
+                                    <td>
+                                                % for Quali_elem in data_weiter_o[key_weiter_s]["Qualifikation"]:
+                                                    [${data_weiter_o[key_weiter_s]["Qualifikation"][Quali_elem]["beschreibung"]}]
+                                                % endfor
+                                    </td>
+                                    <td>
+                                    % for key_s in data_o:
+                                        % if data_o[key_s]["Weiterbildung"]:
+
+                                        % for key_weiter in data_o[key_s]["Weiterbildung"]:
+                                            % if data_o[key_s]["Weiterbildung"][key_weiter]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
+                                                % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet":
+                                                    [${data_o[key_s]["name"]}]
+                                                % endif
+                                            % endif
+
+                                        % endfor
+
+                                        % endif
+                                    % endfor
+                                    </td>
                                 </tr>
 
 
-         % for key_s in data_o:
-                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
 
-                             % if data_o[key_s]["Weiterbildung"]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"] and data_o[key_s]["Weiterbildung"]["status"] == "erfolgreich beendet":
-                                <tr>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["von"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bis"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["max_teilnehmer"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["min_teilnehmer"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung_zerti"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung_zerti"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["berechtigt_zu"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung_quali"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung_quali"]}</td>
-                                    <td>${data_o[key_s]["name"]}</td>
-                                </tr>
-
-
-                             % endif
-                         % endif
-                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
-
-
-                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
-
-                                % if data_o[key_s]["Weiterbildung"][i]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
-
-                                    % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
-                                    <tr>
-                                        <td>${data_weiter_o[key_weiter_s]["bezeichnung"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["von"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["bis"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["beschreibung"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["max_teilnehmer"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["min_teilnehmer"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["bezeichnung_zerti"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["beschreibung_zerti"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["berechtigt_zu"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["bezeichnung_quali"]}</td>
-                                        <td>${data_weiter_o[key_weiter_s]["beschreibung_quali"]}</td>
-                                        <td>${data_o[key_s]["name"]}</td>
-                                    </tr>
-
-
-                                    % endif
-                                % endif
-
-                            % endfor
-
-                         % endif
-         % endfor
          % endfor
 
         </table>

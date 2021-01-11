@@ -7,7 +7,6 @@
     <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
         @import "Mitarbeiterqualifizierung.css";
-        @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
 <body>
@@ -98,8 +97,8 @@
         % for key_s in data_o:
 
 
-        <li>:
-            <a href="/edit/${key_s}">bearbeiten</a>
+        <div>
+            <a href="/edit?id_spl=${key_s}">bearbeiten</a>
             <a href="/delete/${key_s}" class='clDelete'> löschen</a>
 
                     <ul class="">
@@ -112,7 +111,7 @@
                     </ul>
 
 
-        </li>
+        </div>
         % endfor
     </ul>
             <div>

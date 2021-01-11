@@ -100,26 +100,15 @@
                 </tr>
              % for key_s in data_o:
 
-                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
+                         % if data_o[key_s]["Weiterbildung"]:
 
 
-                                % if data_o[key_s]["Weiterbildung"]["status"] == "erfolgreich beendet":
-                                    <tr>
-                                        <td>${data_o[key_s]["name"]}</td>
-                                        <td>${data_o[key_s]["Weiterbildung"]["bezeichnung_zerti"]}</td>
-                                    </tr>
-                                % endif
+                            % for key_weiter in data_o[key_s]["Weiterbildung"]:
 
-                         % endif
-                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
-
-
-                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
-
-                                    % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
+                                    % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet":
                                         <tr>
                                             <td>${data_o[key_s]["name"]}</td>
-                                            <td>${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</td>
+                                            <td>${data_o[key_s]["Weiterbildung"][key_weiter]["bezeichnung_zerti"]}</td>
                                         </tr>
                                 % endif
                             % endfor

@@ -95,11 +95,11 @@
         <div class="item7">
             
             % for key_s in data_o:
-                <ul class="">
-                    <li>
+
+                    <div>
                         <a href="/add?data=${key_s}&listForm=Sichtweise_Mit_Form" role="button">${data_o[key_s]["vorname"]}</a>
-                     </li>
-                </ul>
+                    </div>
+
 
 
             % endfor

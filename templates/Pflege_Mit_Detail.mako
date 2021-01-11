@@ -98,8 +98,8 @@
         % for key_s in data_o:
 
 
-        <li>:
-            <a href="/edit/${key_s}">bearbeiten</a>
+        <div>
+            <a href="/edit?id_spl=${key_s}">bearbeiten</a>
             <a href="/delete/${key_s}" class='clDelete'> löschen</a>
 
                     <ul class="">
@@ -108,41 +108,28 @@
                             <li>Vorname:${data_o[key_s]["vorname"]}</li>
                             <li>Akademischer Grad:${data_o[key_s]["akademischer_grad"]}</li>
                             <li>Tätigkeit:${data_o[key_s]["taetigkeit"]}</li>
-                        % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict and data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
+                            % for key_weiter in data_o[key_s]["Weiterbildung"]:
 
-                                <li><b>Weiterbildung</b>:${data_o[key_s]["Weiterbildung"]["bezeichnung"]}</li>
-                                <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"]["status"]}</li>
-                                % if data_o[key_s]["Weiterbildung"]["status"] == "erfolgreich beendet":
-                                    <li><b>Zertifikat:</b></li>
-                                        <li>Bezeichnung:${data_o[key_s]["Weiterbildung"]["bezeichnung_zerti"]}</li>
-                                    <li><b>Qualifikation:</b></li>
-                                        <li>Bezeichnung:${data_o[key_s]["Weiterbildung"]["bezeichnung_quali"]}</li>
-                                % endif
+                                % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil" or data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet":
 
-                         % endif
-                         % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list :
-
-
-                            % for i in range(len(data_o[key_s]["Weiterbildung"])):
-                                % if data_o[key_s]["Weiterbildung"][i]["status"] == "nimmt teil" or data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
-                                <li><b>Weiterbildung</b>:${data_o[key_s]["Weiterbildung"][i]["bezeichnung"]}</li>
-                                <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"][i]["status"]}</li>
-                                    % if data_o[key_s]["Weiterbildung"][i]["status"] == "erfolgreich beendet":
+                                    <li><b>Weiterbildung</b>:${data_o[key_s]["Weiterbildung"][key_weiter]["bezeichnung"]}</li>
+                                    <li>Weiterbildung(status):${data_o[key_s]["Weiterbildung"][key_weiter]["status"]}</li>
+                                    % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet":
                                         <li><b>Zertifikat:</b></li>
-                                            <li>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_zerti"]}</li>
+                                        <li>Bezeichnung:${data_o[key_s]["Weiterbildung"][key_weiter]["bezeichnung_zerti"]}</li>
                                         <li><b>Qualifikation:</b></li>
-                                            <li>Bezeichnung:${data_o[key_s]["Weiterbildung"][i]["bezeichnung_quali"]}</li>
+                                            % for Quali_elem in data_o[key_s]["Weiterbildung"][key_weiter]["Qualifikation"]:
+                                                <li>
+                                                    Bezeichnung:${data_o[key_s]["Weiterbildung"][key_weiter]["Qualifikation"][Quali_elem]["bezeichnung"]}
+                                                </li>
+                                            % endfor
                                     % endif
                                 % endif
                             % endfor
-
-                         % endif
-
-
                     </ul>
 
 
-        </li>
+        </div>
         % endfor
     </ul>
             <div>

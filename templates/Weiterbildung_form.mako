@@ -5,11 +5,10 @@
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
     <script src='Mitarbeiterqualifizierung.js'></script>
+    <link rel="stylesheet" href="/Mitarbeiterqualifizierung.css">
     <style>
         @import "Mitarbeiterqualifizierung.css";
-        @import "edit/Mitarbeiterqualifizierung.css";
     </style>
-
 </head>
 <body>
     <div class="selektor">
@@ -20,7 +19,7 @@
         <div class="">
 
             <input type="hidden"
-                value="None"
+                value="angemeldet"
                 id="status_spa"
                 name="status_spa"/>
         </div>
@@ -90,21 +89,53 @@
         </div>
 
         <h2>Qualifikation</h2>
-        <div id="inputs_container">
+
+        % if data_o["Qualifikation"] == "":
+          <div id="inputs_container">
             <div id="inputs_div">
+
+
+                <input type="hidden" value="${key_quali_s}" id="id_quali_spa" name="id_quali_spa" />
                 <label for="bezeichnung_quali_spa">Bezeichnung</label>
                 <input type="text"
-                    value="${data_o["bezeichnung_quali"]}"
+                    value=""
                     id="bezeichnung_quali_spa"
                     name="bezeichnung_quali_spa" required />
 
                 <label for="beschreibung_quali_spa">Beschreibung</label>
                 <input type="text"
-                    value="${data_o["beschreibung_quali"]}"
+                    value=""
                     id="beschreibung_quali_spa"
                     name="beschreibung_quali_spa" required />
+
+
             </div>
         </div>
+        % endif
+        % if data_o["Qualifikation"] != "":
+            % for Quali_elem in data_o["Qualifikation"]:
+            <div id="inputs_container">
+                <div id="inputs_div">
+
+                    <a href="/delete_quali?id_weiterbildung=${key_s}&id_quali=${Quali_elem}" class='clDelete' role="button"> löschen</a>
+                    <input type="hidden" value="${key_quali_s}" id="id_quali_spa" name="id_quali_spa" />
+                    <label for="bezeichnung_quali_spa">Bezeichnung</label>
+                    <input type="text"
+                        value="${data_o["Qualifikation"][Quali_elem]["bezeichnung"]}"
+                        id="bezeichnung_quali_spa"
+                        name="bezeichnung_quali_spa" required />
+
+                    <label for="beschreibung_quali_spa">Beschreibung</label>
+                    <input type="text"
+                        value="${data_o["Qualifikation"][Quali_elem]["beschreibung"]}"
+                        id="beschreibung_quali_spa"
+                        name="beschreibung_quali_spa" required />
+
+
+                </div>
+            </div>
+            % endfor
+        % endif
         <div>
             <input type="button" value="Qualifikation hinzufügen" onclick="addInput()">
             <input type="submit" value="Speichern" class=""/>

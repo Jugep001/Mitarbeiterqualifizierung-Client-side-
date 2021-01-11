@@ -7,7 +7,6 @@
     <script src='Mitarbeiterqualifizierung.js'></script>
     <style>
         @import "Mitarbeiterqualifizierung.css";
-        @import "edit/Mitarbeiterqualifizierung.css";
     </style>
 </head>
 <body>
@@ -100,19 +99,13 @@
                     <% j = j + 1%>
                 % endfor
                 % for key_s in data_o:
-                    % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is dict:
-                        % if data_o[key_s]["Weiterbildung"]["status"] == "nimmt teil":
 
-                                <% k = k + 1%>
-                         % endif
-                    % endif
-                    % if data_o[key_s]["Weiterbildung"] and type(data_o[key_s]["Weiterbildung"]) is list:
-                        % for counter in range(len(data_o[key_s]["Weiterbildung"])):
-                            % if data_o[key_s]["Weiterbildung"][counter]["status"] == "nimmt teil":
+                        % for key_weiter in data_o[key_s]["Weiterbildung"]:
+                            % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil":
                                 <% k = k + 1%>
                             % endif
                         % endfor
-                    % endif
+
                 % endfor
                     <p>Anzahl Mitarbeiter: ${i}</p>
                     <p>Anzahl Weiterbildungen: ${j}</p>

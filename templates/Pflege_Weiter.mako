@@ -5,10 +5,7 @@
     <title>Mitarbeiterqualifizierung</title>
     <meta charset="UTF-8" />
     <script src='Mitarbeiterqualifizierung.js'></script>
-    <style>
-        @import "Mitarbeiterqualifizierung.css";
-        @import "edit/Mitarbeiterqualifizierung.css";
-    </style>
+    <link rel="stylesheet" href="/Mitarbeiterqualifizierung.css">
 </head>
 <body>
     <div class="grid-container">
@@ -94,10 +91,15 @@
         </div>
         <div class="item7">
             <ul>
+
+
+
         % for key_s in data_o:
-        <li>:
-            <a href="/edit/${key_s}" role="button">bearbeiten</a> <!-- to do -->
-            <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
+        <div>
+                    <div>
+                        <a href="/edit?id_spl=${key_s}" role="button"> bearbeiten </a>
+                        <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
+                    </div>
 
                     <ul class="">
 
@@ -111,7 +113,7 @@
                     </ul>
 
 
-        </li>
+        </div>
         % endfor
     </ul>
             <div>

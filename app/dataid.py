@@ -1,3 +1,4 @@
+import base64
 import os
 import os.path
 import codecs
@@ -5,6 +6,9 @@ import json
 
 
 # ----------------------------------------------------------
+import uuid
+
+
 class DataId_cl(object):
     # ----------------------------------------------------------
 
@@ -12,14 +16,17 @@ class DataId_cl(object):
     def __init__(self):
         # -------------------------------------------------------
         self.maxId_i = 0
+        self.r_uuid = 0
         self.readMaxId_p()
 
     # -------------------------------------------------------
     def create_px(self):
         # -------------------------------------------------------
         self.maxId_i += 1
+        self.r_uuid = uuid.uuid1()
+
         self.saveMaxId_p()
-        return str(self.maxId_i)
+        return str(self.r_uuid)
 
     # -------------------------------------------------------
     def read_px(self):
