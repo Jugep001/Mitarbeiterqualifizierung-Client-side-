@@ -9,10 +9,4 @@ class Auswertungmitarbeiter_cl():
         self.database_obj = database.Database_cl(self.currDir, "Mitarbeiter.json")
 
     def GET(self):
-
-    def POST(self):
-
-    def PUT(self):
-
-    def DELETE(self):
-
+        return self.database_obj.data_o_Weiter

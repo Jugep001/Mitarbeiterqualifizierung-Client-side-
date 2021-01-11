@@ -9,9 +9,9 @@ class Mitarbeiterqualifikation_cl():
         self.database_obj = database.Database_cl(self.currDir, "Weiterbildung.json")
 
     def GET(self, mitarbeiter_id, qualifikations_id):
-        if mitarbeiter_id is "None":
+        if mitarbeiter_id == "None":
             return self.database_obj.data_o_Quali[qualifikations_id]
-        elif mitarbeiter_id is "None" and qualifikations_id is "None":
+        elif mitarbeiter_id == "None" and qualifikations_id == "None":
             data_mit_quali_o = {}
             for key_mit_s in self.database_obj.data_o_Mit:
                 for key_quali_s in self.database_obj.data_o_Mit[key_mit_s]["Weiterbildung"]["Qualifikation"]:
@@ -21,8 +21,6 @@ class Mitarbeiterqualifikation_cl():
 
         elif mitarbeiter_id and qualifikations_id:
             return self.database_obj.data_o_Mit[mitarbeiter_id]["Weiterbildung"]["Qualifikation"][qualifikations_id]
-
-    def DELETE(self):
 
     @cherrypy.expose
     def delete_quali(self, id_mitarbeiter, id_weiterbildung, id_quali):

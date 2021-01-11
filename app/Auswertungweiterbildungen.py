@@ -9,9 +9,5 @@ class Auswertungweiterbildungen_cl():
         self.database_obj = database.Database_cl(self.currDir, "Weiterbildung.json")
 
     def GET(self):
+        return self.database_obj.data_o_Weiter
 
-    def POST(self):
-
-    def PUT(self):
-
-    def DELETE(self):
