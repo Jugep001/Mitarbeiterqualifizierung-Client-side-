@@ -9,5 +9,9 @@ class Auswertungweiterbildungen_cl():
         self.database_obj = database.Database_cl(self.currDir, "Weiterbildung.json")
 
     def GET(self):
-        return self.database_obj.data_o_Weiter
+        data_o_weiter = self.database_obj.data_o_Weiter
+        data_o_mit_sorted = {}
+        for w in sorted(data_o_weiter, key=data_o_weiter.get("bezeichnung"), reverse=True):
+            data_o_mit_sorted[w] = data_o_weiter[w]
+        return data_o_mit_sorted
 
