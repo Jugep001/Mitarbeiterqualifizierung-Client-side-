@@ -18,7 +18,7 @@ class DetailView_cl {
    }
    render_px (id_spl) {
       // Daten anfordern
-      let path_s = "/app/" + id_spl;
+      let path_s = "/Mitarbeiter/" + id_spl;
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
@@ -61,7 +61,7 @@ class ListView_cl {
    }
    render_px () {
       // Daten anfordern
-      let path_s = "/app/";
+      let path_s = "/Mitarbeiter/";
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
