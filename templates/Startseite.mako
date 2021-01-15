@@ -1,15 +1,4 @@
-## coding: utf-8
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <title>Mitarbeiterqualifizierung</title>
-    <meta charset="UTF-8" />
-    <script src='Mitarbeiterqualifizierung.js'></script>
-    <style>
-        @import "Mitarbeiterqualifizierung.css";
-    </style>
-</head>
-<body>
+
     <div class="grid-container">
         <div class="item1">
             <div class="flexbox">
@@ -88,7 +77,7 @@
 
         </div>
         <div class="item7">
-                <% k = 0 %>
+             <!--   <% k = 0 %>
                 <% i = 0 %>
                 <% j = 0 %>
                 % for i in range(len(data_o)):
@@ -109,9 +98,7 @@
                 % endfor
                     <p>Anzahl Mitarbeiter: ${i}</p>
                     <p>Anzahl Weiterbildungen: ${j}</p>
-                    <p>Anzahl Teilnahmen: ${k}</p>
+                    <p>Anzahl Teilnahmen: ${k}</p>-->
         </div>
 
     </div>
-</body>
- </html>

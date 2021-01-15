@@ -139,7 +139,7 @@ class Application_cl {
       APPUTIL.es_o.subscribe_px(this, "templates.loaded");
       APPUTIL.es_o.subscribe_px(this, "templates.failed");
       APPUTIL.es_o.subscribe_px(this, "app.cmd");
-      this.sideBar_o = new SideBar_cl("aside", "sidebar.tpl.html");
+      this.sideBar_o = new SideBar_cl("aside", "Startseite.mako");
       this.listView_o = new ListView_cl("main", "list.tpl.html");
       this.detailView_o = new DetailView_cl("main", "detail.tpl.html");
    }
