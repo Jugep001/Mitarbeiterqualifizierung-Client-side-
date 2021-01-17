@@ -5,9 +5,10 @@
 import sys
 import os.path
 import cherrypy
-from app import Mitarbeiter
+from app import Mitarbeiter, Weiterbildung, Auswertungzertifikate, Auswertungweiterbildungen, Auswertungmitarbeiter, \
+    Weiterbildunguebersicht, Mitarbeiterqualifikation, Mitarbeiteruebersicht
 
-from app import application, template
+from app import template
 
 
 # ----------------------------------------------------------
@@ -43,43 +44,43 @@ def main(currDir):
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Weiterbildung.Weiterbildung_cl(currDir),
         '/Weiterbildung',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Mitarbeiteruebersicht.Mitarbeiteruebersicht_cl(currDir),
         '/Mitarbeiteruebersicht',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
-        '/Weiterbildungsuebersicht',
+        Weiterbildunguebersicht.Weiterbildunguebersicht_cl(currDir),
+        '/Weiterbildunguebersicht',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Mitarbeiterqualifikation.Mitarbeiterqualifikation_cl(currDir),
         '/Mitarbeiterqualifikation',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Auswertungmitarbeiter.Auswertungmitarbeiter_cl(currDir),
         '/Auswertungmitarbeiter',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Auswertungweiterbildungen.Auswertungweiterbildungen_cl(currDir),
         '/Auswertungweiterbildungen',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
-        Mitarbeiter.Mitarbeiter_cl(currDir),
+        Auswertungzertifikate.Auswertungzertifikate_cl(currDir),
         '/Auswertungzertifikate',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )

@@ -8,7 +8,7 @@ class Weiterbildung_cl():
         self.currDir = currDir
         self.database_obj = database.Database_cl(self.currDir, "Weiterbildung.json")
 
-    def GET(self, weiterbildung_id):
+    def GET(self, weiterbildung_id=None):
         if weiterbildung_id is None:
             return self.database_obj.read_px("Weiterbildung")
         else:
