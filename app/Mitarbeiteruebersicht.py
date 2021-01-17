@@ -8,7 +8,7 @@ class Mitarbeiteruebersicht_cl():
         self.currDir = currDir
         self.database_obj = database.Database_cl(self.currDir, "Mitarbeiter.json")
 
-    def GET(self, mitarbeiter_id):
+    def GET(self, mitarbeiter_id=None):
         if mitarbeiter_id is None:
             return self.database_obj.read_px("Mitarbeiter")
         else:

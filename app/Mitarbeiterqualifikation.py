@@ -8,7 +8,7 @@ class Mitarbeiterqualifikation_cl():
         self.currDir = currDir
         self.database_obj = database.Database_cl(self.currDir, "Weiterbildung.json")
 
-    def GET(self, mitarbeiter_id, qualifikations_id):
+    def GET(self, mitarbeiter_id="None", qualifikations_id="None"):
         if mitarbeiter_id == "None":
             return self.database_obj.data_o_Quali[qualifikations_id]
         elif mitarbeiter_id == "None" and qualifikations_id == "None":
