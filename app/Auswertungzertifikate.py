@@ -1,3 +1,5 @@
+import json
+
 import cherrypy
 from . import database
 
@@ -17,4 +19,5 @@ class Auswertungzertifikate_cl():
                 if data_o_mit[key_mit_o]["Weiterbildung"][key_weiter_o]["status"] == "erfolgreich beendet":
                     Zerti_array[i] = data_o_mit[key_mit_o]["Weiterbildung"][key_weiter_o]["bezeichnung"]
                     i = i + 1
+        Zerti_array = json.dumps(Zerti_array)
         return Zerti_array

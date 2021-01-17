@@ -1,3 +1,5 @@
+import json
+
 import cherrypy
 from . import database
 
@@ -10,6 +12,8 @@ class Weiterbildunguebersicht_cl():
 
     def GET(self, weiterbildung_id=None):
         if weiterbildung_id is None:
-            return self.database_obj.read_px("Weiterbildung")
+            Weiterbildung_o = json.dumps(self.database_obj.read_px("Weiterbildung"))
+            return Weiterbildung_o
         else:
-            return self.database_obj.read_px("Weiterbildung", weiterbildung_id)
+            Weiterbildung_o = json.dumps(self.database_obj.read_px("Weiterbildung", weiterbildung_id))
+            return Weiterbildung_o

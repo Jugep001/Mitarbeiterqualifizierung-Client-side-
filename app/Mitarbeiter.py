@@ -14,9 +14,12 @@ class Mitarbeiter_cl():
 
     def GET(self, mitarbeiter_id=None):
         if mitarbeiter_id is None:
-            return self.database_obj.read_px("Mitarbeiter")
+            Mitarbeiter_o = json.dumps(self.database_obj.read_px("Mitarbeiter"))
+
+            return Mitarbeiter_o
         else:
-            return self.database_obj.read_px("Mitarbeiter", mitarbeiter_id)
+            Mitarbeiter_o = json.dumps(self.database_obj.read_px("Mitarbeiter", mitarbeiter_id))
+            return Mitarbeiter_o
 
     def POST(self, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
              Weiterbildung_spa=None):

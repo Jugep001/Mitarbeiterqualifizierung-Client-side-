@@ -1,3 +1,5 @@
+import json
+
 import cherrypy
 from . import database
 
@@ -10,17 +12,22 @@ class Mitarbeiterqualifikation_cl():
 
     def GET(self, mitarbeiter_id="None", qualifikations_id="None"):
         if mitarbeiter_id == "None":
-            return self.database_obj.data_o_Quali[qualifikations_id]
+            Qualifikation_o = self.database_obj.data_o_Quali[qualifikations_id]
+            Qualifikation_o = json.dumps(Qualifikation_o)
+            return Qualifikation_o
         elif mitarbeiter_id == "None" and qualifikations_id == "None":
             data_mit_quali_o = {}
             for key_mit_s in self.database_obj.data_o_Mit:
                 for key_quali_s in self.database_obj.data_o_Mit[key_mit_s]["Weiterbildung"]["Qualifikation"]:
                     data_mit_quali_o[str(key_quali_s)] = \
                         self.database_obj.data_o_Mit[key_mit_s]["Weiterbildung"]["Qualifikation"][key_quali_s]
+            data_mit_quali_o = json.dumps(data_mit_quali_o)
             return data_mit_quali_o
 
         elif mitarbeiter_id and qualifikations_id:
-            return self.database_obj.data_o_Mit[mitarbeiter_id]["Weiterbildung"]["Qualifikation"][qualifikations_id]
+            Qualifikation_o = json.dumps(self.database_obj.data_o_Mit[mitarbeiter_id]["Weiterbildung"]["Qualifikation"]
+                                         [qualifikations_id])
+            return Qualifikation_o
 
     @cherrypy.expose
     def delete_quali(self, id_mitarbeiter, id_weiterbildung, id_quali):

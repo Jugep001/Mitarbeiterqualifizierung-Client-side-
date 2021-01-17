@@ -1,3 +1,5 @@
+import json
+
 import cherrypy
 from . import database
 
@@ -13,4 +15,5 @@ class Auswertungmitarbeiter_cl():
         data_o_mit_sorted = {}
         for w in sorted(data_o_mit, key=data_o_mit.get("name"), reverse=True):
             data_o_mit_sorted[w] = data_o_mit[w]
+        data_o_mit_sorted = json.dumps(data_o_mit_sorted)
         return data_o_mit_sorted
