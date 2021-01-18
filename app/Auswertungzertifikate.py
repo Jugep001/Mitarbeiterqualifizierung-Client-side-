@@ -12,12 +12,9 @@ class Auswertungzertifikate_cl():
 
     def GET(self):
         data_o_mit = self.database_obj.data_o_Mit
-        Zerti_array = []
-        i = 0
-        for key_mit_o in data_o_mit:
-            for key_weiter_o in data_o_mit[key_mit_o]["Weiterbildung"]:
-                if data_o_mit[key_mit_o]["Weiterbildung"][key_weiter_o]["status"] == "erfolgreich beendet":
-                    Zerti_array[i] = data_o_mit[key_mit_o]["Weiterbildung"][key_weiter_o]["bezeichnung"]
-                    i = i + 1
-        Zerti_array = json.dumps(Zerti_array)
-        return Zerti_array
+        data_o_mit_sorted = {}
+        for w in sorted(data_o_mit, key=data_o_mit.get("name"), reverse=True):
+            data_o_mit_sorted[w] = data_o_mit[w]
+
+        data_o_mit_sorted = json.dumps(data_o_mit_sorted)
+        return data_o_mit_sorted
