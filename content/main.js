@@ -116,9 +116,18 @@ class SideBar_cl {
    render_px () {
       // Daten anfordern
       let path_s = "/Mitarbeiter/";
+
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
+
+            this.doRender_p(JSON.parse(result_spl));
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+      requester_o.GET_px("/Weiterbildung/")
+      .then ((result_spl=[]) => {
 
             this.doRender_p(JSON.parse(result_spl));
       })

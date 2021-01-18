@@ -81,14 +81,10 @@
 
 
 
-                @for var keys in context@
-                    @ var entry_a = context[keys]@
-                    <tr id="#context[keys]#">
-                        <td>#entry_a["name"]#</td>
-                        <td>#entry_a["vorname"]#</td>
-                    </tr>
 
-                @endfor@
+                  @ console.log(context);@
+
+
 
 
         </div>
