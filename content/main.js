@@ -113,7 +113,20 @@ class SideBar_cl {
       this.template_s = template_spl;
       this.configHandleEvent_p();
    }
-   render_px (data_opl) {
+   render_px () {
+      // Daten anfordern
+      let path_s = "/Mitarbeiter/";
+      let requester_o = new APPUTIL.Requester_cl();
+      requester_o.GET_px(path_s)
+      .then (result_spl => {
+
+            this.doRender_p(JSON.parse(result_spl));
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+   }
+   doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
@@ -162,7 +175,7 @@ class Application_cl {
             ["home", "Startseite"],
             ["list", "Liste"]
          ];
-         self.sideBar_o.render_px(nav_a);
+         self.sideBar_o.render_px();
          markup_s = APPUTIL.tm_o.execute_px("home.tpl.html", null);
          el_o = document.querySelector("main");
          if (el_o != null) {

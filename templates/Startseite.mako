@@ -77,28 +77,20 @@
 
         </div>
         <div class="item7">
-             <!--   <% k = 0 %>
-                <% i = 0 %>
-                <% j = 0 %>
-                % for i in range(len(data_o)):
-                    <% i = i + 1%>
 
-                % endfor
-                % for j in range(len(data_weiter_o)):
-                    <% j = j + 1%>
-                % endfor
-                % for key_s in data_o:
 
-                        % for key_weiter in data_o[key_s]["Weiterbildung"]:
-                            % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil":
-                                <% k = k + 1%>
-                            % endif
-                        % endfor
 
-                % endfor
-                    <p>Anzahl Mitarbeiter: ${i}</p>
-                    <p>Anzahl Weiterbildungen: ${j}</p>
-                    <p>Anzahl Teilnahmen: ${k}</p>-->
+
+                @for var keys in context@
+                    @ var entry_a = context[keys]@
+                    <tr id="#context[keys]#">
+                        <td>#entry_a["name"]#</td>
+                        <td>#entry_a["vorname"]#</td>
+                    </tr>
+
+                @endfor@
+
+
         </div>
 
     </div>
