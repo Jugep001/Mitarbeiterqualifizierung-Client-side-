@@ -1,4 +1,4 @@
-<div class="selektor">
+<main class="selektor_Mit_form">
     <form id="idForm">
             <input type="hidden" value="" id="id_spa" name="id_spa" />
     <div class="">
@@ -28,7 +28,7 @@
     </form>
         <div class="abbrechenDiv">
 
-            <a href=## role="button">Abbrechen</a>
+            <a href=## data-action="PflegeMit" role="button">Abbrechen</a>
 
         </div>
-</div>
+</main>

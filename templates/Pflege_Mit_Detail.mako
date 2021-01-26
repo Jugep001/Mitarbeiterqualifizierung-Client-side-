@@ -39,7 +39,7 @@
         @endfor@
     </ul>
             <div>
-                <a href="/add" role="button">erfassen</a>
+                <a href="##" data-action="MitarbeiterForm" role="button">erfassen</a>
                 <a href="##" data-action="PflegeMit" role="button">zurück</a>
             </div>
         </div>

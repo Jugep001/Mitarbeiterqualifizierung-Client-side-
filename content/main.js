@@ -133,9 +133,9 @@ class MitarbeiterForm_o {
    constructor (el_spl, template_spl) {
       this.el_s = el_spl;
       this.template_s = template_spl;
-      this.configHandleEvent_p();
+
    }
-   render_px (data_opl) {
+   async render_px (data_opl) {
        // Daten anfordern
       let path_s = "/Mitarbeiter/";
       let requester_o = new APPUTIL.Requester_cl();
@@ -146,17 +146,23 @@ class MitarbeiterForm_o {
       .catch (error_opl => {
          alert("fetch-error (get)");
       });
+
    }
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+         this.configHandleEvent_p();
       }
    }
    configHandleEvent_p () {
-      let body_o = document.getElementsByTagName("BODY")[0];
-      body_o.addEventListener("submit", this.handleSubmit_p.bind(this));
+      const form = document.getElementById('idForm');
+
+         form.addEventListener("submit", this.handleSubmit_p.bind(this));
+
+
+
 
    }
    handleSubmit_p (event_opl) {
@@ -300,6 +306,97 @@ class PflegeWeiterDetail_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+   }
+}
+class WeiterbildungForm_o {
+//------------------------------------------------------------------------------
+
+   constructor (el_spl, template_spl) {
+      this.el_s = el_spl;
+      this.template_s = template_spl;
+
+   }
+   async render_px (data_opl) {
+       // Daten anfordern
+      let path_s = "/Weiterbildung/";
+      let requester_o = new APPUTIL.Requester_cl();
+      requester_o.GET_px(path_s)
+      .then (result_spl => {
+            this.doRender_p(JSON.parse(result_spl));
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+
+   }
+   doRender_p (data_opl) {
+      let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.innerHTML = markup_s;
+         this.configHandleEvent_p();
+      }
+   }
+   configHandleEvent_p () {
+      const form = document.getElementById('idForm2');
+
+      form.addEventListener("submit", this.handleSubmit_p.bind(this));
+
+   }
+   handleSubmit_p (event_opl) {
+      let form_o = document.querySelector("form");
+      if (form_o != null) {
+         let fd_o = this.getFormData_px(form_o);
+
+         let result_o = {};
+         if (fd_o["id_spa"] == "") {                 // Id bereits vorhanden?
+            this.saveNewData_p(fd_o)             // Speicherung neuer Daten
+            .then((result_opl) => { result_o = result_opl; });
+         } else {
+            this.saveOldData_p(fd_o)             // Aktualisierung bestehender Daten
+            .then((result_opl) => { result_o = result_opl; });
+         }
+         if ("error" in result_o) {
+            alert("Fehler beim Speichern der Daten aufgetreten");
+         } else {
+
+            let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
+            let el_o = document.getElementById("id_spa");
+            el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
+            alert("Gespeichert!");
+
+         }
+      }
+      // keine Standard-Formularverarbeitung
+      event_opl.preventDefault();
+      event_opl.stopPropagation();
+   }
+      async saveNewData_p (data_opl) {
+      let path_s = '/Weiterbildung/'; //Pfad für das POST
+      console.log(data_opl);
+      let result_o = await APPUTIL.requester_o.POST_px(path_s, data_opl); //data_opl beeinhaltet alle Formular Daten
+      console.log(JSON.stringify(result_o)); //gibt 404 aus
+      return result_o;
+   }
+
+   async saveOldData_p (data_opl) {
+
+      let id_s = data_opl["id_spa"];
+      let path_s = "/Weiterbildung/" + id_s;
+      let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
+      console.log(JSON.stringify(result_o));
+      return result_o;
+
+   }
+   getFormData_px (form_opl) {
+      let data_o = null;
+      // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
+      let formData_o = new FormData(form_opl);
+      data_o = {};
+      for(let pair_a of formData_o.entries()) {
+         data_o[pair_a[0]] = pair_a[1];
+      }
+      return data_o;
    }
 }
 //------------------------------------------------------------------------------
@@ -558,6 +655,7 @@ class Application_cl {
       this.MitarbeiterForm_o = new MitarbeiterForm_o("main", "Mitarbeiter_form.mako")
       this.PflegeWeiter_o = new PflegeWeiter_o("main", "Pflege_Weiter.mako");
       this.PflegeWeiterDetail_o = new PflegeWeiterDetail_o("main", "Pflege_Weiter_Detail.mako");
+      this.WeiterbildungForm_o = new WeiterbildungForm_o("main","Weiterbildung_form.mako")
       this.SichtMit_o = new SichtMit_o("main", "Sichtweise_Mit.mako");
       this.SichtWeiter_o = new SichtWeiter_o("main", "Sichtweise_Weiter.mako");
       this.Mitarbeiter_o = new Mitarbeiter_o("main", "Mitarbeiter.mako");
@@ -586,6 +684,7 @@ class Application_cl {
             ["MitarbeiterForm", "Mitarbeiter_form"],
             ["PflegeWeiter", "Pflege_Weiter"],
             ["PflegeWeiterDetail", "Pflege_Weiter_Detail"],
+            ["WeiterbildungForm", "Weiterbildung_form"],
             ["SichtMit", "Sicht_Mit"],
             ["SichtWeiter", "Sicht_Weiter"],
             ["Mit", "Mitarbeiter"],
@@ -623,6 +722,9 @@ class Application_cl {
          case "PflegeWeiterDetail":
             this.PflegeWeiterDetail_o.render_px();
             break;
+         case "WeiterbildungForm":
+            this.WeiterbildungForm_o.render_px();
+            break;
          case "SichtMit":
             this.SichtMit_o.render_px();
             break;
@@ -646,10 +748,75 @@ class Application_cl {
       }
    }
 }
+function confirmDelete_p (event_opl) {
+        if ((event_opl.target.tagName.toLowerCase() == 'a' )&&
+            (event_opl.target.className == "clDelete") ) {
+                if(confirm('Wollen Sie den Datensatz wirklich loeschen?')){
+
+                }
+                else{
+                    onsubmit(event_opl)
+                }
+                }
+            }
+
+
+
+
+
+
+function addInput(){
+
+        var div = document.getElementById('inputs_div');
+        var clone = div.cloneNode(true);
+
+        document.getElementById('inputs_container').appendChild(clone);
+
+
+}
+
+
+function select_Weiter(data) {
+
+
+                var p = document.getElementById('create_check');
+                var i = 0;
+
+                for (var prop in data) {
+                    var checkbox = document.createElement('input');
+
+                        if (data[prop].status === "None"){
+                            data[prop].status = "angemeldet"
+                        }
+
+
+                            var checkbox_str = JSON.stringify(data[prop]);
+
+
+                            checkbox.type = "checkbox";
+                            checkbox.id = "Weiterbildung_spa_" + i;
+                            checkbox.name = "Weiterbildung_spa";
+                            checkbox.value = checkbox_str;
+
+                            var label = document.createElement('label');
+                            var tn = document.createTextNode(JSON.stringify(data[prop]["bezeichnung"]));
+                            label.htmlFor = "cbid";
+                            label.appendChild(tn);
+                            p.appendChild(label);
+                            p.appendChild(checkbox);
+
+
+                        i++;
+
+
+     }
+ }
 
 window.onload = function () {
    APPUTIL.es_o = new APPUTIL.EventService_cl();
    APPUTIL.requester_o = new APPUTIL.Requester_cl();
    var app_o = new Application_cl();
    APPUTIL.createTemplateManager_px();
+   let body_o = document.getElementsByTagName('body')[0];
+   body_o.addEventListener('click', confirmDelete_p, false);
 }

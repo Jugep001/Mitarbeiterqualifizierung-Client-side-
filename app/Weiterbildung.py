@@ -21,7 +21,7 @@ class Weiterbildung_cl():
     def POST(self):
         data_opl = cherrypy.request.body.read()
         data_opl = json.loads(data_opl)
-
+        print(data_opl)
         # Parameter ersetzen durch direktes Einlesen der data_opl
         status_spa = data_opl["status_spa"]
         bezeichnung_spa = data_opl["bezeichnung_spa"]
@@ -36,16 +36,17 @@ class Weiterbildung_cl():
         bezeichnung_quali_spa = data_opl["bezeichnung_quali_spa"]
         beschreibung_quali_spa = data_opl["beschreibung_quali_spa"]
 
+
         Qualifikation_spa = {}
         if type(bezeichnung_quali_spa) == list:
             for Quali_elem in range(len(bezeichnung_quali_spa)):
                 id_quali_spa = self.save_Qualifikation("None", bezeichnung_quali_spa[Quali_elem],
                                                        beschreibung_quali_spa[Quali_elem])
-                Qualifikation_spa[str(id_quali_spa)] = self.db_o.data_o_Quali[id_quali_spa]
+                Qualifikation_spa[str(id_quali_spa)] = self.database_obj.data_o_Quali[id_quali_spa]
                 print(Qualifikation_spa)
         else:
             id_quali_spa = self.save_Qualifikation("None", bezeichnung_quali_spa, beschreibung_quali_spa)
-            Qualifikation_spa[str(id_quali_spa)] = self.db_o.data_o_Quali[id_quali_spa]
+            Qualifikation_spa[str(id_quali_spa)] = self.database_obj.data_o_Quali[id_quali_spa]
 
         data_a = {
 
@@ -65,12 +66,12 @@ class Weiterbildung_cl():
 
         return self.database_obj.create_px(data_a, "Weiterbildung")
 
-    def PUT(self):
+    def PUT(self, weiterbildung_id):
         data_opl = cherrypy.request.body.read()
         data_opl = json.loads(data_opl)
 
         # Parameter ersetzen durch direktes Einlesen der data_opl
-        weiterbildung_id = data_opl["id_spa"]
+        #weiterbildung_id = data_opl["id_spa"]
         status_spa = data_opl["status_spa"]
         bezeichnung_spa = data_opl["bezeichnung_spa"]
         von_spa = data_opl["von_spa"]
@@ -90,11 +91,11 @@ class Weiterbildung_cl():
             for Quali_elem in range(len(bezeichnung_quali_spa)):
                 id_quali_spa = self.save_Qualifikation("None", bezeichnung_quali_spa[Quali_elem],
                                                        beschreibung_quali_spa[Quali_elem])
-                Qualifikation_spa[str(id_quali_spa)] = self.db_o.data_o_Quali[id_quali_spa]
+                Qualifikation_spa[str(id_quali_spa)] = self.database_obj.data_o_Quali[id_quali_spa]
                 print(Qualifikation_spa)
         else:
             id_quali_spa = self.save_Qualifikation("None", bezeichnung_quali_spa, beschreibung_quali_spa)
-            Qualifikation_spa[str(id_quali_spa)] = self.db_o.data_o_Quali[id_quali_spa]
+            Qualifikation_spa[str(id_quali_spa)] = self.database_obj.data_o_Quali[id_quali_spa]
 
         data_a = {
 
@@ -113,7 +114,7 @@ class Weiterbildung_cl():
         }
 
         if id_s != "None":
-            return self.db_o.update_px(id_s, data_a, "Weiterbildung")
+            return self.database_obj.update_px(id_s, data_a, "Weiterbildung")
         else:
             return
 
@@ -135,6 +136,6 @@ class Weiterbildung_cl():
         }
 
         if id_s != "None":
-            return self.db_o.update_px(id_s, data_a, listForm)
+            return self.database_obj.update_px(id_s, data_a, listForm)
         else:
-            return self.db_o.create_px(data_a, listForm)
+            return self.database_obj.create_px(data_a, listForm)

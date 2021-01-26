@@ -44,12 +44,12 @@ class Mitarbeiter_cl():
         self.database_obj.create_px(data_a, "Mitarbeiter")
         return
 
-    def PUT(self):
+    def PUT(self, id_spa):
         data_opl = cherrypy.request.body.read()
         data_opl = json.loads(data_opl)
 
         # Parameter ersetzen durch direktes Einlesen der data_opl
-        id_spa = data_opl["id_spa"]
+        #id_spa = data_opl["id_spa"]
         name_spa = data_opl["name_spa"]
         vorname_spa = data_opl["vorname_spa"]
         ak_grad_spa = data_opl["ak_grad_spa"]
