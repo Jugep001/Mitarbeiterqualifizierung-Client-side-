@@ -1,17 +1,4 @@
-## coding: utf-8
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <title>Mitarbeiterqualifizierung</title>
-    <meta charset="UTF-8" />
-    <script src='Mitarbeiterqualifizierung.js'></script>
-    <link rel="stylesheet" href="/Mitarbeiterqualifizierung.css">
-    <style>
-        @import "Mitarbeiterqualifizierung.css";
-    </style>
-</head>
-<body>
-    <div class="selektor">
+<div class="selektor">
     <form id="idWTForm" action="/save_Weiterbildung" method="POST">
             <input type="hidden" value="${key_s}" id="id_spa" name="id_spa" />
     <div class="">
@@ -149,6 +136,4 @@
 
         </div>
 
-    </div>
- </body>
- </html>
+</div>

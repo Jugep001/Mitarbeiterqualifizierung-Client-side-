@@ -18,9 +18,23 @@ class Weiterbildung_cl():
             Weiterbildung_o = json.dumps(self.database_obj.read_px("Weiterbildung", weiterbildung_id))
             return Weiterbildung_o
 
-    def POST(self, status_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa, max_teilnehmer_spa,
-             min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
-             bezeichnung_quali_spa, beschreibung_quali_spa):
+    def POST(self):
+        data_opl = cherrypy.request.body.read()
+        data_opl = json.loads(data_opl)
+
+        # Parameter ersetzen durch direktes Einlesen der data_opl
+        status_spa = data_opl["status_spa"]
+        bezeichnung_spa = data_opl["bezeichnung_spa"]
+        von_spa = data_opl["von_spa"]
+        bis_spa = data_opl["bis_spa"]
+        beschreibung_spa = data_opl["beschreibung_spa"]
+        max_teilnehmer_spa = data_opl["max_teilnehmer_spa"]
+        min_teilnehmer_spa = data_opl["min_teilnehmer_spa"]
+        bezeichnung_zerti_spa = data_opl["bezeichnung_zerti_spa"]
+        beschreibung_zerti_spa = data_opl["beschreibung_zerti_spa"]
+        berechtigt_zu_spa = data_opl["berechtigt_zu_spa"]
+        bezeichnung_quali_spa = data_opl["bezeichnung_quali_spa"]
+        beschreibung_quali_spa = data_opl["beschreibung_quali_spa"]
 
         Qualifikation_spa = {}
         if type(bezeichnung_quali_spa) == list:
@@ -51,10 +65,25 @@ class Weiterbildung_cl():
 
         return self.database_obj.create_px(data_a, "Weiterbildung")
 
-    def PUT(self, weiterbildung_id, status_spa, bezeichnung_spa, von_spa, bis_spa, beschreibung_spa,
-            max_teilnehmer_spa,
-            min_teilnehmer_spa, bezeichnung_zerti_spa, beschreibung_zerti_spa, berechtigt_zu_spa,
-            bezeichnung_quali_spa, beschreibung_quali_spa):
+    def PUT(self):
+        data_opl = cherrypy.request.body.read()
+        data_opl = json.loads(data_opl)
+
+        # Parameter ersetzen durch direktes Einlesen der data_opl
+        weiterbildung_id = data_opl["id_spa"]
+        status_spa = data_opl["status_spa"]
+        bezeichnung_spa = data_opl["bezeichnung_spa"]
+        von_spa = data_opl["von_spa"]
+        bis_spa = data_opl["bis_spa"]
+        beschreibung_spa = data_opl["beschreibung_spa"]
+        max_teilnehmer_spa = data_opl["max_teilnehmer_spa"]
+        min_teilnehmer_spa = data_opl["min_teilnehmer_spa"]
+        bezeichnung_zerti_spa = data_opl["bezeichnung_zerti_spa"]
+        beschreibung_zerti_spa = data_opl["beschreibung_zerti_spa"]
+        berechtigt_zu_spa = data_opl["berechtigt_zu_spa"]
+        bezeichnung_quali_spa = data_opl["bezeichnung_quali_spa"]
+        beschreibung_quali_spa = data_opl["beschreibung_quali_spa"]
+
         id_s = weiterbildung_id
         Qualifikation_spa = {}
         if type(bezeichnung_quali_spa) == list:

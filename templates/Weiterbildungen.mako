@@ -1,94 +1,4 @@
-## coding: utf-8
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <title>Mitarbeiterqualifizierung</title>
-    <meta charset="UTF-8" />
-    <script src='Mitarbeiterqualifizierung.js'></script>
-    <style>
-        @import "Mitarbeiterqualifizierung.css";
-        @import "edit/Mitarbeiterqualifizierung.css";
-    </style>
-</head>
-<body>
-    <div class="grid-container">
-        <div class="item1">
-            <div class="flexbox">
-                <div class="box-01">
-                    Mitarbeiterqualifizierung<br>
-                    Version 1.0
-                </div>
-                <div class="box-02">
-                    Julian Geppert/Benjamin Freukes
-                </div>
-            </div>
-        </div>
-        <div class="item2">
-            <a href="/switch?listForm=Startseite" role="button">
-                Startseite
-            </a>
-        </div>
-        <div class="item3">
-            <a href="/switch?listForm=Pflege_Mit" role="button">
-                    Pflege Mitarbeiterdaten
-            </a>
-            <br>
-            <br>
-            <a href="/switch?listForm=Pflege_Weiter" role="button">
-                    Pflege Weiterbildungen
-            </a>
-        </div>
-        <div class="item4">
-             Teilnahme
-             <ul class="a">
-                <li>
-                    <a href="/switch?listForm=Sichtweise_Mit" role="button">
-
-                            Sichtweise Mitarbeiter
-
-                    </a>
-                </li>
-                <li>
-                    <a href="/switch?listForm=Sichtweise_Weiter" role="button">
-
-                            Sichtweise Weiterbildungen
-
-                    </a>
-                </li>
-             </ul>
-        </div>
-        <div class="item5">
-            <div class="text">
-            Auswertungen
-                <ul>
-                    <li>
-                        <a href="/switch?listForm=Mitarbeiter" role="button">
-
-                                Mitarbeiter
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/switch?listForm=Weiterbildungen" role="button">
-
-                                Weiterbildungen
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/switch?listForm=Zertifikate" role="button">
-
-                                Zertifikate
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="item6">
-
-        </div>
-        <div class="item7">
+<div class="item7">
         <table id="Mitarbeitertabelle">
             <tr>
                             <th><b>bezeichnung </b></th>
@@ -104,52 +14,59 @@
                             <th>beschreibung(Qualifikation) </th>
                             <th>Teilnehmer(erfolgreich) </th>
             </tr>
-         % for key_weiter_s in data_weiter_o:
-                                <tr>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["von"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bis"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["max_teilnehmer"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["min_teilnehmer"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["bezeichnung_zerti"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["beschreibung_zerti"]}</td>
-                                    <td>${data_weiter_o[key_weiter_s]["berechtigt_zu"]}</td>
+
+
+         @for key_s in context[1]@
+                            <tr>
+
+
+                                    <td>#context[1][key_s]["bezeichnung"]#</td>
+                                    <td>#context[1][key_s]["von"]#</td>
+                                    <td>#context[1][key_s]["bis"]#</td>
+                                    <td>#context[1][key_s]["beschreibung"]#</td>
+                                    <td>#context[1][key_s]["max_teilnehmer"]#</td>
+                                    <td>#context[1][key_s]["min_teilnehmer"]#</td>
+                                    <td>#context[1][key_s]["bezeichnung_zerti"]#</td>
+                                    <td>#context[1][key_s]["beschreibung_zerti"]#</td>
+                                    <td>#context[1][key_s]["berechtigt_zu"]#</td>
                                     <td>
-                                                % for Quali_elem in data_weiter_o[key_weiter_s]["Qualifikation"]:
-                                                    [${data_weiter_o[key_weiter_s]["Qualifikation"][Quali_elem]["bezeichnung"]}]
-                                                % endfor
+                                                @for Quali_elem in context[1][key_s]["Qualifikation"]@
+                                                    [#context[1][key_s]["Qualifikation"][Quali_elem]["bezeichnung"]#]
+                                                @endfor@
                                     </td>
                                     <td>
-                                                % for Quali_elem in data_weiter_o[key_weiter_s]["Qualifikation"]:
-                                                    [${data_weiter_o[key_weiter_s]["Qualifikation"][Quali_elem]["beschreibung"]}]
-                                                % endfor
+                                                @for Quali_elem in context[1][key_s]["Qualifikation"]@
+                                                    [#context[1][key_s]["Qualifikation"][Quali_elem]["beschreibung"]#]
+                                                @endfor@
                                     </td>
+
+
                                     <td>
-                                    % for key_s in data_o:
-                                        % if data_o[key_s]["Weiterbildung"]:
 
-                                        % for key_weiter in data_o[key_s]["Weiterbildung"]:
-                                            % if data_o[key_s]["Weiterbildung"][key_weiter]["bezeichnung"] == data_weiter_o[key_weiter_s]["bezeichnung"]:
-                                                % if data_o[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet":
-                                                    [${data_o[key_s]["name"]}]
-                                                % endif
-                                            % endif
 
-                                        % endfor
+                                    @for key_mit_s in context[0]@
+                                            @if context[0][key_mit_s]["Weiterbildung"]@
+                                                @for key_weiter in context[0][key_mit_s]["Weiterbildung"]@
+                                                   @if context[0][key_mit_s]["Weiterbildung"][key_weiter]["bezeichnung"] == context[1][key_s]["bezeichnung"]@
+                                                        @if context[0][key_mit_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet"@
 
-                                        % endif
-                                    % endfor
+
+
+                                                                [#context[0][key_mit_s]["name"]#]
+
+                                                        @endif@
+
+                                                   @endif@
+                                                @endfor@
+                                            @endif@
+                                    @endfor@
                                     </td>
-                                </tr>
+
+                            </tr>
 
 
 
-         % endfor
+         @endfor@
 
         </table>
-        </div>
-
-    </div>
-</body>
- </html>
+</div>

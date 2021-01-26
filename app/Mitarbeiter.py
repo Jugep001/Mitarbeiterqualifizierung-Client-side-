@@ -21,9 +21,17 @@ class Mitarbeiter_cl():
             Mitarbeiter_o = json.dumps(self.database_obj.read_px("Mitarbeiter", mitarbeiter_id))
             return Mitarbeiter_o
 
-    def POST(self, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa,
-             Weiterbildung_spa=None):
+    def POST(self):
+        data_opl = cherrypy.request.body.read()
+        data_opl = json.loads(data_opl)
 
+        # Parameter ersetzen durch direktes Einlesen der data_opl
+        name_spa = data_opl["name_spa"]
+        vorname_spa = data_opl["vorname_spa"]
+        ak_grad_spa = data_opl["ak_grad_spa"]
+        taetigkeit_spa = data_opl["taetigkeit_spa"]
+
+        Weiterbildung_spa = None
         data_a = {
 
             "name": name_spa,
@@ -33,11 +41,21 @@ class Mitarbeiter_cl():
             "Weiterbildung": Weiterbildung_spa,
 
         }
+        self.database_obj.create_px(data_a, "Mitarbeiter")
+        return
 
-        return self.database_obj.create_px(data_a, "Mitarbeiter")
+    def PUT(self):
+        data_opl = cherrypy.request.body.read()
+        data_opl = json.loads(data_opl)
 
-    def PUT(self, id_spa, name_spa, vorname_spa, ak_grad_spa, taetigkeit_spa, id_weiter_spa=None,
-                         status_spa="None"):
+        # Parameter ersetzen durch direktes Einlesen der data_opl
+        id_spa = data_opl["id_spa"]
+        name_spa = data_opl["name_spa"]
+        vorname_spa = data_opl["vorname_spa"]
+        ak_grad_spa = data_opl["ak_grad_spa"]
+        taetigkeit_spa = data_opl["taetigkeit_spa"]
+        id_weiter_spa = data_opl["id_weiter_spa"]
+        status_spa = data_opl["status_spa"]
         Weiterbildung_spa = {}
         id_s = id_spa
 
