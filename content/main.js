@@ -8,16 +8,7 @@
 
 'use strict'
 
-function stringifyFormData_px(formData_opl) {
-   var d_o = {};
-   var pair_o;
-   var key_o;
-   // alle Werte, auch einzelne, werden als Arrays geliefert!
-   for(key_o of formData_opl.keys()) {
-      d_o[key_o] = formData_opl.getAll(key_o);
-   }
-   return JSON.stringify(d_o);
-}
+let Mit_table_id = null;
 
 //------------------------------------------------------------------------------
 class Startseite_cl {
@@ -133,11 +124,18 @@ class MitarbeiterForm_o {
    constructor (el_spl, template_spl) {
       this.el_s = el_spl;
       this.template_s = template_spl;
-
+      this.data_opl = null;
    }
    async render_px (data_opl) {
        // Daten anfordern
+      this.data_opl = data_opl
       let path_s = "/Mitarbeiter/";
+      if (data_opl === "MitarbeiterForm"){
+         Mit_table_id = null;
+      }
+       if (Mit_table_id != null) {
+         path_s = path_s + Mit_table_id;
+      } 
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
@@ -172,7 +170,7 @@ class MitarbeiterForm_o {
          console.log(fd_o["id_spa"])
 
          let result_o = {};
-         if (fd_o["id_spa"] == "") {                 // Id bereits vorhanden?
+         if (Mit_table_id == "") {                 // Id bereits vorhanden?
             this.saveNewData_p(fd_o)             // Speicherung neuer Daten
             .then((result_opl) => { result_o = result_opl; });
          } else {
@@ -203,8 +201,7 @@ class MitarbeiterForm_o {
 
    async saveOldData_p (data_opl) {
 
-      let id_s = data_opl["id_spa"];
-      let path_s = "/Mitarbeiter/" + id_s;
+      let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
       return result_o;
@@ -392,6 +389,7 @@ class WeiterbildungForm_o {
       let data_o = null;
       // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
       let formData_o = new FormData(form_opl);
+
       data_o = {};
       for(let pair_a of formData_o.entries()) {
          data_o[pair_a[0]] = pair_a[1];
@@ -682,6 +680,7 @@ class Application_cl {
             ["PflegeMit", "Pflege_Mit"],
             ["PflegeMitDetail", "Pflege_Mit_Detail"],
             ["MitarbeiterForm", "Mitarbeiter_form"],
+            ["MitarbeiterFormEdit", "Mitarbeiter_form_Edit"],
             ["PflegeWeiter", "Pflege_Weiter"],
             ["PflegeWeiterDetail", "Pflege_Weiter_Detail"],
             ["WeiterbildungForm", "Weiterbildung_form"],
@@ -714,6 +713,9 @@ class Application_cl {
             this.PflegeMitDetail_o.render_px();
             break;
          case "MitarbeiterForm":
+            this.MitarbeiterForm_o.render_px(data_opl[0]);
+            break;
+         case "MitarbeiterFormEdit":
             this.MitarbeiterForm_o.render_px();
             break;
          case "PflegeWeiter":
@@ -811,6 +813,20 @@ function select_Weiter(data) {
 
      }
  }
+ function stringifyFormData_px(formData_opl) {
+   var d_o = {};
+   var pair_o;
+   var key_o;
+   // alle Werte, auch einzelne, werden als Arrays geliefert!
+   for(key_o of formData_opl.keys()) {
+      d_o[key_o] = formData_opl.getAll(key_o);
+   }
+   return JSON.stringify(d_o);
+}
+
+function getTableID(clicked_ID){
+   Mit_table_id = clicked_ID;
+}
 
 window.onload = function () {
    APPUTIL.es_o = new APPUTIL.EventService_cl();

@@ -2,28 +2,9 @@
    "877a85f2-5362-11eb-ba34-6245b4f8b9c0": {
       "name": "Geppert",
       "vorname": "Julian",
-      "akademischer_grad": "Student",
-      "taetigkeit": "Student",
-      "Weiterbildung": {
-         "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "erfolgreich beendet",
-            "bezeichnung": "Java",
-            "von": "2021-01-12",
-            "bis": "2021-01-13",
-            "beschreibung": "Java",
-            "max_teilnehmer": "211",
-            "min_teilnehmer": "1",
-            "bezeichnung_zerti": "Java",
-            "beschreibung_zerti": "Java",
-            "berechtigt_zu": "Java",
-            "Qualifikation": {
-               "221ed083-53e9-11eb-bdb6-6245b4f8b9c0": {
-                  "bezeichnung": "Java",
-                  "beschreibung": "Java"
-               }
-            }
-         }
-      }
+      "akademischer_grad": "test",
+      "taetigkeit": "test",
+      "Weiterbildung": {}
    },
    "e718534b-53f5-11eb-9245-6245b4f8b9c0": {
       "name": "dsa",

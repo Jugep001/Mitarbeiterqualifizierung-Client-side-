@@ -47,6 +47,8 @@ class Mitarbeiter_cl():
     def PUT(self, id_spa):
         data_opl = cherrypy.request.body.read()
         data_opl = json.loads(data_opl)
+        id_weiter_spa = None
+        status_spa = None
 
         # Parameter ersetzen durch direktes Einlesen der data_opl
         #id_spa = data_opl["id_spa"]
@@ -54,8 +56,9 @@ class Mitarbeiter_cl():
         vorname_spa = data_opl["vorname_spa"]
         ak_grad_spa = data_opl["ak_grad_spa"]
         taetigkeit_spa = data_opl["taetigkeit_spa"]
-        id_weiter_spa = data_opl["id_weiter_spa"]
-        status_spa = data_opl["status_spa"]
+        if "id_weiter_spa" and "status_spa" in data_opl:
+            id_weiter_spa = data_opl["id_weiter_spa"]
+            status_spa = data_opl["status_spa"]
         Weiterbildung_spa = {}
         id_s = id_spa
 
@@ -89,7 +92,7 @@ class Mitarbeiter_cl():
 
         }
 
-        if id_s != "None":
+        if id_s != "":
             return self.database_obj.update_px(id_s, data_a)
         else:
             return

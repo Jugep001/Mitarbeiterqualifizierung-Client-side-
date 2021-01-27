@@ -52,6 +52,41 @@
             "beschreibung": "D"
          }
       }
+   },
+   "9cc534b9-5ffe-11eb-9919-3c7c3f81d302": {
+      "status": "angemeldet",
+      "bezeichnung": "fa",
+      "von": "2021-01-20",
+      "bis": "2021-01-28",
+      "beschreibung": "sa",
+      "max_teilnehmer": "12",
+      "min_teilnehmer": "1",
+      "bezeichnung_zerti": "dsa",
+      "beschreibung_zerti": "dsa",
+      "berechtigt_zu": "fd",
+      "Qualifikation": {
+         "9cc4bf7d-5ffe-11eb-a073-3c7c3f81d302": {
+            "bezeichnung": "f",
+            "beschreibung": "hg"
+         }
+      }
+   },
+   "55bc555e-6086-11eb-84cf-3c7c3f81d302": {
+      "status": "angemeldet",
+      "bezeichnung": "s",
+      "von": "2021-01-13",
+      "bis": "2021-01-29",
+      "beschreibung": "s",
+      "max_teilnehmer": "12",
+      "min_teilnehmer": "1",
+      "bezeichnung_zerti": "sda",
+      "beschreibung_zerti": "sd",
+      "berechtigt_zu": "sda",
+      "Qualifikation": {
+         "55bbc1c4-6086-11eb-87d7-3c7c3f81d302": {
+            "bezeichnung": "sa",
+            "beschreibung": "sd"
+         }
+      }
    }
-
 }

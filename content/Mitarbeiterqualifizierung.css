@@ -45,6 +45,7 @@ input{
   border: none;
   text-align: left;
 }
+
 button{
   transition-duration: 0.2s;
   background-color: #625295;
@@ -86,3 +87,27 @@ main {
    right: 0;
    bottom: 100px;
 }
+#MitarbeiterIdList {
+   table-layout: fixed;
+   width: 80%;
+   border: 1px solid;
+   border-collapse: collapse;
+   margin:auto;
+}
+
+#MitarbeiterIdList th {
+   text-align: left;
+   padding-left: 6px;
+}
+#MitarbeiterIdList th, #idList td {
+   padding: 3px;
+   border: 1px solid;
+}
+tr:nth-of-type(odd) {
+  background-color:#ccc;
+}
+
+.selected {
+    color: red;
+}
+

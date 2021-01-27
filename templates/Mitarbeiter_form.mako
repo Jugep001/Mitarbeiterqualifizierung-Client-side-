@@ -1,5 +1,9 @@
 <main class="selektor_Mit_form">
     <form id="idForm">
+
+                @var url = window.location.pathname;@
+                @console.log(url);@
+
             <input type="hidden" value="" id="id_spa" name="id_spa" />
     <div class="">
         <div class="">

@@ -1,6 +1,6 @@
 <main class="selektor_Weiter_form">
     <form id="idForm2" >
-            <input type="hidden" value="" id="id_spa" name="id_spa" />
+            <input type="hidden" value="##" id="id_spa" name="id_spa" />
     <div class="">
         <h1>Weiterbildung</h1>
         <div class="">
@@ -94,6 +94,8 @@
                     value=""
                     id="beschreibung_quali_spa"
                     name="beschreibung_quali_spa" required />
+
+
 
 
             </div>
