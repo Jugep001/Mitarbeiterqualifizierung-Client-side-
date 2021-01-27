@@ -1,7 +1,7 @@
 {
    "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
       "status": "angemeldet",
-      "bezeichnung": "Java",
+      "bezeichnung": "test",
       "von": "2021-01-12",
       "bis": "2021-01-13",
       "beschreibung": "Java",
@@ -11,7 +11,7 @@
       "beschreibung_zerti": "Java",
       "berechtigt_zu": "Java",
       "Qualifikation": {
-         "221ed083-53e9-11eb-bdb6-6245b4f8b9c0": {
+         "6a6b0dc9-60a0-11eb-b098-3c7c3f81d302": {
             "bezeichnung": "Java",
             "beschreibung": "Java"
          }

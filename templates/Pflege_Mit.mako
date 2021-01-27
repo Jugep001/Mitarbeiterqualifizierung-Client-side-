@@ -15,7 +15,7 @@
             <tbody>
 
 
-                    <tr id="#key_s#" onclick="getTableID(this.id)">
+                    <tr id="#key_s#" onclick="getTableID(this.id, 'Mitarbeiter')">
 
                             <td>#context[key_s]["name"]#</td>
                             <td>#context[key_s]["vorname"]#</td>

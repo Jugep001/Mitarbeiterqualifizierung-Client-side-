@@ -76,7 +76,7 @@
         </div>
 
         <h2>Qualifikation</h2>
-
+        @if !context.hasOwnProperty("Qualifikation")@
           <div id="inputs_container">
             <div id="inputs_div">
 
@@ -100,6 +100,7 @@
 
             </div>
         </div>
+        @endif@
 
         @if context["Qualifikation"] != ""@
             @for Quali_elem in context["Qualifikation"]@
@@ -126,7 +127,6 @@
             @endfor@
         @endif@
         <div>
-            <input type="button" value="Qualifikation hinzufügen" onclick="addInput()">
             <input type="submit" value="Speichern" class=""/>
         </div>
     </div>

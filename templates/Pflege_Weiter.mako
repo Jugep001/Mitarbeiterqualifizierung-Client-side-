@@ -1,32 +1,38 @@
-<div class="item7">
-            <ul>
-
-
-
+<div id="WeiterbildungidListContent" class="clContent">
+        <table id="WeiterbildungIdList">
+            <thead>
+                <tr>
+                    <th>bezeichnung</th>
+                    <th>von</th>
+                    <th>bis</th>
+                    <th>beschreibung</th>
+                    <th>min_teilnehmer</th>
+                    <th>max_teilnehmer</th>
+                </tr>
+            </thead>
         @for key_s in context@
-        <div>
-                    <div>
-                        <a href="/edit?id_spl=${key_s}" role="button"> bearbeiten </a>
-                        <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
-                    </div>
+            <tbody>
 
-                    <ul class="">
+                    <tr id="#key_s#" onclick="getTableID(this.id, 'Weiterbildung')">
 
-                            <li>bezeichnung:#context[key_s]["bezeichnung"]#</li>
-                            <li>von:#context[key_s]["von"]#</li>
-                            <li>bis:#context[key_s]["bis"]#</li>
-                            <li>beschreibung:#context[key_s]["beschreibung"]#</li>
-                            <li>max_teilnehmer:#context[key_s]["min_teilnehmer"]#</li>
-                            <li>min_teilnehmer:#context[key_s]["max_teilnehmer"]#</li>
+                            <td>#context[key_s]["bezeichnung"]#</td>
+                            <td>#context[key_s]["von"]#</td>
+                            <td>#context[key_s]["bis"]#</td>
+                            <td>#context[key_s]["beschreibung"]#</td>
+                            <td>#context[key_s]["min_teilnehmer"]#</td>
+                            <td>#context[key_s]["max_teilnehmer"]#</td>
 
-                    </ul>
+                    </tr>
 
 
-        </div>
+            </tbody>
         @endfor@
-    </ul>
+        </table>
             <div>
+                <a href="##" data-action=WeiterbildungFormEdit >bearbeiten</a>
+                <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
                 <a href=## data-action="WeiterbildungForm"  role="button">erfassen</a>
                 <a href="##" data-action="PflegeWeiterDetail" role="button">anzeigen</a>
             </div>
+
 </div>

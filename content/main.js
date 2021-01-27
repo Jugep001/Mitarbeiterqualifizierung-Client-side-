@@ -9,6 +9,7 @@
 'use strict'
 
 let Mit_table_id = null;
+let Weiter_table_id = null;
 
 //------------------------------------------------------------------------------
 class Startseite_cl {
@@ -308,14 +309,21 @@ class PflegeWeiterDetail_o {
 class WeiterbildungForm_o {
 //------------------------------------------------------------------------------
 
-   constructor (el_spl, template_spl) {
+    constructor (el_spl, template_spl) {
       this.el_s = el_spl;
       this.template_s = template_spl;
-
+      this.data_opl = null;
    }
    async render_px (data_opl) {
        // Daten anfordern
+      this.data_opl = data_opl
       let path_s = "/Weiterbildung/";
+      if (data_opl === "WeiterbildungForm"){
+         Weiter_table_id = null;
+      }
+       if (Weiter_table_id != null) {
+         path_s = path_s + Weiter_table_id;
+      }
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
@@ -337,7 +345,10 @@ class WeiterbildungForm_o {
    configHandleEvent_p () {
       const form = document.getElementById('idForm2');
 
-      form.addEventListener("submit", this.handleSubmit_p.bind(this));
+         form.addEventListener("submit", this.handleSubmit_p.bind(this));
+
+
+
 
    }
    handleSubmit_p (event_opl) {
@@ -345,8 +356,9 @@ class WeiterbildungForm_o {
       if (form_o != null) {
          let fd_o = this.getFormData_px(form_o);
 
+
          let result_o = {};
-         if (fd_o["id_spa"] == "") {                 // Id bereits vorhanden?
+         if (Weiter_table_id == "") {                 // Id bereits vorhanden?
             this.saveNewData_p(fd_o)             // Speicherung neuer Daten
             .then((result_opl) => { result_o = result_opl; });
          } else {
@@ -361,7 +373,6 @@ class WeiterbildungForm_o {
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
             alert("Gespeichert!");
-
          }
       }
       // keine Standard-Formularverarbeitung
@@ -370,7 +381,6 @@ class WeiterbildungForm_o {
    }
       async saveNewData_p (data_opl) {
       let path_s = '/Weiterbildung/'; //Pfad für das POST
-      console.log(data_opl);
       let result_o = await APPUTIL.requester_o.POST_px(path_s, data_opl); //data_opl beeinhaltet alle Formular Daten
       console.log(JSON.stringify(result_o)); //gibt 404 aus
       return result_o;
@@ -378,8 +388,7 @@ class WeiterbildungForm_o {
 
    async saveOldData_p (data_opl) {
 
-      let id_s = data_opl["id_spa"];
-      let path_s = "/Weiterbildung/" + id_s;
+      let path_s = "/Weiterbildung/" + Weiter_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
       return result_o;
@@ -389,7 +398,6 @@ class WeiterbildungForm_o {
       let data_o = null;
       // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
       let formData_o = new FormData(form_opl);
-
       data_o = {};
       for(let pair_a of formData_o.entries()) {
          data_o[pair_a[0]] = pair_a[1];
@@ -684,6 +692,7 @@ class Application_cl {
             ["PflegeWeiter", "Pflege_Weiter"],
             ["PflegeWeiterDetail", "Pflege_Weiter_Detail"],
             ["WeiterbildungForm", "Weiterbildung_form"],
+            ["WeiterbildungFormEdit", "Weiterbildung_form_Edit"],
             ["SichtMit", "Sicht_Mit"],
             ["SichtWeiter", "Sicht_Weiter"],
             ["Mit", "Mitarbeiter"],
@@ -725,6 +734,9 @@ class Application_cl {
             this.PflegeWeiterDetail_o.render_px();
             break;
          case "WeiterbildungForm":
+            this.WeiterbildungForm_o.render_px(data_opl[0]);
+            break;
+         case "WeiterbildungFormEdit":
             this.WeiterbildungForm_o.render_px();
             break;
          case "SichtMit":
@@ -824,8 +836,14 @@ function select_Weiter(data) {
    return JSON.stringify(d_o);
 }
 
-function getTableID(clicked_ID){
-   Mit_table_id = clicked_ID;
+function getTableID(clicked_ID,form){
+   if(form === "Mitarbeiter"){
+      Mit_table_id = clicked_ID;
+   }
+   else if(form === "Weiterbildung"){
+      Weiter_table_id = clicked_ID
+   }
+
 }
 
 window.onload = function () {

@@ -114,7 +114,7 @@ class Weiterbildung_cl():
         }
 
         if id_s != "None":
-            return self.database_obj.update_px(id_s, data_a, "Weiterbildung")
+            return self.database_obj.update_px(id_s, data_a)
         else:
             return
 

@@ -1,44 +1,59 @@
 <div class="item7">
 
-    <ul>
+    <table id="MitarbeiterIdList">
+        <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Akademischer Grad</th>
+                    <th>Tätigkeit</th>
+                    <th>Weiterbildung</th>
+                    <th>Weiterbildung(status)</th>
+                    <th>Zertifikat(bezeichnung)</th>
+                    <th>Qualifikation(bezeichnung)</th>
+
+
+                </tr>
+        </thead>
         @for key_s in context@
 
 
-        <div>
-            <a href="/edit?id_spl=${key_s}">bearbeiten</a>
-            <a href="/delete/${key_s}" class='clDelete'> löschen</a>
 
-                    <ul class="">
+            <tbody>
+                    <tr id="#key_s#" onclick="getTableID(this.id, 'Mitarbeiter')">
 
-                            <li>Name:#context[key_s]["name"]#</li>
-                            <li>Vorname:#context[key_s]["vorname"]#</li>
-                            <li>Akademischer Grad:#context[key_s]["akademischer_grad"]#</li>
-                            <li>Tätigkeit:#context[key_s]["taetigkeit"]#</li>
+                            <td>#context[key_s]["name"]#</td>
+                            <td>#context[key_s]["vorname"]#</td>
+                            <td>#context[key_s]["akademischer_grad"]#</td>
+                            <td>#context[key_s]["taetigkeit"]#</td>
                             @for key_weiter in context[key_s]["Weiterbildung"]@
 
                                 @if context[key_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil" || context[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet"@
 
-                                    <li><b>Weiterbildung</b>:#context[key_s]["Weiterbildung"][key_weiter]["bezeichnung"]#</li>
-                                    <li>Weiterbildung(status):#context[key_s]["Weiterbildung"][key_weiter]["status"]#</li>
+                                    <td>#context[key_s]["Weiterbildung"][key_weiter]["bezeichnung"]#</td>
+                                    <td>#context[key_s]["Weiterbildung"][key_weiter]["status"]#</td>
                                     @if context[key_s]["Weiterbildung"][key_weiter]["status"] == "erfolgreich beendet"@
-                                        <li><b>Zertifikat:</b></li>
-                                        <li>Bezeichnung:#context[key_s]["Weiterbildung"][key_weiter]["bezeichnung_zerti"]#</li>
-                                        <li><b>Qualifikation:</b></li>
+
+                                        <td>#context[key_s]["Weiterbildung"][key_weiter]["bezeichnung_zerti"]#</td>
+
                                             @for Quali_elem in context[key_s]["Weiterbildung"][key_weiter]["Qualifikation"]@
-                                                <li>
-                                                    Bezeichnung:#context[key_s]["Weiterbildung"][key_weiter]["Qualifikation"][Quali_elem]["bezeichnung"]#
-                                                </li>
+                                                <td>
+                                                    #context[key_s]["Weiterbildung"][key_weiter]["Qualifikation"][Quali_elem]["bezeichnung"]#
+                                                </td>
                                             @endfor@
                                     @endif@
                                 @endif@
                             @endfor@
-                    </ul>
+                    </tr>
+            </tbody>
 
 
-        </div>
         @endfor@
-    </ul>
+    </table>
+
             <div>
+                <a href="##" data-action=MitarbeiterFormEdit >bearbeiten</a>
+                <a href="/delete/${key_s}" class='clDelete'> löschen</a>
                 <a href="##" data-action="MitarbeiterForm" role="button">erfassen</a>
                 <a href="##" data-action="PflegeMit" role="button">zurück</a>
             </div>
