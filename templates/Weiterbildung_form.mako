@@ -107,7 +107,7 @@
             <div id="inputs_container">
                 <div id="inputs_div">
 
-                    <a href="/delete_quali?id_weiterbildung=${key_s}&id_quali=${Quali_elem}" class='clDelete' role="button"> löschen</a>
+                    <!--<a href="/delete_quali?id_weiterbildung=${key_s}&id_quali=${Quali_elem}" class='clDelete' role="button"> löschen</a>-->
                     <input type="hidden" value="${key_quali_s}" id="id_quali_spa" name="id_quali_spa" />
                     <label for="bezeichnung_quali_spa">Bezeichnung</label>
                     <input type="text"

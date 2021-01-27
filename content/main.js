@@ -270,19 +270,23 @@ class PflegeWeiterDetail_o {
    }
     render_px (data_opl) {
        // Daten anfordern
+      let result_array = [];
       let path_s = "/Weiterbildung/";
       let requester_o = new APPUTIL.Requester_cl();
       requester_o.GET_px(path_s)
       .then (result_spl => {
-            this.doRender_p(JSON.parse(result_spl));
+            result_array[0] = JSON.parse(result_spl);
+            //this.doRender_p(JSON.parse(result_spl));
+
       })
       .catch (error_opl => {
          alert("fetch-error (get)");
       });
       requester_o.GET_px("/Mitarbeiter/")
       .then (result_spl => {
-            console.log(result_spl)
-            this.doRender_p(JSON.parse(result_spl));
+            result_array[1] = JSON.parse(result_spl);
+            this.doRender_p(result_array);
+
       })
       .catch (error_opl => {
          alert("fetch-error (get)");

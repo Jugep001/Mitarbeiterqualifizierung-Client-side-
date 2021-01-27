@@ -1,59 +1,74 @@
-<div class="item7">
-    <ul>
-        @for key_s in context@
-        <div>
-            <a href="/edit?id_spl=${key_s}" role="button">bearbeiten</a>
-            <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
-
-                    <ul class="">
-
-                                @if(context[key_s].hasOwnProperty("bezeichnung"))@
-                                    <li>bezeichnung:#context[key_s]["bezeichnung"]#</li>
-                                    <li>von:#context[key_s]["von"]#</li>
-                                    <li>bis:#context[key_s]["bis"]#</li>
-                                    <li>beschreibung:#context[key_s]["beschreibung"]#</li>
-                                    <li>max_teilnehmer:#context[key_s]["max_teilnehmer"]#</li>
-                                    <li>min_teilnehmer:#context[key_s]["min_teilnehmer"]#</li>
-                                @endif@
-
-                            <li>Teilnehmer:</li>
-
-                                    @if(context[key_s].hasOwnProperty("Weiterbildung"))@
-                                    @if context[key_s]["Weiterbildung"]@
-                                        @for key_weiter in context[key_s]["Weiterbildung"]@
-                                            @if context[key_s]["Weiterbildung"][key_weiter]["bezeichnung"] == context[key_s]["bezeichnung"]@
-                                                @if context[key_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil"@
-
-                                                    <ul>Name:#context[key_s]["name"]#</ul>
+<div id="WeiterbildungidListContent" class="clContent">
+    <table id="WeiterbildungIdList">
+        <thead>
+            <tr>
+                <th>bezeichnung</th>
+                <th>von</th>
+                <th>bis</th>
+                <th>beschreibung</th>
+                <th>min_teilnehmer</th>
+                <th>max_teilnehmer</th>
+                <th>Zerti(bezeichnung)</th>
+                <th>Zerti(beschreibung)</th>
+                <th>Zerti(berechtigt zu)</th>
+                <th>Quali(bezeichnung)</th>
+                <th>Quali(beschreibung)</th>
+                <th>Teilnehmer</th>
 
 
-                                                @endif@
-                                            @endif@
-                                        @endfor@
+            </tr>
+        </thead>
 
-                                    @endif@
-                                    @endif@
+        @for key_s in context[0]@
 
-                            <li>Zertifikat:</li>
-                                    @if(context[key_s].hasOwnProperty("bezeichnung"))@
-                                                    <ul>bezeichnung:#context[key_s]["bezeichnung_zerti"]#</ul>
-                                                    <ul>beschreibung:#context[key_s]["beschreibung_zerti"]#</ul>
-                                                    <ul>berechtigt zu:#context[key_s]["berechtigt_zu"]#</ul>
-                                    @endif@
-                            <li>Qualifikation:</li>
-                                    @for Quali_elem in context[key_s]["Qualifikation"]@
-                                                    <ul>Bezeichnung:#context[key_s]["Qualifikation"][Quali_elem]["bezeichnung"]#</ul>
-                                                    <ul>Beschreibung:#context[key_s]["Qualifikation"][Quali_elem]["beschreibung"]#</ul>
+        <tbody>
+
+                    <tr id="#key_s#" onclick="getTableID(this.id, 'Weiterbildung')">
+
+
+                                    <td>#context[0][key_s]["bezeichnung"]#</td>
+                                    <td>#context[0][key_s]["von"]#</td>
+                                    <td>#context[0][key_s]["bis"]#</td>
+                                    <td>#context[0][key_s]["beschreibung"]#</td>
+                                    <td>#context[0][key_s]["min_teilnehmer"]#</td>
+                                    <td>#context[0][key_s]["max_teilnehmer"]#</td>
+                                    <td>#context[0][key_s]["bezeichnung_zerti"]#</td>
+                                    <td>#context[0][key_s]["beschreibung_zerti"]#</td>
+                                    <td>#context[0][key_s]["berechtigt_zu"]#</td>
+
+                                    @for Quali_elem in context[0][key_s]["Qualifikation"]@
+                                                    <td>#context[0][key_s]["Qualifikation"][Quali_elem]["bezeichnung"]#</td>
+                                                    <td>#context[0][key_s]["Qualifikation"][Quali_elem]["beschreibung"]#</td>
                                     @endfor@
 
-                    </ul>
+                                    @for key_mit_s in context[1]@
+                                        @if context[1][key_mit_s]["Weiterbildung"]@
+                                            @for key_weiter in context[1][key_mit_s]["Weiterbildung"]@
+
+                                                @if context[1][key_mit_s]["Weiterbildung"][key_weiter]["bezeichnung"] == context[0][key_s]["bezeichnung"]@
+
+                                                    @if context[1][key_mit_s]["Weiterbildung"][key_weiter]["status"] == "nimmt teil"@
+
+                                                        <td>#context[1][key_mit_s]["name"]#</td>
 
 
-        </div>
+                                                    @endif@
+                                                @endif@
+                                            @endfor@
+
+                                        @endif@
+                                    @endfor@
+
+                    </tr>
+
+        </tbody>
+
 
         @endfor@
-    </ul>
+    </table>
             <div>
+                <a href="##" data-action=WeiterbildungFormEdit >bearbeiten</a>
+                <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
                 <a href=## data-action="WeiterbildungForm"  role="button">erfassen</a>
                 <a href="##" data-action="PflegeWeiter" role="button">anzeigen</a>
             </div>
