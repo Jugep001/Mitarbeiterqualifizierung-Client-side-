@@ -669,26 +669,69 @@ class SichtMitForm_o {
 
    exitHandler_p () {
       // Ereignisverarbeitung für das Formular aufheben
-      const form = document.getElementById('idForm3');
+      const Speichern = document.getElementById('SpeichernWeiter');
+      const Stornieren = document.getElementById('StornierenWeiter');
 
+      if(Speichern != null){
+         Speichern.removeEventListener("click", this.handleSubmit_p.bind(this, "Speichern"));
 
-      if(form != null){
-         form.removeEventListener("submit", this.handleSubmit_p.bind(this));
-
+      }
+      if(Stornieren != null){
+         Stornieren.removeEventListener("click", this.handleSubmit_p.bind(this, "Stornieren"));
       }
 
    }
    configHandleEvent_p () {
-      const form = document.getElementById('idForm3');
+      const Speichern = document.getElementById('SpeichernWeiter');
+      const Stornieren = document.getElementById('StornierenWeiter');
 
-
-      if(form != null){
-         form.addEventListener("submit", this.handleSubmit_p.bind(this));
+      if(Stornieren != null){
+         Stornieren.addEventListener("click", this.handleStorno_p.bind(this));
+      }
+      if(Speichern != null){
+         Speichern.addEventListener("click", this.handleSubmit_p.bind(this));
 
       }
+
    }
-   handleSubmit_p (event_opl){
-      let form_o = document.querySelector("form");
+   handleSubmit_p (event_opl, formtype){
+      let form_o = document.getElementById("idForm3");
+
+      if (form_o != null) {
+         let fd_o = this.getFormData_px(form_o);
+
+
+         let result_o = {};
+         if (Mit_table_id != null) {                 // Id bereits vorhanden?
+
+            this.saveOldData_p(fd_o)             // Aktualisierung bestehender Daten
+            .then((result_opl) => { result_o = result_opl; });
+
+         }
+         if ("error" in result_o) {
+            alert("Fehler beim Speichern der Daten aufgetreten");
+         } else {
+
+            let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
+            let el_o = document.getElementById("id_spa");
+            el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
+            alert("Gespeichert!");
+         }
+      }
+      // keine Standard-Formularverarbeitung
+      event_opl.preventDefault();
+      event_opl.stopPropagation();
+   }
+   handleStorno_p (event_opl, formtype){
+      let form_o = null;
+      if(Weiter_table_id != null){
+         form_o = document.getElementById(Weiter_table_id + "_form");
+      }
+      else{
+         alert("Wählen sie einen Eintrag zum stornieren aus!")
+      }
+
+
       if (form_o != null) {
          let fd_o = this.getFormData_px(form_o);
 
@@ -728,10 +771,24 @@ class SichtMitForm_o {
       let data_o = null;
       // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
       let formData_o = new FormData(form_opl);
+      let id_weiter_spa = [];
+      let i = 0;
       data_o = {};
+
       for(let pair_a of formData_o.entries()) {
+         if(pair_a[0] === "id_weiter_spa" && pair_a[1] !== "key_weiter"){
+            id_weiter_spa[i] = pair_a[1];
+            i++;
+         }
+      }
+      formData_o.delete("id_weiter_spa");
+
+
+      for(let pair_a of formData_o.entries()) {
+         console.log(pair_a)
          data_o[pair_a[0]] = pair_a[1];
       }
+      data_o["id_weiter_spa"] = id_weiter_spa
       return data_o;
    }
 }

@@ -72,6 +72,12 @@ class Mitarbeiter_cl():
                     for id_weiter in id_weiter_spa:
                         id_weiter = id_weiter[1:-1]
                         Weiterbildung_spa[str(id_weiter)] = self.database_obj.data_o_Weiter[id_weiter]
+                elif status_spa == "storniert":
+                    for id_weiter in id_weiter_spa:
+                        fp_o_mit = codecs.open(os.path.join('data', 'Mitarbeiter.json'), 'r', 'utf-8')
+                        data_o_Mit = json.load(fp_o_mit)
+                        data_o_Mit[id_spa]["Weiterbildung"][id_weiter]["status"] = status_spa
+                        Weiterbildung_spa = data_o_Mit[id_spa]["Weiterbildung"]
 
             elif type(id_weiter_spa) is not list:
                 if status_spa == "None":
