@@ -1,8 +1,13 @@
 <main class="selektor_Mit_form">
     <form id="idForm">
+            @let Weiterbildung_spa = [];@
+            @for key_weiter in context["Weiterbildung"]@
+                <input type="hidden" value="#key_weiter#" id="Weiterbildung_spa" name="Weiterbildung_spa" />
+            @endfor@
 
 
             <input type="hidden" value="" id="id_spa" name="id_spa" />
+
     <div class="">
         <div class="">
             <label for="name_spa">Name</label>
@@ -20,6 +25,7 @@
             <label for="taetigkeit_spa">Tätigkeit</label>
             <input type="text" value="#context["taetigkeit"]#" id="taetigkeit_spa" name="taetigkeit_spa" required />
         </div>
+
 
         <div>
 

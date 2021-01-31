@@ -3,10 +3,10 @@
       "name": "Geppert",
       "vorname": "Julian",
       "akademischer_grad": "Student",
-      "taetigkeit": "test",
+      "taetigkeit": "Student",
       "Weiterbildung": {
          "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "storniert",
+            "status": "angemeldet",
             "bezeichnung": "Java",
             "von": "2021-01-12",
             "bis": "2021-01-13",
@@ -47,63 +47,8 @@
       "name": "test",
       "vorname": "test",
       "akademischer_grad": "test",
-      "taetigkeit": "test",
-      "Weiterbildung": {
-         "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "angemeldet",
-            "bezeichnung": "Java",
-            "von": "2021-01-12",
-            "bis": "2021-01-13",
-            "beschreibung": "Java",
-            "max_teilnehmer": "211",
-            "min_teilnehmer": "1",
-            "bezeichnung_zerti": "Java",
-            "beschreibung_zerti": "Java",
-            "berechtigt_zu": "Java",
-            "Qualifikation": {
-               "6a6b0dc9-60a0-11eb-b098-3c7c3f81d302": {
-                  "bezeichnung": "Java",
-                  "beschreibung": "Java"
-               }
-            }
-         },
-         "2e1f9c1c-53e9-11eb-a19b-6245b4f8b9c0": {
-            "status": "angemeldet",
-            "bezeichnung": "C++",
-            "von": "2021-01-12",
-            "bis": "2021-01-21",
-            "beschreibung": "C++",
-            "max_teilnehmer": "21",
-            "min_teilnehmer": "2",
-            "bezeichnung_zerti": "C++",
-            "beschreibung_zerti": "C++",
-            "berechtigt_zu": "C++",
-            "Qualifikation": {
-               "2e1f4df7-53e9-11eb-853a-6245b4f8b9c0": {
-                  "bezeichnung": "C++",
-                  "beschreibung": "C++"
-               }
-            }
-         },
-         "293f4ea5-540c-11eb-8db0-6245b4f8b9c0": {
-            "status": "angemeldet",
-            "bezeichnung": "D",
-            "von": "2021-01-13",
-            "bis": "2021-01-21",
-            "beschreibung": "D",
-            "max_teilnehmer": "21",
-            "min_teilnehmer": "1",
-            "bezeichnung_zerti": "D",
-            "beschreibung_zerti": "D",
-            "berechtigt_zu": "D",
-            "Qualifikation": {
-               "293f0087-540c-11eb-a76b-6245b4f8b9c0": {
-                  "bezeichnung": "D",
-                  "beschreibung": "D"
-               }
-            }
-         }
-      }
+      "taetigkeit": "Student",
+      "Weiterbildung": null
    },
    "5732f046-616b-11eb-b95b-3c7c3f81d302": {
       "name": "test",

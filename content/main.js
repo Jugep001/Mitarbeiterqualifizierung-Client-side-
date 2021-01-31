@@ -201,6 +201,7 @@ class MitarbeiterForm_o {
       this.el_s = el_spl;
       this.template_s = template_spl;
       this.data_opl = null;
+      this.result_opl = null;
    }
    render_px (data_opl) {
        // Daten anfordern
@@ -230,6 +231,7 @@ class MitarbeiterForm_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+         this.result_opl = data_opl;
          this.configHandleEvent_p();
       }
    }
@@ -302,9 +304,16 @@ class MitarbeiterForm_o {
       // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
       let formData_o = new FormData(form_opl);
       data_o = {};
+      let Weiterbildung_spa = null;
+      Weiterbildung_spa = this.result_opl["Weiterbildung"];
+
+
       for(let pair_a of formData_o.entries()) {
+
          data_o[pair_a[0]] = pair_a[1];
       }
+      console.log(Weiterbildung_spa)
+      data_o["Weiterbildung_spa"] = Weiterbildung_spa;
       return data_o;
    }
 }
@@ -715,7 +724,9 @@ class SichtMitForm_o {
             let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
+            this.render_px();
             alert("Gespeichert!");
+
          }
       }
       // keine Standard-Formularverarbeitung
@@ -751,6 +762,7 @@ class SichtMitForm_o {
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
             alert("Gespeichert!");
+            this.render_px();
          }
       }
       // keine Standard-Formularverarbeitung
@@ -763,7 +775,6 @@ class SichtMitForm_o {
       let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
-      Mit_table_id = null;
       return result_o;
 
    }
