@@ -49,7 +49,7 @@ class Mitarbeiter_cl():
         data_opl = json.loads(data_opl)
         id_weiter_spa = "None"
         status_spa = "None"
-
+        Weiterbildung_spa = {}
         # Parameter ersetzen durch direktes Einlesen der data_opl
         #id_spa = data_opl["id_spa"]
         name_spa = data_opl["name_spa"]
@@ -61,8 +61,9 @@ class Mitarbeiter_cl():
             status_spa = data_opl["status_spa"]
         elif "id_weiter_spa" in data_opl:
             id_weiter_spa = data_opl["id_weiter_spa"]
+        elif data_opl["Weiterbildung"] != {}:
+            Weiterbildung_spa = data_opl["Weiterbildungw"]
 
-        Weiterbildung_spa = {}
         id_s = id_spa
 
         if id_weiter_spa != "None":
