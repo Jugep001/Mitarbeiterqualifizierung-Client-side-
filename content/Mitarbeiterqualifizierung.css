@@ -103,9 +103,6 @@ main {
    padding: 3px;
    border: 1px solid;
 }
-tr:nth-of-type(odd) {
-  background-color:#ccc;
-}
 
 .selected {
     color: red;

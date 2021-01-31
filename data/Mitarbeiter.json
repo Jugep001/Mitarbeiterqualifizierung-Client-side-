@@ -3,17 +3,10 @@
       "name": "Geppert",
       "vorname": "Julian",
       "akademischer_grad": "Student",
-      "taetigkeit": "Student",
-      "Weiterbildung": {}
-   },
-   "e718534b-53f5-11eb-9245-6245b4f8b9c0": {
-      "name": "dsa",
-      "vorname": "dsa",
-      "akademischer_grad": "dsa",
-      "taetigkeit": "dsa",
+      "taetigkeit": "test",
       "Weiterbildung": {
          "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "nimmt teil",
+            "status": "angemeldet",
             "bezeichnung": "Java",
             "von": "2021-01-12",
             "bis": "2021-01-13",
@@ -24,7 +17,7 @@
             "beschreibung_zerti": "Java",
             "berechtigt_zu": "Java",
             "Qualifikation": {
-               "221ed083-53e9-11eb-bdb6-6245b4f8b9c0": {
+               "6a6b0dc9-60a0-11eb-b098-3c7c3f81d302": {
                   "bezeichnung": "Java",
                   "beschreibung": "Java"
                }
@@ -32,18 +25,18 @@
          }
       }
    },
-   "d7493b1a-5fe6-11eb-b4cf-3c7c3f81d302": {
-      "name": "a",
-      "vorname": "a",
-      "akademischer_grad": "a",
-      "taetigkeit": "a",
-      "Weiterbildung": null
+   "52ce9e46-616b-11eb-94f8-3c7c3f81d302": {
+      "name": "test",
+      "vorname": "test",
+      "akademischer_grad": "test",
+      "taetigkeit": "test",
+      "Weiterbildung": {}
    },
-   "0b561b5d-5ff5-11eb-82ea-3c7c3f81d302": {
-      "name": "a",
-      "vorname": "a",
-      "akademischer_grad": "a",
-      "taetigkeit": "a",
+   "5732f046-616b-11eb-b95b-3c7c3f81d302": {
+      "name": "test",
+      "vorname": "test",
+      "akademischer_grad": "test",
+      "taetigkeit": "test",
       "Weiterbildung": null
    }
 }

@@ -88,5 +88,23 @@
             "beschreibung": "sd"
          }
       }
+   },
+   "b1d65f5a-63ad-11eb-af09-3c7c3f81d302": {
+      "status": "angemeldet",
+      "bezeichnung": "test",
+      "von": "2021-01-13",
+      "bis": "2021-01-29",
+      "beschreibung": "test",
+      "max_teilnehmer": "21",
+      "min_teilnehmer": "1",
+      "bezeichnung_zerti": "test",
+      "beschreibung_zerti": "test",
+      "berechtigt_zu": "test",
+      "Qualifikation": {
+         "b1d5ea6d-63ad-11eb-8922-3c7c3f81d302": {
+            "bezeichnung": "test",
+            "beschreibung": "test"
+         }
+      }
    }
 }

@@ -30,7 +30,7 @@
         </table>
             <div>
                 <a href="##" data-action=WeiterbildungFormEdit >bearbeiten</a>
-                <a href="/delete/${key_s}" class='clDelete' role="button"> löschen</a>
+                <a href="##" data-action=WeiterbildungFormDelete class="clDelete" >löschen</a>
                 <a href=## data-action="WeiterbildungForm"  role="button">erfassen</a>
                 <a href="##" data-action="PflegeWeiterDetail" role="button">anzeigen</a>
             </div>

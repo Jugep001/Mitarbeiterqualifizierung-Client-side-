@@ -47,8 +47,8 @@ class Mitarbeiter_cl():
     def PUT(self, id_spa):
         data_opl = cherrypy.request.body.read()
         data_opl = json.loads(data_opl)
-        id_weiter_spa = None
-        status_spa = None
+        id_weiter_spa = "None"
+        status_spa = "None"
 
         # Parameter ersetzen durch direktes Einlesen der data_opl
         #id_spa = data_opl["id_spa"]
@@ -59,22 +59,25 @@ class Mitarbeiter_cl():
         if "id_weiter_spa" and "status_spa" in data_opl:
             id_weiter_spa = data_opl["id_weiter_spa"]
             status_spa = data_opl["status_spa"]
+        elif "id_weiter_spa" in data_opl:
+            id_weiter_spa = data_opl["id_weiter_spa"]
+
         Weiterbildung_spa = {}
         id_s = id_spa
 
-        if id_weiter_spa is not None:
+        if id_weiter_spa != "None":
             if type(id_weiter_spa) is list:
                 if status_spa == "None":
 
                     for id_weiter in id_weiter_spa:
                         id_weiter = id_weiter[1:-1]
-                        Weiterbildung_spa[str(id_weiter)] = self.db_o.data_o_Weiter[id_weiter]
+                        Weiterbildung_spa[str(id_weiter)] = self.database_obj.data_o_Weiter[id_weiter]
 
             elif type(id_weiter_spa) is not list:
                 if status_spa == "None":
 
                     id_weiter_spa = id_weiter_spa[1:-1]
-                    Weiterbildung_spa[str(id_weiter_spa)] = self.db_o.data_o_Weiter[id_weiter_spa]
+                    Weiterbildung_spa[str(id_weiter_spa)] = self.database_obj.data_o_Weiter[id_weiter_spa]
 
                 elif status_spa != "None":
                     fp_o_mit = codecs.open(os.path.join('data', 'Mitarbeiter.json'), 'r', 'utf-8')
@@ -100,4 +103,4 @@ class Mitarbeiter_cl():
     def DELETE(self, mitarbeiter_id):
         self.database_obj.delete_px(mitarbeiter_id, "Mitarbeiter")
 
-        raise cherrypy.HTTPRedirect('/')
+        return

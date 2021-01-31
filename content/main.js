@@ -20,6 +20,19 @@ class Startseite_cl {
       this.template_s = template_spl;
       this.configHandleEvent_p();
    }
+
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
+      }
+   }
+
    render_px (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
@@ -52,6 +65,10 @@ class PflegeMit_o {
        // Daten anfordern
       let path_s = "/Mitarbeiter/";
       let requester_o = new APPUTIL.Requester_cl();
+      if(data_opl === "MitarbeiterFormDelete"){
+         this.onClickDelete();
+      }
+
       requester_o.GET_px(path_s)
       .then (result_spl => {
             this.doRender_p(JSON.parse(result_spl));
@@ -60,11 +77,36 @@ class PflegeMit_o {
          alert("fetch-error (get)");
       });
    }
+   onClickDelete(){
+      if (Mit_table_id != null) {
+
+               if (confirm("Soll der Datensatz gelöscht werden?")) {
+                  // Id der selektierten Tabellenzeile anhängen
+
+                  let path_s = "/Mitarbeiter/" + Mit_table_id;
+                  let result_o = APPUTIL.requester_o.DELETE_px(path_s);
+                  Mit_table_id = null;
+                  this.render_px();
+
+               }
+            }
+   }
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -76,6 +118,7 @@ class PflegeMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+
    }
 }
 //------------------------------------------------------------------------------
@@ -91,6 +134,11 @@ class PflegeMitDetail_o {
        // Daten anfordern
       let path_s = "/Mitarbeiter/";
       let requester_o = new APPUTIL.Requester_cl();
+      if(data_opl === "MitarbeiterDetailFormDelete"){
+
+         this.onClickDelete();
+
+      }
       requester_o.GET_px(path_s)
       .then (result_spl => {
             console.log(result_spl)
@@ -100,11 +148,38 @@ class PflegeMitDetail_o {
          alert("fetch-error (get)");
       });
    }
+
+   onClickDelete(){
+      if (Mit_table_id != null) {
+
+               if (confirm("Soll der Datensatz gelöscht werden?")) {
+                  // Id der selektierten Tabellenzeile anhängen
+
+                  let path_s = "/Mitarbeiter/" + Mit_table_id;
+                  let result_o = APPUTIL.requester_o.DELETE_px(path_s);
+                  Mit_table_id = null;
+                  this.render_px();
+
+               }
+            }
+   }
+
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -127,13 +202,14 @@ class MitarbeiterForm_o {
       this.template_s = template_spl;
       this.data_opl = null;
    }
-   async render_px (data_opl) {
+   render_px (data_opl) {
        // Daten anfordern
       this.data_opl = data_opl
       let path_s = "/Mitarbeiter/";
       if (data_opl === "MitarbeiterForm"){
          Mit_table_id = null;
       }
+
        if (Mit_table_id != null) {
          path_s = path_s + Mit_table_id;
       } 
@@ -147,6 +223,8 @@ class MitarbeiterForm_o {
       });
 
    }
+
+
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
@@ -154,6 +232,16 @@ class MitarbeiterForm_o {
          el_o.innerHTML = markup_s;
          this.configHandleEvent_p();
       }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      const form = document.getElementById('idForm');
+
+      form.removeEventListener("submit", this.handleSubmit_p.bind(this));
    }
    configHandleEvent_p () {
       const form = document.getElementById('idForm');
@@ -171,7 +259,7 @@ class MitarbeiterForm_o {
          console.log(fd_o["id_spa"])
 
          let result_o = {};
-         if (Mit_table_id == "") {                 // Id bereits vorhanden?
+         if (Mit_table_id == null) {                 // Id bereits vorhanden?
             this.saveNewData_p(fd_o)             // Speicherung neuer Daten
             .then((result_opl) => { result_o = result_opl; });
          } else {
@@ -205,6 +293,7 @@ class MitarbeiterForm_o {
       let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
+      Mit_table_id = null;
       return result_o;
 
    }
@@ -233,6 +322,9 @@ class PflegeWeiter_o {
        // Daten anfordern
       let path_s = "/Weiterbildung/";
       let requester_o = new APPUTIL.Requester_cl();
+      if(data_opl === "WeiterbildungFormDelete"){
+         this.onClickDelete();
+      }
       requester_o.GET_px(path_s)
       .then (result_spl => {
             this.doRender_p(JSON.parse(result_spl));
@@ -241,11 +333,37 @@ class PflegeWeiter_o {
          alert("fetch-error (get)");
       });
    }
+   onClickDelete(){
+      if (Weiter_table_id != null) {
+
+               if (confirm("Soll der Datensatz gelöscht werden?")) {
+                  // Id der selektierten Tabellenzeile anhängen
+
+                  let path_s = "/Weiterbildung/" + Weiter_table_id;
+                  let result_o = APPUTIL.requester_o.DELETE_px(path_s);
+                  Weiter_table_id = null;
+                  this.render_px();
+
+               }
+            }
+   }
+
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -273,6 +391,9 @@ class PflegeWeiterDetail_o {
       let result_array = [];
       let path_s = "/Weiterbildung/";
       let requester_o = new APPUTIL.Requester_cl();
+      if(data_opl === "WeiterbildungDetailFormDelete"){
+         this.onClickDelete();
+      }
       requester_o.GET_px(path_s)
       .then (result_spl => {
             result_array[0] = JSON.parse(result_spl);
@@ -292,11 +413,36 @@ class PflegeWeiterDetail_o {
          alert("fetch-error (get)");
       });
    }
+   onClickDelete(){
+      if (Weiter_table_id != null) {
+
+               if (confirm("Soll der Datensatz gelöscht werden?")) {
+                  // Id der selektierten Tabellenzeile anhängen
+
+                  let path_s = "/Weiterbildung/" + Weiter_table_id;
+                  let result_o = APPUTIL.requester_o.DELETE_px(path_s);
+                  Weiter_table_id = null;
+                  this.render_px();
+
+               }
+            }
+   }
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -346,13 +492,21 @@ class WeiterbildungForm_o {
          this.configHandleEvent_p();
       }
    }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      const form = document.getElementById("idForm2")
+
+         form.removeEventListener("submit", this.handleSubmit_p.bind(this));
+
+   }
    configHandleEvent_p () {
       const form = document.getElementById('idForm2');
 
          form.addEventListener("submit", this.handleSubmit_p.bind(this));
-
-
-
 
    }
    handleSubmit_p (event_opl) {
@@ -362,7 +516,7 @@ class WeiterbildungForm_o {
 
 
          let result_o = {};
-         if (Weiter_table_id == "") {                 // Id bereits vorhanden?
+         if (Weiter_table_id == null) {                 // Id bereits vorhanden?
             this.saveNewData_p(fd_o)             // Speicherung neuer Daten
             .then((result_opl) => { result_o = result_opl; });
          } else {
@@ -395,6 +549,7 @@ class WeiterbildungForm_o {
       let path_s = "/Weiterbildung/" + Weiter_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
+      Weiter_table_id = null;
       return result_o;
 
    }
@@ -437,6 +592,17 @@ class SichtMit_o {
          el_o.innerHTML = markup_s;
       }
    }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
+      }
+   }
    configHandleEvent_p () {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
@@ -446,6 +612,127 @@ class SichtMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+   }
+}
+//------------------------------------------------------------------------------
+class SichtMitForm_o {
+//------------------------------------------------------------------------------
+
+   constructor (el_spl, template_spl) {
+      this.el_s = el_spl;
+      this.template_s = template_spl;
+
+   }
+   async render_px (data_opl) {
+       // Daten anfordern
+      let result_array = [];
+      let path_s = "/Mitarbeiter/" + Mit_table_id;
+      let requester_o = new APPUTIL.Requester_cl();
+      requester_o.GET_px(path_s)
+      .then (result_spl => {
+            result_array[0] = JSON.parse(result_spl);
+            //this.doRender_p(JSON.parse(result_spl));
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+      requester_o.GET_px("/Weiterbildung/")
+      .then (result_spl => {
+            result_array[1] = JSON.parse(result_spl);
+
+            this.doRender_p(result_array);
+
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+   }
+   async doRender_p (data_opl) {
+      if (data_opl[0] != null) {
+         let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
+         let el_o = document.querySelector(this.el_s);
+         if (el_o != null) {
+            el_o.innerHTML = markup_s;
+            this.configHandleEvent_p();
+            select_Weiter(data_opl[1]);
+            window.addEventListener("click", function (event) {
+
+            }, true);
+         }
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      const form = document.getElementById('idForm3');
+
+
+      if(form != null){
+         form.removeEventListener("submit", this.handleSubmit_p.bind(this));
+
+      }
+
+   }
+   configHandleEvent_p () {
+      const form = document.getElementById('idForm3');
+
+
+      if(form != null){
+         form.addEventListener("submit", this.handleSubmit_p.bind(this));
+
+      }
+   }
+   handleSubmit_p (event_opl){
+      let form_o = document.querySelector("form");
+      if (form_o != null) {
+         let fd_o = this.getFormData_px(form_o);
+
+
+         let result_o = {};
+         if (Mit_table_id != null) {                 // Id bereits vorhanden?
+
+            this.saveOldData_p(fd_o)             // Aktualisierung bestehender Daten
+            .then((result_opl) => { result_o = result_opl; });
+
+         }
+         if ("error" in result_o) {
+            alert("Fehler beim Speichern der Daten aufgetreten");
+         } else {
+
+            let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
+            let el_o = document.getElementById("id_spa");
+            el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
+            alert("Gespeichert!");
+         }
+      }
+      // keine Standard-Formularverarbeitung
+      event_opl.preventDefault();
+      event_opl.stopPropagation();
+   }
+
+   async saveOldData_p (data_opl) {
+
+      let path_s = "/Mitarbeiter/" + Mit_table_id;
+      let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
+      console.log(JSON.stringify(result_o));
+      Mit_table_id = null;
+      return result_o;
+
+   }
+   getFormData_px (form_opl) {
+      let data_o = null;
+      // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
+      let formData_o = new FormData(form_opl);
+      data_o = {};
+      for(let pair_a of formData_o.entries()) {
+         data_o[pair_a[0]] = pair_a[1];
+      }
+      return data_o;
    }
 }
 //------------------------------------------------------------------------------
@@ -474,6 +761,17 @@ class SichtWeiter_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -517,6 +815,17 @@ class Mitarbeiter_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -572,6 +881,17 @@ class Weiterbildung_o {
          el_o.innerHTML = markup_s;
       }
    }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
+      }
+   }
    configHandleEvent_p () {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
@@ -609,6 +929,17 @@ class Zertifikate_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      let el_o = document.querySelector(this.el_s);
+      if (el_o != null) {
+         el_o.removeEventListener("click", this.handleEvent_p);
       }
    }
    configHandleEvent_p () {
@@ -662,11 +993,12 @@ class Application_cl {
       this.Startseite_o = new Startseite_cl("main", "Startseite.mako");
       this.PflegeMit_o = new PflegeMit_o("main", "Pflege_Mit.mako");
       this.PflegeMitDetail_o = new PflegeMitDetail_o("main", "Pflege_Mit_Detail.mako");
-      this.MitarbeiterForm_o = new MitarbeiterForm_o("main", "Mitarbeiter_form.mako")
+      this.MitarbeiterForm_o = new MitarbeiterForm_o("main", "Mitarbeiter_form.mako");
       this.PflegeWeiter_o = new PflegeWeiter_o("main", "Pflege_Weiter.mako");
       this.PflegeWeiterDetail_o = new PflegeWeiterDetail_o("main", "Pflege_Weiter_Detail.mako");
       this.WeiterbildungForm_o = new WeiterbildungForm_o("main","Weiterbildung_form.mako")
       this.SichtMit_o = new SichtMit_o("main", "Sichtweise_Mit.mako");
+      this.SichtMitForm_o = new SichtMitForm_o("main", "Sichtweise_Mit_Form.mako");
       this.SichtWeiter_o = new SichtWeiter_o("main", "Sichtweise_Weiter.mako");
       this.Mitarbeiter_o = new Mitarbeiter_o("main", "Mitarbeiter.mako");
       this.Weiterbildung_o = new Weiterbildung_o("main", "Weiterbildungen.mako");
@@ -693,11 +1025,16 @@ class Application_cl {
             ["PflegeMitDetail", "Pflege_Mit_Detail"],
             ["MitarbeiterForm", "Mitarbeiter_form"],
             ["MitarbeiterFormEdit", "Mitarbeiter_form_Edit"],
+            ["MitarbeiterFormDelete", "Mitarbeiter_form_Delete"],
+            ["MitarbeiterDetailFormDelete", "Mitarbeiter_Detail_form_Edit"],
             ["PflegeWeiter", "Pflege_Weiter"],
             ["PflegeWeiterDetail", "Pflege_Weiter_Detail"],
             ["WeiterbildungForm", "Weiterbildung_form"],
             ["WeiterbildungFormEdit", "Weiterbildung_form_Edit"],
+            ["WeiterbildungFormDelete", "Weiterbildung_form_Delete"],
+            ["WeiterbildungDetailFormDelete", "Weiterbildung_Detail_form_Delete"],
             ["SichtMit", "Sicht_Mit"],
+            ["SichtMitForm", "Sicht_Mit_Form"],
             ["SichtWeiter", "Sicht_Weiter"],
             ["Mit", "Mitarbeiter"],
             ["Weiter", "Weiterbildung"],
@@ -717,46 +1054,93 @@ class Application_cl {
          switch (data_opl[0]) {
          case "Start":
             this.Startseite_o.render_px();
+            this.Startseite_o.close_px();
             break;
          case "PflegeMit":
             // Daten anfordern und darstellen
             this.PflegeMit_o.render_px();
+            this.PflegeMit_o.close_px();
             break;
          case "PflegeMitDetail":
             this.PflegeMitDetail_o.render_px();
+            this.PflegeMitDetail_o.close_px();
             break;
          case "MitarbeiterForm":
             this.MitarbeiterForm_o.render_px(data_opl[0]);
+            this.MitarbeiterForm_o.close_px();
             break;
          case "MitarbeiterFormEdit":
             this.MitarbeiterForm_o.render_px();
+            this.MitarbeiterForm_o.close_px();
+            break;
+         case "MitarbeiterFormDelete":
+            if(Mit_table_id != null){
+               this.PflegeMit_o.render_px(data_opl[0])
+               this.PflegeMit_o.close_px();
+            }
+
+            break;
+         case "MitarbeiterDetailFormDelete":
+            if(Mit_table_id != null){
+               this.PflegeMitDetail_o.render_px(data_opl[0])
+               this.PflegeMitDetail_o.close_px();
+            }
+
             break;
          case "PflegeWeiter":
             this.PflegeWeiter_o.render_px();
+            this.PflegeWeiter_o.close_px();
             break;
          case "PflegeWeiterDetail":
             this.PflegeWeiterDetail_o.render_px();
+            this.PflegeWeiterDetail_o.close_px();
             break;
          case "WeiterbildungForm":
             this.WeiterbildungForm_o.render_px(data_opl[0]);
+            this.WeiterbildungForm_o.close_px();
             break;
          case "WeiterbildungFormEdit":
             this.WeiterbildungForm_o.render_px();
+            this.WeiterbildungForm_o.close_px();
+            break;
+         case "WeiterbildungFormDelete":
+            if(Weiter_table_id != null){
+               this.PflegeWeiter_o.render_px(data_opl[0])
+               this.PflegeWeiter_o.close_px();
+            }
+            break;
+         case "WeiterbildungDetailFormDelete":
+            if(Weiter_table_id != null){
+               this.PflegeWeiterDetail_o.render_px(data_opl[0])
+               this.PflegeWeiterDetail_o.close_px();
+            }
             break;
          case "SichtMit":
             this.SichtMit_o.render_px();
+            this.SichtMit_o.close_px();
             break;
+         case "SichtMitForm":
+            if(Mit_table_id != null){
+               this.SichtMitForm_o.render_px();
+               this.SichtMitForm_o.close_px();
+            }
+            break;
+
          case "SichtWeiter":
             this.SichtWeiter_o.render_px();
+            this.SichtWeiter_o.close_px();
             break;
          case "Mit":
             this.Mitarbeiter_o.render_px();
+            this.Mitarbeiter_o.close_px();
             break;
          case "Weiter":
             this.Weiterbildung_o.render_px();
+            this.Weiterbildung_o.close_px();
             break;
          case "Zerti":
             this.Zertifikate_o.render_px();
+            this.Weiterbildung_o.close_px();
             break;
          case "idBack":
             APPUTIL.es_o.publish_px("app.cmd", ["Start", null]);
@@ -766,22 +1150,6 @@ class Application_cl {
       }
    }
 }
-function confirmDelete_p (event_opl) {
-        if ((event_opl.target.tagName.toLowerCase() == 'a' )&&
-            (event_opl.target.className == "clDelete") ) {
-                if(confirm('Wollen Sie den Datensatz wirklich loeschen?')){
-
-                }
-                else{
-                    onsubmit(event_opl)
-                }
-                }
-            }
-
-
-
-
-
 
 function addInput(){
 
@@ -796,25 +1164,28 @@ function addInput(){
 
 function select_Weiter(data) {
 
-
+                console.log(data)
                 var p = document.getElementById('create_check');
+
                 var i = 0;
 
                 for (var prop in data) {
                     var checkbox = document.createElement('input');
 
-                        if (data[prop].status === "None"){
+
+                       /* if (data[prop].status === "None"){
                             data[prop].status = "angemeldet"
-                        }
+                        }*/
 
 
-                            var checkbox_str = JSON.stringify(data[prop]);
 
+                            var key_weiter_str = JSON.stringify(prop);
 
                             checkbox.type = "checkbox";
-                            checkbox.id = "Weiterbildung_spa_" + i;
-                            checkbox.name = "Weiterbildung_spa";
-                            checkbox.value = checkbox_str;
+                            checkbox.id = "id_weiter_spa";
+                            checkbox.name = "id_weiter_spa";
+                            checkbox.value = key_weiter_str;
+
 
                             var label = document.createElement('label');
                             var tn = document.createTextNode(JSON.stringify(data[prop]["bezeichnung"]));
@@ -822,6 +1193,7 @@ function select_Weiter(data) {
                             label.appendChild(tn);
                             p.appendChild(label);
                             p.appendChild(checkbox);
+
 
 
                         i++;
@@ -843,6 +1215,7 @@ function select_Weiter(data) {
 function getTableID(clicked_ID,form){
    if(form === "Mitarbeiter"){
       Mit_table_id = clicked_ID;
+
    }
    else if(form === "Weiterbildung"){
       Weiter_table_id = clicked_ID
@@ -855,6 +1228,4 @@ window.onload = function () {
    APPUTIL.requester_o = new APPUTIL.Requester_cl();
    var app_o = new Application_cl();
    APPUTIL.createTemplateManager_px();
-   let body_o = document.getElementsByTagName('body')[0];
-   body_o.addEventListener('click', confirmDelete_p, false);
 }

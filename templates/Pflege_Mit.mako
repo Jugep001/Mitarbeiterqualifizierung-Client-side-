@@ -30,7 +30,7 @@
         </table>
             <div>
                 <a href="##" data-action=MitarbeiterFormEdit >bearbeiten</a>
-                <a href="/delete/${key_s}" class='clDelete'> löschen</a>
+                <a href="##" data-action=MitarbeiterFormDelete class="clDelete" >löschen</a>
                 <a href="##" data-action="MitarbeiterForm" role="button">erfassen</a>
                 <a href="##" data-action="PflegeMitDetail" role="button">anzeigen</a>
             </div>
