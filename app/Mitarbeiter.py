@@ -61,8 +61,8 @@ class Mitarbeiter_cl():
             status_spa = data_opl["status_spa"]
         elif "id_weiter_spa" in data_opl:
             id_weiter_spa = data_opl["id_weiter_spa"]
-        elif data_opl["Weiterbildung"] != {}:
-            Weiterbildung_spa = data_opl["Weiterbildungw"]
+        elif data_opl["Weiterbildung_spa"] != {}:
+            Weiterbildung_spa = data_opl["Weiterbildung_spa"]
 
         id_s = id_spa
 
