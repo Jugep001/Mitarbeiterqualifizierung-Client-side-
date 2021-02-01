@@ -1,12 +1,21 @@
 <div class="item7">
+    <table>
+            <tr>
+                <th>Weiterbildung(Name)</th>
+            </tr>
             @for key_s in context@
-                <ul class="">
-                    <li>
-                        <a href="/add?data=${key_s}&listForm=Sichtweise_Weiter_form" role="button">Weiterbildung(Name):#context[key_s]["bezeichnung"]#</a>
-                     </li>
-                </ul>
+                <tr id="#key_s#" onclick="getTableID(this.id, 'Weiterbildung')">
+
+                        <td>#context[key_s]["bezeichnung"]#</td>
+
+                </tr>
 
 
             @endfor@
+
+    </table>
+            <div>
+                <a href="##" data-action="SichtWeiterForm" role="button">anzeigen</a>
+            </div>
 </div>
 

@@ -853,6 +853,127 @@ class SichtWeiter_o {
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
    }
 }
+
+class SichtWeiterForm_o {
+//------------------------------------------------------------------------------
+
+   constructor (el_spl, template_spl) {
+      this.el_s = el_spl;
+      this.template_s = template_spl;
+
+   }
+   async render_px (data_opl) {
+       // Daten anfordern
+      let result_array = [];
+      let path_s = "/Weiterbildung/" + Weiter_table_id;
+      let requester_o = new APPUTIL.Requester_cl();
+      requester_o.GET_px(path_s)
+      .then (result_spl => {
+            result_array[0] = JSON.parse(result_spl);
+            //this.doRender_p(JSON.parse(result_spl));
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+      requester_o.GET_px("/Mitarbeiter/")
+      .then (result_spl => {
+            result_array[1] = JSON.parse(result_spl);
+
+            this.doRender_p(result_array);
+
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+   }
+   async doRender_p (data_opl) {
+      if (data_opl[0] != null) {
+         let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
+         let el_o = document.querySelector(this.el_s);
+         if (el_o != null) {
+            el_o.innerHTML = markup_s;
+            this.configHandleEvent_p();
+            window.addEventListener("click", function (event) {
+
+            }, true);
+         }
+      }
+   }
+   close_px () {
+      this.exitHandler_p();
+   }
+
+   exitHandler_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      const submit = document.getElementById('StatusSpeichern');
+
+
+      if(submit != null){
+         submit.removeEventListener("click", this.handleSubmit_p.bind(this));
+      }
+
+   }
+   configHandleEvent_p () {
+      const submit = document.getElementById('StatusSpeichern');
+
+
+      if(submit != null){
+         submit.addEventListener("click", this.handleSubmit_p.bind(this));
+      }
+
+   }
+   handleSubmit_p (event_opl){
+      let form_o = document.getElementById(Mit_table_id + "_form");
+      if (form_o != null) {
+         let fd_o = this.getFormData_px(form_o);
+
+
+         let result_o = {};
+         if (Mit_table_id != null) {                 // Id bereits vorhanden?
+
+            this.saveOldData_p(fd_o)             // Aktualisierung bestehender Daten
+            .then((result_opl) => { result_o = result_opl; });
+
+         }
+         if ("error" in result_o) {
+            alert("Fehler beim Speichern der Daten aufgetreten");
+         } else {
+
+            let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
+            let el_o = document.getElementById("id_spa");
+            el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
+            this.render_px();
+            alert("Gespeichert!");
+
+         }
+      }
+      // keine Standard-Formularverarbeitung
+      event_opl.preventDefault();
+      event_opl.stopPropagation();
+   }
+
+   async saveOldData_p (data_opl) {
+
+      let path_s = "/Mitarbeiter/" + Mit_table_id;
+      let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
+      console.log(JSON.stringify(result_o));
+      return result_o;
+
+   }
+   getFormData_px (form_opl) {
+      let data_o = null;
+      // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
+      let formData_o = new FormData(form_opl);
+      data_o = {};
+      for(let pair_a of formData_o.entries()) {
+         data_o[pair_a[0]] = pair_a[1];
+      }
+      data_o["status_spa"] = document.getElementById(Mit_table_id + "_status").value;
+      return data_o;
+   }
+}
 //------------------------------------------------------------------------------
 class Mitarbeiter_o {
 //------------------------------------------------------------------------------
@@ -1068,6 +1189,7 @@ class Application_cl {
       this.SichtMit_o = new SichtMit_o("main", "Sichtweise_Mit.mako");
       this.SichtMitForm_o = new SichtMitForm_o("main", "Sichtweise_Mit_Form.mako");
       this.SichtWeiter_o = new SichtWeiter_o("main", "Sichtweise_Weiter.mako");
+      this.SichtWeiterForm_o = new SichtWeiterForm_o("main", "Sichtweise_Weiter_form.mako");
       this.Mitarbeiter_o = new Mitarbeiter_o("main", "Mitarbeiter.mako");
       this.Weiterbildung_o = new Weiterbildung_o("main", "Weiterbildungen.mako");
       this.Zertifikate_o = new Zertifikate_o("main", "Zertifikate.mako");
@@ -1104,6 +1226,7 @@ class Application_cl {
             ["SichtMit", "Sicht_Mit"],
             ["SichtMitForm", "Sicht_Mit_Form"],
             ["SichtWeiter", "Sicht_Weiter"],
+            ["SichtWeiterForm", "Sicht_Weiter_Form"],
             ["Mit", "Mitarbeiter"],
             ["Weiter", "Weiterbildung"],
             ["Zerti", "Zertifikate"]
@@ -1192,11 +1315,24 @@ class Application_cl {
                this.SichtMitForm_o.render_px();
                this.SichtMitForm_o.close_px();
             }
+            else{
+               alert("Wählen sie einen Mitarbeiter aus!")
+            }
             break;
 
          case "SichtWeiter":
             this.SichtWeiter_o.render_px();
             this.SichtWeiter_o.close_px();
+            break;
+         case "SichtWeiterForm":
+            if(Weiter_table_id != null){
+               this.SichtWeiterForm_o.render_px();
+               this.SichtWeiterForm_o.close_px();
+            }
+            else{
+               alert("Wählen sie eine Weiterbildung aus!")
+            }
+
             break;
          case "Mit":
             this.Mitarbeiter_o.render_px();
