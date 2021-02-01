@@ -33,7 +33,33 @@ class Startseite_cl {
       }
    }
 
-   render_px (data_opl) {
+   async render_px (data_opl) {
+       // Daten anfordern
+      let result_array = [];
+      let path_s = "/Mitarbeiter/";
+      let requester_o = new APPUTIL.Requester_cl();
+      await requester_o.GET_px(path_s)
+      .then (result_spl => {
+            result_array[0] = JSON.parse(result_spl);
+            //this.doRender_p(JSON.parse(result_spl));
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+      requester_o.GET_px("/Weiterbildung/")
+      .then (result_spl => {
+            result_array[1] = JSON.parse(result_spl);
+
+            this.doRender_p(result_array);
+
+
+      })
+      .catch (error_opl => {
+         alert("fetch-error (get)");
+      });
+   }
+   async doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
@@ -395,7 +421,7 @@ class PflegeWeiterDetail_o {
       this.template_s = template_spl;
       this.configHandleEvent_p();
    }
-    render_px (data_opl) {
+   async render_px (data_opl) {
        // Daten anfordern
       let result_array = [];
       let path_s = "/Weiterbildung/";
@@ -403,7 +429,7 @@ class PflegeWeiterDetail_o {
       if(data_opl === "WeiterbildungDetailFormDelete"){
          this.onClickDelete();
       }
-      requester_o.GET_px(path_s)
+      await requester_o.GET_px(path_s)
       .then (result_spl => {
             result_array[0] = JSON.parse(result_spl);
             //this.doRender_p(JSON.parse(result_spl));
@@ -1202,13 +1228,7 @@ class Application_cl {
       case "templates.loaded":
          // Templates stehen zur Verfügung, Bereiche mit Inhalten füllen
          // hier zur Vereinfachung direkt
-         let markup_s;
-         let el_o;
-         markup_s = APPUTIL.tm_o.execute_px("Startseite.mako", null);
-         el_o = document.querySelector("header");
-         if (el_o != null) {
-            el_o.innerHTML = markup_s;
-         }
+
          let nav_a = [
             ["Start", "Startseite"],
             ["PflegeMit", "Pflege_Mit"],
@@ -1233,11 +1253,9 @@ class Application_cl {
 
          ];
          self.sideBar_o.render_px(nav_a);
-         markup_s = APPUTIL.tm_o.execute_px("Startseite.mako", null);
-         el_o = document.querySelector("main");
-         if (el_o != null) {
-            el_o.innerHTML = markup_s;
-         }
+
+         self.Startseite_o.render_px();
+         self.Startseite_o.close_px();
          break;
 
       case "app.cmd":
