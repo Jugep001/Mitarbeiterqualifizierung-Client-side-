@@ -103,7 +103,7 @@ class PflegeMit_o {
          alert("fetch-error (get)");
       });
    }
-   onClickDelete(){
+   async onClickDelete(){
       if (Mit_table_id != null) {
 
                if (confirm("Soll der Datensatz gelöscht werden?")) {
@@ -112,7 +112,7 @@ class PflegeMit_o {
                   let path_s = "/Mitarbeiter/" + Mit_table_id;
                   let result_o = APPUTIL.requester_o.DELETE_px(path_s);
                   Mit_table_id = null;
-                  this.render_px();
+                  await this.render_px();
 
                }
             }
@@ -970,7 +970,6 @@ class SichtWeiterForm_o {
             let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
-            this.render_px();
             alert("Gespeichert!");
 
          }
@@ -985,6 +984,7 @@ class SichtWeiterForm_o {
       let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
+      await this.render_px();
       return result_o;
 
    }
@@ -1030,6 +1030,7 @@ class Mitarbeiter_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+         sortTable();
       }
    }
    close_px () {
@@ -1094,6 +1095,7 @@ class Weiterbildung_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+         sortTable();
       }
    }
    close_px () {
@@ -1144,6 +1146,7 @@ class Zertifikate_o {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
          el_o.innerHTML = markup_s;
+         sortTable();
       }
    }
    close_px () {
@@ -1444,6 +1447,72 @@ function getTableID(clicked_ID,form){
    }
 
 }
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("Mitarbeitertabelle");
+  if (table == null){
+      return;
+  }
+  switching = true;
+
+
+  while (switching) {
+
+    switching = false;
+    rows = table.rows;
+
+    for (i = 1; i < (rows.length - 1); i++) {
+
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+function sortTable2() {
+
+   var table,switching, i, x, y;
+   table = document.getElementById("Mitarbeitertabelle");
+   switching = true;
+
+        while (switching) {
+
+            switching = false;
+
+
+        for (i = 1; i < (table.rows.length - 1); i++) {
+
+            x = table.rows[i].getElementsByTagName("TD")[5];
+            y = table.rows[i + 1].getElementsByTagName("TD")[5];
+            var xdate=new Date(x.innerHTML);
+            var ydate=new Date(y.innerHTML);
+
+        if (xdate > ydate) {
+
+            table.rows[i].parentNode.insertBefore(table.rows[i + 1], table.rows[i]);
+            switching = true;
+            break;
+
+       }
+     }
+
+   }
+
+ }
 
 window.onload = function () {
    APPUTIL.es_o = new APPUTIL.EventService_cl();

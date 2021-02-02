@@ -82,5 +82,9 @@
    "c0230166-63bf-11eb-9d79-3c7c3f81d302": {
       "bezeichnung": "test",
       "beschreibung": "test"
+   },
+   "2b18f050-6556-11eb-8945-6245b4f8b9c0": {
+      "bezeichnung": "Python",
+      "beschreibung": "Python"
    }
 }

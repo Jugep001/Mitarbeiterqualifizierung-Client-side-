@@ -71,39 +71,21 @@
          }
       }
    },
-   "55bc555e-6086-11eb-84cf-3c7c3f81d302": {
+   "2b19658d-6556-11eb-b419-6245b4f8b9c0": {
       "status": "angemeldet",
-      "bezeichnung": "s",
-      "von": "2021-01-13",
-      "bis": "2021-01-29",
-      "beschreibung": "s",
-      "max_teilnehmer": "12",
-      "min_teilnehmer": "1",
-      "bezeichnung_zerti": "sda",
-      "beschreibung_zerti": "sd",
-      "berechtigt_zu": "sda",
-      "Qualifikation": {
-         "55bbc1c4-6086-11eb-87d7-3c7c3f81d302": {
-            "bezeichnung": "sa",
-            "beschreibung": "sd"
-         }
-      }
-   },
-   "b1d65f5a-63ad-11eb-af09-3c7c3f81d302": {
-      "status": "angemeldet",
-      "bezeichnung": "test",
-      "von": "2021-01-13",
-      "bis": "2021-01-29",
-      "beschreibung": "test",
+      "bezeichnung": "Python",
+      "von": "2021-02-10",
+      "bis": "2021-02-11",
+      "beschreibung": "Python",
       "max_teilnehmer": "21",
       "min_teilnehmer": "1",
-      "bezeichnung_zerti": "test",
-      "beschreibung_zerti": "test",
-      "berechtigt_zu": "test",
+      "bezeichnung_zerti": "Python",
+      "beschreibung_zerti": "Python",
+      "berechtigt_zu": "Python",
       "Qualifikation": {
-         "b1d5ea6d-63ad-11eb-8922-3c7c3f81d302": {
-            "bezeichnung": "test",
-            "beschreibung": "test"
+         "2b18f050-6556-11eb-8945-6245b4f8b9c0": {
+            "bezeichnung": "Python",
+            "beschreibung": "Python"
          }
       }
    }
