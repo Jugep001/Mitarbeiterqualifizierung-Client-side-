@@ -128,6 +128,7 @@
         @endif@
         <div>
             <input type="submit" value="Speichern" class=""/>
+            <input type="button" value="Qualifikation hinzufügen" onclick="addInput()">
         </div>
     </div>
 

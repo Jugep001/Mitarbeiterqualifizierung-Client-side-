@@ -592,10 +592,32 @@ class WeiterbildungForm_o {
       let data_o = null;
       // auf die einzelnen Formularfelder und -werte zugreifen und als String ablegen
       let formData_o = new FormData(form_opl);
+      let bezeichnung_quali_spa = [];
+      let beschreibung_quali_spa = [];
+      let i = 0;
+      let j = 0;
       data_o = {};
+
       for(let pair_a of formData_o.entries()) {
+         if(pair_a[0] === "bezeichnung_quali_spa"){
+            bezeichnung_quali_spa[i] = pair_a[1];
+            i++;
+         }
+         else if(pair_a[0] === "beschreibung_quali_spa"){
+            beschreibung_quali_spa[j] = pair_a[1];
+            j++;
+         }
+      }
+      formData_o.delete("bezeichnung_quali_spa");
+      formData_o.delete("beschreibung_quali_spa");
+
+
+      for(let pair_a of formData_o.entries()) {
+         console.log(pair_a)
          data_o[pair_a[0]] = pair_a[1];
       }
+      data_o["bezeichnung_quali_spa"] = bezeichnung_quali_spa;
+      data_o["beschreibung_quali_spa"] = beschreibung_quali_spa;
       return data_o;
    }
 }
