@@ -268,14 +268,16 @@ class MitarbeiterForm_o {
    exitHandler_p () {
       // Ereignisverarbeitung für das Formular aufheben
       const form = document.getElementById('idForm');
+      if(form != null){
+         form.removeEventListener("submit", this.handleSubmit_p.bind(this));
+      }
 
-      form.removeEventListener("submit", this.handleSubmit_p.bind(this));
    }
    configHandleEvent_p () {
       const form = document.getElementById('idForm');
-
+      if(form != null) {
          form.addEventListener("submit", this.handleSubmit_p.bind(this));
-
+      }
 
 
 
@@ -534,15 +536,15 @@ class WeiterbildungForm_o {
    exitHandler_p () {
       // Ereignisverarbeitung für das Formular aufheben
       const form = document.getElementById("idForm2")
-
+      if(form != null) {
          form.removeEventListener("submit", this.handleSubmit_p.bind(this));
-
+      }
    }
    configHandleEvent_p () {
       const form = document.getElementById('idForm2');
-
+      if(form != null) {
          form.addEventListener("submit", this.handleSubmit_p.bind(this));
-
+      }
    }
    handleSubmit_p (event_opl) {
       let form_o = document.querySelector("form");
