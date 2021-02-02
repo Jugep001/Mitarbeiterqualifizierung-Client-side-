@@ -6,51 +6,7 @@
       "taetigkeit": "Student",
       "Weiterbildung": {
          "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "erfolgreich beendet",
-            "bezeichnung": "Java",
-            "von": "2021-01-12",
-            "bis": "2021-01-13",
-            "beschreibung": "Java",
-            "max_teilnehmer": "211",
-            "min_teilnehmer": "1",
-            "bezeichnung_zerti": "Java",
-            "beschreibung_zerti": "Java",
-            "berechtigt_zu": "Java",
-            "Qualifikation": {
-               "c0230166-63bf-11eb-9d79-3c7c3f81d302": {
-                  "bezeichnung": "test",
-                  "beschreibung": "test"
-               }
-            }
-         },
-         "2e1f9c1c-53e9-11eb-a19b-6245b4f8b9c0": {
             "status": "angemeldet",
-            "bezeichnung": "C++",
-            "von": "2021-01-12",
-            "bis": "2021-01-21",
-            "beschreibung": "C++",
-            "max_teilnehmer": "21",
-            "min_teilnehmer": "2",
-            "bezeichnung_zerti": "C++",
-            "beschreibung_zerti": "C++",
-            "berechtigt_zu": "C++",
-            "Qualifikation": {
-               "2e1f4df7-53e9-11eb-853a-6245b4f8b9c0": {
-                  "bezeichnung": "C++",
-                  "beschreibung": "C++"
-               }
-            }
-         }
-      }
-   },
-   "52ce9e46-616b-11eb-94f8-3c7c3f81d302": {
-      "name": "test",
-      "vorname": "test",
-      "akademischer_grad": "test",
-      "taetigkeit": "Student",
-      "Weiterbildung": {
-         "221f1ea8-53e9-11eb-bac9-6245b4f8b9c0": {
-            "status": "nimmt teil",
             "bezeichnung": "Java",
             "von": "2021-01-12",
             "bis": "2021-01-13",
@@ -86,7 +42,7 @@
             }
          },
          "293f4ea5-540c-11eb-8db0-6245b4f8b9c0": {
-            "status": "storniert",
+            "status": "angemeldet",
             "bezeichnung": "D",
             "von": "2021-01-13",
             "bis": "2021-01-21",
@@ -104,5 +60,12 @@
             }
          }
       }
+   },
+   "96aac6ea-655e-11eb-9b59-6245b4f8b9c0": {
+      "name": "Freukes",
+      "vorname": "Benjamin",
+      "akademischer_grad": "Student",
+      "taetigkeit": "Student",
+      "Weiterbildung": null
    }
 }

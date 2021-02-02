@@ -103,7 +103,7 @@ class PflegeMit_o {
          alert("fetch-error (get)");
       });
    }
-   async onClickDelete(){
+   async onClickDelete(event_opl){
       if (Mit_table_id != null) {
 
                if (confirm("Soll der Datensatz gelöscht werden?")) {
@@ -115,7 +115,11 @@ class PflegeMit_o {
                   await this.render_px();
 
                }
+               else{
+                  Mit_table_id = null;
+               }
             }
+
    }
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
@@ -186,6 +190,9 @@ class PflegeMitDetail_o {
                   Mit_table_id = null;
                   this.render_px();
 
+               }
+               else{
+                  Mit_table_id = null;
                }
             }
    }
@@ -382,7 +389,11 @@ class PflegeWeiter_o {
                   this.render_px();
 
                }
+               else{
+                  Weiter_table_id = null;
+               }
             }
+
    }
 
    doRender_p (data_opl) {
@@ -462,7 +473,11 @@ class PflegeWeiterDetail_o {
                   this.render_px();
 
                }
+               else{
+                  Weiter_table_id = null;
+               }
             }
+
    }
    doRender_p (data_opl) {
       let markup_s = APPUTIL.tm_o.execute_px(this.template_s, data_opl);
@@ -714,46 +729,56 @@ class SichtMitForm_o {
          let el_o = document.querySelector(this.el_s);
          if (el_o != null) {
             el_o.innerHTML = markup_s;
-            this.configHandleEvent_p();
+            this.configHandleEventSpeichern_p();
+            this.configHandleEventStornieren_p()
             select_Weiter(data_opl[1]);
-            window.addEventListener("click", function (event) {
-
-            }, true);
          }
       }
    }
    close_px () {
-      this.exitHandler_p();
+      this.exitHandlerSpeichern_p();
+      this.exitHandlerStornieren_p();
    }
 
-   exitHandler_p () {
+   exitHandlerSpeichern_p () {
       // Ereignisverarbeitung für das Formular aufheben
       const Speichern = document.getElementById('SpeichernWeiter');
-      const Stornieren = document.getElementById('StornierenWeiter');
 
       if(Speichern != null){
          Speichern.removeEventListener("click", this.handleSubmit_p.bind(this, "Speichern"));
 
       }
+
+
+   }
+   exitHandlerStornieren_p () {
+      // Ereignisverarbeitung für das Formular aufheben
+      const Stornieren = document.getElementById('StornierenWeiter');
+
       if(Stornieren != null){
          Stornieren.removeEventListener("click", this.handleSubmit_p.bind(this, "Stornieren"));
       }
 
    }
-   configHandleEvent_p () {
+   configHandleEventSpeichern_p () {
       const Speichern = document.getElementById('SpeichernWeiter');
-      const Stornieren = document.getElementById('StornierenWeiter');
 
-      if(Stornieren != null){
-         Stornieren.addEventListener("click", this.handleStorno_p.bind(this));
-      }
       if(Speichern != null){
          Speichern.addEventListener("click", this.handleSubmit_p.bind(this));
 
       }
 
    }
-   handleSubmit_p (event_opl, formtype){
+   configHandleEventStornieren_p () {
+      const Stornieren = document.getElementById('StornierenWeiter');
+
+      if(Stornieren != null){
+         Stornieren.addEventListener("click", this.handleStorno_p.bind(this));
+      }
+
+
+   }
+   async handleSubmit_p (event_opl){
       let form_o = document.getElementById("idForm3");
 
       if (form_o != null) {
@@ -774,16 +799,15 @@ class SichtMitForm_o {
             let id_s = fd_o["id_spa"]; // mit Pfad "bestellungen/"
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
-            this.render_px();
             alert("Gespeichert!");
-
+            await this.render_px();
          }
       }
       // keine Standard-Formularverarbeitung
       event_opl.preventDefault();
       event_opl.stopPropagation();
    }
-   handleStorno_p (event_opl, formtype){
+   async handleStorno_p (event_opl){
       let form_o = null;
       if(Weiter_table_id != null){
          form_o = document.getElementById(Weiter_table_id + "_form");
@@ -812,7 +836,7 @@ class SichtMitForm_o {
             let el_o = document.getElementById("id_spa");
             el_o.value = id_s;                         // Id der neuen Daten wird vermerkt
             alert("Gespeichert!");
-            this.render_px();
+
          }
       }
       // keine Standard-Formularverarbeitung
@@ -825,6 +849,7 @@ class SichtMitForm_o {
       let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
+      await this.render_px();
       return result_o;
 
    }
