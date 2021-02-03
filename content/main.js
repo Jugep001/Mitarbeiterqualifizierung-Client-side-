@@ -1173,19 +1173,19 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.PflegeWeiter_o.render_px();
-            this.PflegeWeiter_o.close_px();
+
             break;
          case "PflegeWeiterDetail":
             Mit_table_id = null;
             Weiter_table_id = null;
             this.PflegeWeiterDetail_o.render_px();
-            this.PflegeWeiterDetail_o.close_px();
+
             break;
          case "WeiterbildungForm":
             Mit_table_id = null;
             Weiter_table_id = null;
             this.WeiterbildungForm_o.render_px(data_opl[0]);
-            this.WeiterbildungForm_o.close_px();
+
             break;
          case "WeiterbildungFormEdit":
             if(Weiter_table_id != null) {
@@ -1212,7 +1212,7 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.SichtMit_o.render_px();
-            this.SichtMit_o.close_px();
+
             break;
          case "SichtMitForm":
             if(Mit_table_id != null){
@@ -1228,7 +1228,7 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.SichtWeiter_o.render_px();
-            this.SichtWeiter_o.close_px();
+
             break;
          case "SichtWeiterForm":
             if(Weiter_table_id != null){

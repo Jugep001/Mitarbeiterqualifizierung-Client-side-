@@ -1,5 +1,4 @@
-<main class="selektor_Mit_form">
-    <form id="idForm">
+<form id="idForm">
             @let Weiterbildung_spa = [];@
             @for key_weiter in context["Weiterbildung"]@
                 <input type="hidden" value="#key_weiter#" id="Weiterbildung_spa" name="Weiterbildung_spa" />
@@ -39,4 +38,3 @@
             <a href=## data-action="PflegeMit" role="button">Abbrechen</a>
 
         </div>
-</main>
