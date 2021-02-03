@@ -71,6 +71,7 @@ APPUTIL.EventService_cl = class {
       }, 1);
    }
 
+
    each_p(object_opl, iterator) {
       for (var key_s in object_opl) {
          iterator.call(this, object_opl[key_s], key_s);

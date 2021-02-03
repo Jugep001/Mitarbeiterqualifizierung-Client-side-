@@ -75,6 +75,8 @@ class Startseite_cl {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 
@@ -148,7 +150,8 @@ class PflegeMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -224,6 +227,8 @@ class PflegeMitDetail_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 
@@ -423,6 +428,8 @@ class PflegeWeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -506,6 +513,8 @@ class PflegeWeiterDetail_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 class WeiterbildungForm_o {
@@ -686,6 +695,8 @@ class SichtMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -926,6 +937,8 @@ class SichtWeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 
@@ -1102,6 +1115,8 @@ class Mitarbeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -1167,6 +1182,8 @@ class Weiterbildung_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -1218,6 +1235,8 @@ class Zertifikate_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 
@@ -1237,6 +1256,7 @@ class SideBar_cl {
          el_o.innerHTML = markup_s;
       }
    }
+
    configHandleEvent_p () {
       let el_o = document.querySelector(this.el_s);
       if (el_o != null) {
@@ -1246,6 +1266,8 @@ class SideBar_cl {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
+      event_opl.stopPropagation();
+      event_opl.preventDefault();
    }
 }
 
@@ -1305,7 +1327,6 @@ class Application_cl {
 
          ];
          self.sideBar_o.render_px(nav_a);
-
          self.Startseite_o.render_px();
          self.Startseite_o.close_px();
          break;
@@ -1331,8 +1352,11 @@ class Application_cl {
             this.MitarbeiterForm_o.close_px();
             break;
          case "MitarbeiterFormEdit":
-            this.MitarbeiterForm_o.render_px();
-            this.MitarbeiterForm_o.close_px();
+            if(Mit_table_id != null){
+               this.MitarbeiterForm_o.render_px();
+               this.MitarbeiterForm_o.close_px();
+            }
+
             break;
          case "MitarbeiterFormDelete":
             if(Mit_table_id != null){
@@ -1361,8 +1385,10 @@ class Application_cl {
             this.WeiterbildungForm_o.close_px();
             break;
          case "WeiterbildungFormEdit":
-            this.WeiterbildungForm_o.render_px();
-            this.WeiterbildungForm_o.close_px();
+            if(Weiter_table_id != null) {
+               this.WeiterbildungForm_o.render_px();
+               this.WeiterbildungForm_o.close_px();
+            }
             break;
          case "WeiterbildungFormDelete":
             if(Weiter_table_id != null){
@@ -1385,9 +1411,6 @@ class Application_cl {
                this.SichtMitForm_o.render_px();
                this.SichtMitForm_o.close_px();
             }
-            else{
-               alert("Wählen sie einen Mitarbeiter aus!")
-            }
             break;
 
          case "SichtWeiter":
@@ -1398,9 +1421,6 @@ class Application_cl {
             if(Weiter_table_id != null){
                this.SichtWeiterForm_o.render_px();
                this.SichtWeiterForm_o.close_px();
-            }
-            else{
-               alert("Wählen sie eine Weiterbildung aus!")
             }
 
             break;
@@ -1415,9 +1435,6 @@ class Application_cl {
          case "Zerti":
             this.Zertifikate_o.render_px();
             this.Weiterbildung_o.close_px();
-            break;
-         case "idBack":
-            APPUTIL.es_o.publish_px("app.cmd", ["Start", null]);
             break;
          }
          break;
