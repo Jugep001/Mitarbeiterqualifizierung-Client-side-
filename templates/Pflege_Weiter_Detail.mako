@@ -35,12 +35,16 @@
                                     <td>#context[0][key_s]["bezeichnung_zerti"]#</td>
                                     <td>#context[0][key_s]["beschreibung_zerti"]#</td>
                                     <td>#context[0][key_s]["berechtigt_zu"]#</td>
-
+                                    <td>
                                     @for Quali_elem in context[0][key_s]["Qualifikation"]@
-                                                    <td>#context[0][key_s]["Qualifikation"][Quali_elem]["bezeichnung"]#</td>
-                                                    <td>#context[0][key_s]["Qualifikation"][Quali_elem]["beschreibung"]#</td>
+                                                    [#context[0][key_s]["Qualifikation"][Quali_elem]["bezeichnung"]#]
                                     @endfor@
-
+                                    </td>
+                                    <td>
+                                    @for Quali_elem in context[0][key_s]["Qualifikation"]@
+                                                    [#context[0][key_s]["Qualifikation"][Quali_elem]["beschreibung"]#]
+                                    @endfor@
+                                    </td>
                                     @for key_mit_s in context[1]@
                                         @if context[1][key_mit_s]["Weiterbildung"]@
                                             @for key_weiter in context[1][key_mit_s]["Weiterbildung"]@

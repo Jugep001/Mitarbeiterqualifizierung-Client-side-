@@ -52,7 +52,7 @@
     </table>
 
             <div>
-                <a href="##" data-action=MitarbeiterFormEdit >bearbeiten</a>
+                <a href="##" data-action=MitarbeiterDetailFormEdit >bearbeiten</a>
                 <a href="##" data-action=MitarbeiterDetailFormDelete class="clDelete" >löschen</a>
                 <a href="##" data-action="MitarbeiterForm" role="button">erfassen</a>
                 <a href="##" data-action="PflegeMit" role="button">zurück</a>
