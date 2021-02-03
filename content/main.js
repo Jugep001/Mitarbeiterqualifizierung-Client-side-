@@ -75,8 +75,6 @@ class Startseite_cl {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 
@@ -150,8 +148,6 @@ class PflegeMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -227,8 +223,6 @@ class PflegeMitDetail_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 
@@ -335,7 +329,6 @@ class MitarbeiterForm_o {
       let path_s = "/Mitarbeiter/" + Mit_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
-      Mit_table_id = null;
       return result_o;
 
    }
@@ -428,8 +421,6 @@ class PflegeWeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -513,8 +504,6 @@ class PflegeWeiterDetail_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 class WeiterbildungForm_o {
@@ -610,7 +599,6 @@ class WeiterbildungForm_o {
       let path_s = "/Weiterbildung/" + Weiter_table_id;
       let result_o = await APPUTIL.requester_o.PUT_px(path_s, data_opl);
       console.log(JSON.stringify(result_o));
-      Weiter_table_id = null;
       return result_o;
 
    }
@@ -695,8 +683,6 @@ class SichtMit_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -937,8 +923,6 @@ class SichtWeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 
@@ -1115,8 +1099,6 @@ class Mitarbeiter_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -1182,8 +1164,6 @@ class Weiterbildung_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 //------------------------------------------------------------------------------
@@ -1235,8 +1215,6 @@ class Zertifikate_o {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 
@@ -1266,8 +1244,6 @@ class SideBar_cl {
    handleEvent_p (event_opl) {
       let cmd_s = event_opl.target.dataset.action;
       APPUTIL.es_o.publish_px("app.cmd", [cmd_s, null]);
-      event_opl.stopPropagation();
-      event_opl.preventDefault();
    }
 }
 
@@ -1335,19 +1311,26 @@ class Application_cl {
          // hier müsste man überprüfen, ob der Inhalt gewechselt werden darf
          switch (data_opl[0]) {
          case "Start":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.Startseite_o.render_px();
             this.Startseite_o.close_px();
             break;
          case "PflegeMit":
-            // Daten anfordern und darstellen
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.PflegeMit_o.render_px();
             this.PflegeMit_o.close_px();
             break;
          case "PflegeMitDetail":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.PflegeMitDetail_o.render_px();
             this.PflegeMitDetail_o.close_px();
             break;
          case "MitarbeiterForm":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.MitarbeiterForm_o.render_px(data_opl[0]);
             this.MitarbeiterForm_o.close_px();
             break;
@@ -1373,14 +1356,20 @@ class Application_cl {
 
             break;
          case "PflegeWeiter":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.PflegeWeiter_o.render_px();
             this.PflegeWeiter_o.close_px();
             break;
          case "PflegeWeiterDetail":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.PflegeWeiterDetail_o.render_px();
             this.PflegeWeiterDetail_o.close_px();
             break;
          case "WeiterbildungForm":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.WeiterbildungForm_o.render_px(data_opl[0]);
             this.WeiterbildungForm_o.close_px();
             break;
@@ -1403,6 +1392,8 @@ class Application_cl {
             }
             break;
          case "SichtMit":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.SichtMit_o.render_px();
             this.SichtMit_o.close_px();
             break;
@@ -1414,6 +1405,8 @@ class Application_cl {
             break;
 
          case "SichtWeiter":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.SichtWeiter_o.render_px();
             this.SichtWeiter_o.close_px();
             break;
@@ -1425,14 +1418,20 @@ class Application_cl {
 
             break;
          case "Mit":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.Mitarbeiter_o.render_px();
             this.Mitarbeiter_o.close_px();
             break;
          case "Weiter":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.Weiterbildung_o.render_px();
             this.Weiterbildung_o.close_px();
             break;
          case "Zerti":
+            Mit_table_id = null;
+            Weiter_table_id = null;
             this.Zertifikate_o.render_px();
             this.Weiterbildung_o.close_px();
             break;
