@@ -16,7 +16,8 @@
     'sidebar4 main main main main main'
     'sidebar5 main main main main main';
   grid-gap: 10px;
-  background-color: lightcoral;
+  background-color: #669933;
+  padding: 10px;
 }
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
@@ -40,22 +41,21 @@
 }
 input{
   transition-duration: 0.2s;
-  background-color: #625295;
+  background-color: #669999;
   padding: 5px;
   border: none;
   text-align: left;
 }
-
 button{
   transition-duration: 0.2s;
-  background-color: #625295;
+  background-color: #669999;
   padding: 5px;
   border: none;
   text-align: left;
 }
 a{
   transition-duration: 0.2s;
-  background-color: coral;
+  background-color: #669999;
   color: black;
   padding: 5px;
   border: none;
@@ -75,36 +75,66 @@ ul{
   line-height: 2em;
 }
 label{
-  background-color: #625295;
+  background-color: #669933;
   text-align: left;
   padding: 5px;
+}
+/* einfaches Layout fuer Demonstrator */
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+}
+
+header {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   color: black;
 }
 
 main {
    position: absolute;
-   top: 100px;
-   left: 500px;
+   top: 70px;
+   left: 650px;
    right: 0;
    bottom: 100px;
 }
-#MitarbeiterIdList {
-   table-layout: fixed;
-   width: 80%;
-   border: 1px solid;
-   border-collapse: collapse;
-   margin:auto;
+footer {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 100px;
+   background-color: blue;
+   color: white;
+}
+footer p {
+   text-align: center;
 }
 
-#MitarbeiterIdList th {
-   text-align: left;
-   padding-left: 6px;
-}
-#MitarbeiterIdList th, #idList td {
-   padding: 3px;
-   border: 1px solid;
+.clSelected {
+   background-color: #669999;
+   color: white;
 }
 
-.selected {
-    color: red;
+form label {
+   display: block;
+   width: 200px;
 }
-
+form input {
+   display: block;
+   width: 300px;
+}
+form button {
+   display: block;
+}
+body{
+    background-color: #669933;
+}
+/* EOF */

@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bmf</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Team: Julian Geppert (Matrikelnummer: 1195206), Benjamin Freukes (Matrikelnummer: 1287970) Gültigkeitsdatum: 02.02.2020</p>
+<h1 id="aufbau-der-dokumentation">Aufbau der Dokumentation</h1>
+<ul>
+<li><a href="#allgemeine-beschreibung-der-loesung">Allgemeine Beschreibung der Lösung</a></li>
+<li><a href="#beschreibungen-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
+<ul>
+<li>Python Dateien
+<ul>
+<li>Zweck der Komponente</li>
+<li>Methoden</li>
+<li>Verbindungen zu anderen Dateien und Klassen</li>
+</ul></li>
+<li>JavaScript Klassen/Dateien
+<ul>
+<li>Zweck der Komponente</li>
+<li>Methoden</li>
+<li>Verbindungen zu anderen Dateien und Klassen</li>
+</ul></li>
+</ul></li>
+<li><a href="#css">CSS</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#konfiguration">Konfiguration</a></li>
+<li><a href="#datenablage">Datenablage</a></li>
+</ul>
+<h1 id="allgemeine-beschreibung-der-loesung">Allgemeine Beschreibung der Loesung</h1>
+<p>Mit dieser Webseite erstellen wir eine Anwendung, welche es ermöglicht ein Datenmanagement zu betreiben. Man kann Daten erfassen, bearbeiten, löschen und speichern. Wenn Daten gelöscht werden wird dies durch ein Pop-up Fenster abgefragt. Die Eingabe der “Mitarbeiter” Daten erfolgt durch eine Formularseite in der man den Namen, Vorname und spezifisch andere Daten eingeben kann. Außerdem gibt es auch einen zurück Button, welcher es ermöglicht von Bearbeiten zurück zu gehen.</p>
+<h1 id="beschreibungen-der-komponenten-des-servers">Beschreibungen der Komponenten des Servers</h1>
+<h2 id="database.py">database.py:</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Diese Komponente ist es in die JSON Files zu schreiben und unsere ein gegebenen Daten abzuspeichern/löschen/überschreiben</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>init Werte werden initialisiert (data_o_Weiter,data_o_Zerti,data_o_Quali)</li>
+<li>create_px prüft welche listForm die Aktuelle ist und erstellt dann</li>
+<li>read_px liest je nach listForm die Daten ein und gibt diese entsprechend zurück</li>
+<li>update_px wird verwendet, um bestehende Daten zu bearbeiten und zu “überschreiben”</li>
+<li>delete_px wird verwendet, um bestehende Daten zu löschen</li>
+<li>getDefault_px setzt Default Werte ein für die Formulare</li>
+<li>readData_p öffnet die JSON Dateien und speichert die Einträge in jeweilige Objekte</li>
+<li>saveData_p speichert jeweils die Daten in den Jeweiligen JSON Dateien ab</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Die Komponente ist mit Mitarbeiter.py Weiterbildung.py und der dataid.py in verbindung</li>
+</ul></li>
+</ul>
+<h2 id="application.py">application.py</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Ist zuständig für das Erstellen der Dispatcher Klassen</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Die Komponente ist mit Weiterbildung.py,Weiterbildunguebersicht.py,Mitarbeiteruebersicht.py, Mitarbeiterqualifikation.py,Mitarbeiter.py,Auswertungzertifikate.py,Auswertungweiterbildungen.py, Auswertungmitarbeiter.py , template.py und server.py in verbindung</li>
+</ul></li>
+</ul>
+<h2 id="dataid.py">dataid.py</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Diese Komponente ist es eine uuid zu erstellen und zur verfügung zu stellen</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>create_px(self) generiert eine uuid</li>
+<li>read_px(self) liest uuid ein und gibt diese zurück</li>
+<li>readMaxId_p(self) liest die aktuelle MaxID wenn vorhanden sonst erstellen mit 0</li>
+<li>saveMaxId_p(self) speicher die MaxID</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in Verbindung mit databse.py</li>
+</ul></li>
+</ul>
+<h2 id="mitarbeiter.py">Mitarbeiter.py</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Diese Komponente ist es sowohl Get,Put,Post als auch Delete Anfragen zu bearbeiten und bereit zu stellen</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>GET(self, mitarbeiter_id=None) holt eine oder mehrere Daten aus der Mitarbeiter.JSON</li>
+<li>POST(self) speichert Daten in Mitarbeiter</li>
+<li>PUT(self, id_spa) bearbeitet bereits vorhandene Daten</li>
+<li>DELETE(self, mitarbeiter_id) löscht anhand der ID bestimmte Daten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in Verbindung mit database.py und der main.js</li>
+</ul></li>
+</ul>
+<h2 id="weiterbildung.py">Weiterbildung.py</h2>
+<ul>
+<li>Zweck dieser Komponente ist es mit Get/Put/Post/Delete Weiterbildungen zu bekommen/bearbeiten/erstellen/löschen</li>
+<li>Diese können einzelne oder spezifisch durch Angabe einer ID geholt werden</li>
+<li>GET(self, weiterbildung_id=None) holen eine oder mehrerer Weiterbildungen</li>
+<li>POST(self) speichert Daten in Weiterbildungen</li>
+<li>PUT(self, id_spa) bearbeitet bereits vorhandene Daten</li>
+<li>DELETE(self, mitarbeiter_id) löscht anhand der ID bestimmte Daten</li>
+<li>Steht in verbindung mit der main.js, application.py</li>
+</ul>
+<h2 id="server.py">server.py</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Zweck dieser Komponente ist es den Server zu Starten</li>
+<li>Aktuelles Verzeichnis wird ermittelt um den richtigen Bezugspunkt zur server.conf zu setzen</li>
+<li>Erster Eintrag geschieht bei Standerverhalten</li>
+<li>Zweiter Eintrag Method-Dispatcher für die “Applikation” “app” vereinbaren</li>
+<li>Steht in Verbindung mit der main.js und der index.html</li>
+</ul></li>
+</ul>
+<h2 id="main.html">main.html</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Metadaten werden gesetzt</li>
+<li>JavaScript Dateien werden eingebunden</li>
+<li>CSS wird eingebunden</li>
+<li>Aside tag wird erstellt (Navigation)</li>
+<li>Main tag wird erstellt (Main content der jeweiligen Seite)</li>
+<li>Die Komponente steht in Verbindung mit den Folgenden Komponenten eve.js, main.js, req.js, tco.js, tmg.js und der Mitarbeiterqualifizierung.css</li>
+</ul></li>
+</ul>
+<h2 id="main.js">main.js</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Startseite_cl Klasse wird erstellt welche für den Content auf der Startseite zuständig ist</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und</li>
+<li>async render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>async doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js, Mitarbeiter.py und Weiterbildung.py</li>
+</ul></li>
+<li>PfelgeMit_o
+<ul>
+<li>Zweck
+<ul>
+<li>PflegeMit_o Klasse wird erstellt welche für den Content auf der Pflegemit Seite zuständig ist</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zuständig für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Mitarbeiter.py</li>
+</ul></li>
+</ul></li>
+<li>PflegeMitDetail_o
+<ul>
+<li>Zweck
+<ul>
+<li>PflegeMitDetail_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>onClickDelete() zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>MitarbeiterForm_o
+<ul>
+<li>Zweck
+<ul>
+<li>MitarbeiterForm_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) initialisiert werte</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten und ruft configHandleEvent_p auf</li>
+<li>close_px () ruft exitHandler auf</li>
+<li>exitHandler_p () zum Beenden eines Events</li>
+<li>configHandleEvent_p () Event listener wird hinzugefügt reagiert auf ein Submit Event</li>
+<li>handleSubmit_p (event_opl) zuständig um Dateien zu speichern unterscheidet, ob es ein neuer Datensatz ist oder ob ein alter bearbeitet wurde</li>
+<li>async saveNewData_p (data_opl) ruft ein Post auf, um einen neuen Datensatz zu erstellen</li>
+<li>async saveOldData_p (data_opl) ruft ein Put auf, um bereits vorhandene Datensätze zu bearbeiten</li>
+<li>getFormData_px (form_opl) zuständig für das holen von Daten eines Forms</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>PflegeWeiter_o
+<ul>
+<li>Zweck
+<ul>
+<li>PflegeWeiter_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Weiterbildung.py</li>
+</ul></li>
+</ul></li>
+<li>PflegeWeiterDetail_o
+<ul>
+<li>Zweck -PflegeWeiterDetail_o</li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>onClickDelete() zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten Verbindungen</li>
+<li>steht in Verbindung mit der main.js und der Weiterbildung.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>WeiterbildungForm_o
+<ul>
+<li>Zweck
+<ul>
+<li>WeiterbildungForm_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) initalisiert werte</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten und ruft configHandleEvent_p auf</li>
+<li>close_px () ruft exitHandler auf</li>
+<li>exitHandler_p () zum Beenden eines Events</li>
+<li>configHandleEvent_p () Event listener wird hinzugefügt reagiert auf ein Submit Event</li>
+<li>handleSubmit_p (event_opl) zuständig um Dateien zu speichern unterscheidet, ob es ein neuer Datensatz ist oder ob ein alter bearbeitet wurde</li>
+<li>async saveNewData_p (data_opl) ruft ein Post auf, um einen neuen Datensatz zu erstellen</li>
+<li>async saveOldData_p (data_opl) ruft ein Put auf, um bereits vorhandene Datensätze zu bearbeiten</li>
+<li>getFormData_px (form_opl) zuständig für das holen von Daten eines Forms</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Weiterbildung.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>SichtMit_o
+<ul>
+<li>Zweck
+<ul>
+<li>SichtMit_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zuständig für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js, der Weiterbildung.p, der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>SichtMitForm_o
+<ul>
+<li>Zweck
+<ul>
+<li>SichtMitForm_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) initialisiert werte</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten und ruft configHandleEvent_p auf</li>
+<li>close_px () ruft exitHandler auf</li>
+<li>exitHandler_p () zum Beenden eines Events</li>
+<li>configHandleEvent_p () Event listener wird hinzugefügt reagiert auf ein Submit Event</li>
+<li>handleSubmit_p (event_opl) zuständig um Dateien zu speichern unterscheidet, ob es ein neuer Datensatz ist oder ob ein alter bearbeitet wurde</li>
+<li>async saveNewData_p (data_opl) ruft ein Post auf, um einen neuen Datensatz zu erstellen</li>
+<li>async saveOldData_p (data_opl) ruft ein Put auf, um bereits vorhandene Datensätze zu bearbeiten</li>
+<li>getFormData_px (form_opl) zuständig für das holen von Daten eines Forms</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>SichtWeiter_o
+<ul>
+<li>Zweck
+<ul>
+<li>SichtWeiter_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js, der Weiterbildung.p, der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>SichtWeiterForm_o
+<ul>
+<li>Zweck
+<ul>
+<li>SichtWeiterForm_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) initalisiert werte</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten und ruft configHandleEvent_p auf</li>
+<li>close_px () ruft exitHandler auf</li>
+<li>exitHandler_p () zum Beenden eines Events</li>
+<li>configHandleEvent_p () Event listener wird hinzugefügt reagiert auf ein Submit Event</li>
+<li>handleSubmit_p (event_opl) zuständig um Dateien zu speichern unterscheidet, ob es ein neuer Datensatz ist oder ob ein alter bearbeitet wurde</li>
+<li>async saveNewData_p (data_opl) ruft ein Post auf, um einen neuen Datensatz zu erstellen</li>
+<li>async saveOldData_p (data_opl) ruft ein Put auf, um bereits vorhandene Datensätze zu bearbeiten</li>
+<li>getFormData_px (form_opl) zuständig für das holen von Daten eines Forms</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js, der Weiterbildung.p, der Mitarbeiter.py und der Funktion getTableID()</li>
+</ul></li>
+</ul></li>
+<li>Mitarbeiter_o
+<ul>
+<li>Zweck
+<ul>
+<li>Mitarbeiter_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Mitarbeiter.py</li>
+</ul></li>
+</ul></li>
+<li>Weiterbildung_o
+<ul>
+<li>Zweck
+<ul>
+<li>Weiterbildungen_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zuständig für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Weiterbildung.p</li>
+</ul></li>
+</ul></li>
+<li>Zertifikate_o
+<ul>
+<li>Zweck
+<ul>
+<li>Zertifikate_o</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>async onClickDelete(event_opl) zustänidg für das Löschen eines markierten Datensatz</li>
+<li>doRender_p (data_opl) erstellen der Webseite mit befüllten werten</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js und der Weiterbildung.p</li>
+</ul></li>
+</ul></li>
+<li>SideBar_cl
+<ul>
+<li>Zweck
+<ul>
+<li>SideBar_cl</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>constructor (el_spl, template_spl) wird aufgerufen und setzt das Template und ruft configHandleEvent auf</li>
+<li>render_px (data_opl) holen der jeweiligen Daten und Aufruf von doRender mit den geholten Daten</li>
+<li>configHandleEvent_p () öffnet ein Eventlistener der auf Clicks achtet und ruft dann handleEvent_p(event_opl) auf</li>
+<li>handleEvent_p (event_opl) holt sich aktuelles Template und lädt dieses</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit der main.js</li>
+</ul></li>
+</ul></li>
+<li>Application_cl
+<ul>
+<li>Zweck
+<ul>
+<li>constructor() Erstellt Objekte von allen Klassen und verbindet diese mit den Templates</li>
+</ul></li>
+<li>Methoden
+<ul>
+<li>notify_px (self, message_spl, data_opl) ist zuständig zum Laden der Templates</li>
+<li>wählt mithilfe einer Switch Case aus welchem Template geladen werden muss</li>
+<li>erstellt unsere Navigation</li>
+<li>lädt zu Beginn die Startseite</li>
+<li>close_px () ruft den exitHandler auf</li>
+<li>exitHandler_p () ist für das Aufheben der Ereignisverarbeitung eines Formulares zuständig</li>
+<li>configHandleEvent_p () ein EventListener welcher auf Clicks achtet</li>
+<li>handleEvent_p (event_opl) lädt aktuelle Seite anhand des Aktuellen Template</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>steht in Verbindung mit allen klassen aus der main.js und allen *.py Dateien</li>
+</ul></li>
+</ul></li>
+<li>function addInput()
+<ul>
+<li>Zweck
+<ul>
+<li>sorgt dafür, dass weitere Weiterbildungen hinzugefügt werden</li>
+</ul></li>
+</ul></li>
+<li>function select_Weiter(data)
+<ul>
+<li>Zweck
+<ul>
+<li>wird benötigt, um aus den Checkboxen die richtigen Weiterbildungen hinzuzufügen</li>
+</ul></li>
+</ul></li>
+<li>function stringifyFormData_px(formData_opl)
+<ul>
+<li>Zweck
+<ul>
+<li>wandelt die eingelesenen Daten in Strings um</li>
+</ul></li>
+</ul></li>
+<li>function getTableID(clicked_ID,form)
+<ul>
+<li>Zweck
+<ul>
+<li>Selektiert Eintrag aus einer Tabelle</li>
+<li>speichert die ID des angeklickten Datensatzes</li>
+</ul></li>
+</ul></li>
+<li>function sortTable() / function sortTable2()
+<ul>
+<li>Zweck
+<ul>
+<li>wird zum Sortieren der Tabelle benutzt</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Die Komponente steht in Verbindung mit den folgenden Klassen: SideBar_cl,Zertifikate_o,Weiterbildung_o,Mitarbeiter_o, SichtWeiterForm_o,SichtWeiter_o,SichtMitForm_o,SichtMit_o,WeiterbildungForm_o,PflegeWeiterDetail_o,PflegeWeiter_o , MitarbeiterForm_o, PflegeMitDetail_o,PflegeMit_o, Startseite_cl außerdem noch in mit der evs.js, req.js , tco.js, tmg.js und der main.html</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="req.js">req.js</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Bearbeitet einfache Anforderungen per Fetch-API (Vorgabe Prof. Dr. Beims)</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in verbindung mit der main.js</li>
+</ul></li>
+</ul>
+<h2 id="tco.js">tco.js</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Template-Engine: Compiler (Vorgabe Prof. Dr. Beims)</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in Verbindung mit evs.js, tco.js und der main.js</li>
+</ul></li>
+</ul>
+<h2 id="tmg.js">tmg.js</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Template Manager welcher Template Quellen lädt und bereitstellt (Vorgabe Prof. Dr. Beims)</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in Verbindung mit evs.js, tco.js und der main.js</li>
+</ul></li>
+</ul>
+<h2 id="evs.js">evs.js</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Ist für den asynchronen Nachrichtenaustausch zuständig(Vorgabe von Prof. Dr. Beims)</li>
+</ul></li>
+</ul>
+<h1 id="css">CSS</h1>
+<h2 id="mitarbeiterqualifizierung.css">Mitarbeiterqualifizierung.css</h2>
+<ul>
+<li>Zweck
+<ul>
+<li>Farbe geändert</li>
+<li>Schriftgröße geändert</li>
+<li>Breite und Höhe angepasst (margin, padding, lineheight,…)</li>
+<li>Buttons haben transition bekommen beim Klicken so dass sich die Farbe ändert</li>
+<li>Flexbox wurde für die oberste Zeile hinzugefügt</li>
+<li>Unsortierte Liste wurde gestylt</li>
+</ul></li>
+<li>Verbindungen
+<ul>
+<li>Steht in Verbindung mit der main.html</li>
+</ul></li>
+</ul>
+<h1 id="templates">Templates</h1>
+<h2 id="pflege_mit.mako">Pflege_Mit.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Grundlegende Attribute (Name, Vorname, usw.) von Mitarbeitern werden angezeigt</li>
+<li>Möglichkeit zum Erfassen, Bearbeiten und Löschen von Einträgen hinzugefügt</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="pflege_mit_detail.mako">Pflege_Mit_Detail.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Detailliertere Ansicht von den Mitarbeitern, wo auch die Weiterbildung und die Zertifikate sowie Qualifikationen angezeigt werden</li>
+<li>Möglichkeit zum Erfassen, Bearbeiten und Löschen von Einträgen hinzugefügt</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="pflege_weiter.mako">Pflege_Weiter.mako</h2>
+<ul>
+<li><p>Tabellen design wurde erstellt mit Gridbox</p></li>
+<li><p>Tabelle wurde mit Werten gefüllt</p></li>
+<li><p>Grundlegende Attribute (Bezeichnung, Beschreibung, usw.) von einer Weiterbildung werden angezeigt</p></li>
+<li><p>Möglichkeit zum Erfassen, Bearbeiten und Löschen eines Eintrages befinden sich hier</p></li>
+<li><p>JavaScript wurde eingebunden</p></li>
+<li><p>Css wurde eingebunden</p></li>
+<li><p>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</p></li>
+<li><p>Steht in Verbindung zu der main.js ## Pflege_Weiter_Detail.mako</p></li>
+<li><p>Tabellen design wurde erstellt mit Gridbox</p></li>
+<li><p>Tabelle wurde mit Werten gefüllt</p></li>
+<li><p>Detailliertere Ansicht von einer Weiterbildung, wobei man diesmal auch das Zertifikat und die Qualifikation konfigurieren kann</p></li>
+<li><p>Möglichkeit zum Erfassen, Bearbeiten und Löschen eines Eintrages befinden sich hier</p></li>
+<li><p>JavaScript wurde eingebunden</p></li>
+<li><p>Css wurde eingebunden</p></li>
+<li><p>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</p></li>
+<li><p>Steht in Verbindung zu der main.js</p></li>
+</ul>
+<h2 id="sichtweise_mit.mako">Sichtweise_Mit.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Anzeige von einem Namen eines Mitarbeiters und Weiterleitung zu einer Formularsicht</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="sichtweise_weiter.mako">Sichtweise_Weiter.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Anzeige von einem Namen einer Weiterbildung und Weiterleitung zu einer Formularsicht</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="startseite.mako">Startseite.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Anzeige von drei verschiedenen Anzahlen (Mitarbeiter, Weiterbildungen, Teilnahmen)</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="mitarbeiter.mako">Mitarbeiter.mako</h2>
+<ul>
+<li><p>Tabellen design wurde erstellt mit Gridbox</p></li>
+<li><p>Tabelle wurde mit Werten gefüllt und nach Nachnamen sortiert</p></li>
+<li><p>JavaScript wurde eingebunden</p></li>
+<li><p>Css wurde eingebunden</p></li>
+<li><p>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</p></li>
+<li><p>Steht in Verbindung zu der main.js ## Weiterbildungen.mako</p></li>
+<li><p>Tabellen design wurde erstellt mit Gridbox</p></li>
+<li><p>Tabelle wurde mit Werten gefüllt</p></li>
+<li><p>Anzeige einer Sortierten Tabelle von Weiterbildungen und dessen Teilnehmern</p></li>
+<li><p>Sortierung nach Bezeichnung Weiterbildung</p></li>
+<li><p>JavaScript wurde eingebunden</p></li>
+<li><p>Css wurde eingebunden</p></li>
+<li><p>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</p></li>
+<li><p>Steht in Verbindung zu der main.js</p></li>
+</ul>
+<h2 id="zertifikate.mako">Zertifikate.mako</h2>
+<ul>
+<li>Tabellen design wurde erstellt mit Gridbox</li>
+<li>Tabelle wurde mit Werten gefüllt</li>
+<li>Anzeige einer Sortierten Tabelle von Zertifikaten</li>
+<li>Sortierung nach Namen der Mitarbeiter</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wurde eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="mitarbeiter_form.mako">Mitarbeiter_Form.mako</h2>
+<ul>
+<li>Mit Inputs werden Daten geholt</li>
+<li>Tabelle wird mit dort angegebenen Werten gefüllt</li>
+<li>Formular zur Erfassung von Mitarbeiterdaten</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wird eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="sichtweise_mit_form.mako">Sichtweise_Mit_Form.mako</h2>
+<ul>
+<li>Mit Inputs werden Daten geholt</li>
+<li>Tabelle wird mit dort angegebenen Werten gefüllt</li>
+<li>Möglichkeit zur Anmeldung von Weiterbildungen</li>
+<li>Anzeige von angemeldeten Weiterbildungen</li>
+<li>Möglichkeit zur Stornierung einer Anmeldung</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wird eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="sichtweise_weiter_form.mako">Sichtweise_Weiter_Form.mako</h2>
+<ul>
+<li>Mit Inputs werden Daten geholt</li>
+<li>Tabelle wird mit dort angegebenen Werten gefüllt</li>
+<li>Anzeige von Weiterbildungen bis ins Detail</li>
+<li>Möglichkeit den Status seiner Anmeldung zu ändern (nimmt teil, erfolgreich abgeschlossen, nicht erfolgreich abgeschlossen, usw.)</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wird eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h2 id="weiterbildungen_form.mako">Weiterbildungen_Form.mako</h2>
+<ul>
+<li>Mit Inputs werden Daten geholt</li>
+<li>Tabelle wird mit dort angegebenen Werten gefüllt</li>
+<li>Möglichkeit Weiterbildungen und deren Qualifikationen sowie Zertifikate zu erfassen</li>
+<li>JavaScript wurde eingebunden</li>
+<li>Css wird eingebunden</li>
+<li>Referenz zur switch Funktion wurde hinzugefügt mit der sich auf die Aufzählungsdarstellung wechseln lässt</li>
+<li>Steht in Verbindung zu der main.js</li>
+</ul>
+<h1 id="konfiguration">Konfiguration</h1>
+<ul>
+<li>Konfiguration ist identisch mit dem des ersten Praktikum siehe static_config in der Server.py</li>
+<li>Steht in Verbindung zu server.py</li>
+</ul>
+<h1 id="datenablage">Datenablage</h1>
+<ul>
+<li>Die Daten (Mitarbeiter, Qualifikation, Weiterbildungen, Zertifikate) werden in unterschiedlichen JSON Dateien gespeichert(Mitarbeiter.json und Weiterbildung.json)</li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./css1.PNG" alt="cssValidator1" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>css1</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Mitarbeiter_form.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Mitarbeiter Formular</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Pflege_Mit.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Pflege Mitarbeiter</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Pflege_Mit_Detail.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Pflege Mitarbeiter Detail</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Pflege_Weiter.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Pflege Weiterbildung</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Pflege_Weiter_Detail.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Pflege Weiterbildung Detail</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./sichtweise_mit.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Sichtweise Mitarbeiter</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Sichtweise_Mit_Form.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Sichtweise Mitarbeiter Formular</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Sichtweise_Weiter.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Sichtweise Weiterbildung</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Sichtweise_Weiter_Form.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Sichtweise Weiterbildung Formular</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Startseite.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Startseite</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Weiterbildung_Form.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Weiterbildung Formular</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Mitarbeiter.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Mitarbeiter</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Weiterbildungen.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Weiterbildungen</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="./Zertifikate.JPG" alt="cssValidator2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Zertifikate</em></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

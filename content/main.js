@@ -1173,19 +1173,16 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.PflegeWeiter_o.render_px();
-
             break;
          case "PflegeWeiterDetail":
             Mit_table_id = null;
             Weiter_table_id = null;
             this.PflegeWeiterDetail_o.render_px();
-
             break;
          case "WeiterbildungForm":
             Mit_table_id = null;
             Weiter_table_id = null;
             this.WeiterbildungForm_o.render_px(data_opl[0]);
-
             break;
          case "WeiterbildungFormEdit":
             if(Weiter_table_id != null) {
@@ -1212,7 +1209,6 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.SichtMit_o.render_px();
-
             break;
          case "SichtMitForm":
             if(Mit_table_id != null){
@@ -1228,7 +1224,6 @@ class Application_cl {
             Mit_table_id = null;
             Weiter_table_id = null;
             this.SichtWeiter_o.render_px();
-
             break;
          case "SichtWeiterForm":
             if(Weiter_table_id != null){
@@ -1350,6 +1345,18 @@ function select_Weiter(data) {
 }
 
 function getTableID(clicked_ID,form){
+   let alle_zeilen = document.getElementsByClassName("tabelle_zeile");
+   for (var i = 0; i < alle_zeilen.length; ++i) {
+      var item = alle_zeilen[i];
+      item.style.backgroundColor = "transparent";
+      item.style.color = "black";
+
+   }
+
+   let obj_tocolor = document.getElementById(clicked_ID);
+   obj_tocolor.style.backgroundColor = "darkblue";
+   obj_tocolor.style.color = "white";
+
    if(form === "Mitarbeiter"){
       Mit_table_id = clicked_ID;
 
